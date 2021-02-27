@@ -1,0 +1,18 @@
+<script>
+$m(".mlvedaform").bind("DOMSubtreeModified", function() {
+ 
+  if ($m("label:contains('mlveda_country')").parent().css('display') !== 'none') {
+        $m("label:contains('mlveda_country')").parent().css('display', 'none');
+    }
+
+/*
+  $m("select").each(function(){    
+    if($m(this).find("option").length==1  && $(this).css('display')!=="none")  {
+    $m(this).css('display','none');
+      $m(this).parent().css('display','none');
+  }  
+  });
+*/
+});
+
+</script>

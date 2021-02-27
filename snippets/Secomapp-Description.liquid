@@ -1,0 +1,31 @@
+{%- if template contains "404" -%}
+{%- elsif template contains "index" -%}
+{% capture secomapp_index_s %}{{ page_description | strip_html | strip}}  {{ shop.name | strip_html | strip}}{% endcapture %}
+<meta name="description" content="{{secomapp_index_s | truncate: 200 | strip_html | strip | strip_newlines | replace: '"', "'"}}">
+
+{%- elsif template contains "product" -%}
+
+{% capture secomapp_product_s %}{{ page_description | strip_html | strip}} {% endcapture %}
+<meta name="description" content="{{secomapp_product_s | truncate: 200 | strip_html | strip | strip_newlines | replace: '"', "'"}}">
+
+{%- elsif template contains "collection" -%}
+
+{% capture secomapp_collection_s %}{{ page_description | strip_html | strip}} {% endcapture %}
+<meta name="description" content="{{secomapp_collection_s | truncate: 200 | strip_html | strip | strip_newlines | replace: '"', "'"}}">
+
+{%- elsif template contains "blog" -%}
+
+{% capture secomapp_blog_s %}{{ page_description | strip}} {% endcapture %}
+<meta name="description" content="{{ secomapp_blog_s | truncate: 200 | strip_html | strip | strip_newlines | replace: '"', "'"}}">
+
+{%- elsif template contains "article" -%}
+
+{% capture secomapp_article_s %} {{ page_description | strip}} {% endcapture %}
+<meta name="description" content="{{ secomapp_article_s | truncate: 200 | strip_html | strip | strip_newlines | replace: '"', "'"}}">
+
+
+{% else %}
+{% capture secomapp_other_s %}{{ page_description | strip_html | strip}} {% endcapture %}
+<meta name="description" content="{{ secomapp_other_s | truncate: 200 | strip_html | strip | strip_newlines | replace: '"', "'"}}">
+
+{%- endif -%}

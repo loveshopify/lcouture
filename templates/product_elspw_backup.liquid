@@ -1,0 +1,11 @@
+<div class="mlvedaform">
+{% section 'product-template' %}
+{% section 'product-recommendations' %}
+{% section 'recently-viewed-products' %}
+
+<script>
+  window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)};
+  ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
+</script>
+{% render 'webyze-swatches', product:product %}
+</div>

@@ -1,0 +1,209 @@
+<style>
+  .fancybox-bg { opacity: 1 !important; }
+  
+  #section-{{ section.id }} {
+  	position: relative
+  }
+  
+  #section-{{ section.id }} .cust__bg-video {
+    //min-height: 45.25vw !important;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: calc(100vh - 120px );
+    background-color: #454545;
+  }
+  
+  #section-{{ section.id }} .cust__bg-video > video {
+    background-size: cover;
+    background-position: 50% 50%;
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    right: -100%;
+    bottom: -100%;
+    top: -100%;
+    left: -100%;
+    object-fit: cover;
+    pointer-events: none
+  }
+
+  #section-{{ section.id }} .cust__play-vid-icon {
+    width: 80px;
+    position: absolute;
+    bottom: 80px;
+    right: 60px;
+    transition: transform 500ms ease;
+  }
+  
+  #section-{{ section.id }} .cust__play-vid-icon:hover {
+    transform: scale(1.25)
+  }
+
+  #section-{{ section.id }} .cust__video-content {
+    position: absolute;
+    bottom: 80px;
+    left: 60px
+  }
+
+  #section-{{ section.id }} #cust__hero-btn:before {
+    background-color: white;
+  }
+
+  #section-{{ section.id }} #cust__hero-btn:hover {
+    color: white;
+  }
+
+  @media screen and (max-width: 991px) {
+    #section-{{ section.id }} .cust__play-vid-icon {
+      width: 64px;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    #section-{{ section.id }} .cust__bg-video {
+	    //min-height: 500px !important;
+      height: 55vw;
+    }
+    
+    #section-{{ section.id }} .cust__play-vid-icon {
+      width: 52px;
+      right: auto;
+      left: 25px;
+      bottom: 160px;
+    }
+
+    #section-{{ section.id }} .cust__video-content {
+      bottom: 25px;
+      left: 25px;
+    }
+  }
+</style>
+
+<section class="Section" id="section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-settings='{{ section_settings }}'>
+  <div class="cust__bg-video">
+    <video autoplay="" loop="" style="background-image: url({{ section.settings.video_poster | img_url: '1600x', format: 'pjpg' }})" muted="" playsinline="">
+      <source src="{{ section.settings.mp4_video_link }}" />
+      <source src="{{ section.settings.webm_video_link }}" />
+    </video>
+  
+  </div>
+  
+  {% if section.settings.show_video_content != blank %}
+  <div class="cust__video-content">
+    <h2 class="SectionHeader__Heading SectionHeader__Heading--emphasize Heading u-h1" style="color: white">{{section.settings.video_title}}</h2>
+    <div class="SectionHeader__ButtonWrapper"><a id="cust__hero-btn" href="{{section.settings.video_link}}" class="CollectionItem__Link Button" style="border: 1px solid white">{{section.settings.video_link_text}}</a></div>
+  </div>
+  {% endif %}
+  
+  {% if section.settings.full_video_url != blank %}
+  	<script>
+      document.head.innerHTML += '<link rel="stylesheet" href="{{ '../assets/fancybox-3.5.7.min.css' | asset_url }}">'
+  	</script>
+  
+	{% assign full_video_url = section.settings.full_video_url | downcase %}
+  
+    <a data-fancybox href="{{full_video_url}}" class="cust__bg-video-link w-inline-block" data-ix="scale-hover">
+      <img src="{{ '../assets/play-arrow.svg' | asset_url }}" alt="" class="cust__play-vid-icon" />
+    </a>
+     <h2 class="SectionHeader__Heading SectionHeader__Heading--emphasize Heading u-h1" style="color: white">{{section.settings.video_title}}</h2>
+  	<script src="{{ '../assets/jquery-3.5.1.min.js' | asset_url }}" type="text/javascript"></script>
+    <script src="{{ '../assets/fancybox-3.5.7.min.js' | asset_url }}" type="text/javascript"></script>
+  	<script type="text/javascript">
+      $(function(){
+        $('[data-fancybox]').fancybox({
+          hash: false,
+          animationEffect: "zoom-in-out",
+          youtube : {
+            controls : 0,
+            showinfo : 0
+          },
+          vimeo : {
+            color : 'white'
+          }
+          
+        });
+      })
+  	</script>
+  	
+  {% endif %}
+</section>
+{% schema %}
+{
+  "name": "Hero Video",
+  "class": "Hero-video",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Video poster",
+      "info" : "Placeholder image to show before background video loads"
+    },
+    {
+      "type": "paragraph",
+      "content" : "_________________________________________"
+    },
+	{
+   	  "type": "url",
+   	  "id": "mp4_video_link",
+   	  "label": "Short Video URL - MP4",
+	  "info" : "Upload .mp4 version to admin/settings/files and paste the link generated here."
+	},
+	{
+   	  "type": "url",
+   	  "id": "webm_video_link",
+   	  "label": "Short Video URL - WEBM",
+	  "info" : "Upload .webm version to admin/settings/files and paste the link generated here."
+	},
+    {
+      "type": "paragraph",
+      "content" : "_________________________________________"
+    },
+    {
+      "type": "video_url",
+      "accept": ["youtube", "vimeo"],
+      "id": "full_video_url",
+      "label": "Full Video URL",
+      "default": "https://vimeo.com/481247165",
+	  "info": "This is the large version of the video that is hosted on Youtube or Vimeo"
+    },
+    {
+      "type": "paragraph",
+      "content" : "_________________________________________"
+    },
+    {
+       "type": "checkbox",
+       "id": "show_video_content",
+       "label": "Show video title/ link",
+       "default": false,
+       "info": "Check/uncheck this to show/hide the title and button in the video"
+    },
+    {
+      "type": "text",
+      "id": "video_title",
+      "label" : "Video title",
+      "default": "Video title goes here"
+    },
+	{
+   	  "type": "url",
+   	  "id": "video_link",
+   	  "label": "Video button link",
+	  "info" : "Can link to a page, collection or external url"
+	},
+    {
+      "type": "text",
+      "id": "video_link_text",
+      "label" : "Text inside the video button",
+      "default": "SHOP NOW"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Video",
+      "name": "Hero video",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

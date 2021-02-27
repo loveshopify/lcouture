@@ -1,0 +1,15 @@
+{% comment %}
+BOLD Multi-Currency Picker
+
+This is the "mount point" for Bold Multi-Currency pickers.
+Render this wherever you want them to appear within your theme (can appear in multiple locations)
+
+By default, the picker will open "up" (the currency list will appear above the indicator).
+This behaviour is controlled in CSS with the "data-open" attribute, passing either "up" or "down" (eg. data-open="down")
+
+In Liquid, you can render the snippet and pass along the openDirection variable like this:
+{%- render 'bold-currency-picker-mount', openDirection: 'down' -%}
+
+{% endcomment %}
+{% assign openDirection = openDirection | default: 'up' %}
+<span style="display:none;" class="BOLD-mc-picker-mnt" data-open="{{openDirection}}" g-bold-mc-picker-mnt></span>

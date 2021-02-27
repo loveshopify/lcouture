@@ -1,0 +1,573 @@
+{% if settings.mlvedaACS_enable %}
+ 
+
+<link rel="stylesheet" href="https://d38dvuoodjuw9x.cloudfront.net/ml-flag.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script>
+/*
+ * jQuery MiniColors: A tiny color picker built on jQuery
+ *
+ * Copyright: Cory LaViska for A Beautiful Site, LLC: http://www.abeautifulsite.net/
+ *
+ * Contribute: https://github.com/claviska/jquery-minicolors
+ *
+ * @license: http://opensource.org/licenses/MIT
+ *
+ */
+  //jquery.minicolors.min.js
+
+!function(i){"function"==typeof define&&define.amd?define(["jquery"],i):"object"==typeof exports?module.exports=i(require("jquery")):i($acs)}(function($acs){"use strict";function i(i,t){var o=$acs('<div class="minicolors" />'),a=$acs.minicolors.defaults,s=i.attr("data-opacity"),n;i.data("minicolors-initialized")||(t=$acs.extend(!0,{},a,t),o.addClass("minicolors-theme-"+t.theme).toggleClass("minicolors-with-opacity",t.opacity).toggleClass("minicolors-no-data-uris",t.dataUris!==!0),void 0!==t.position&&$acs.each(t.position.split(" "),function(){o.addClass("minicolors-position-"+this)}),n="rgb"===t.format?t.opacity?"25":"20":t.keywords?"11":"7",i.addClass("minicolors-input").data("minicolors-initialized",!1).data("minicolors-settings",t).prop("size",n).wrap(o).after('<div class="minicolors-panel minicolors-slider-'+t.control+'"><div class="minicolors-slider minicolors-sprite"><div class="minicolors-picker"></div></div><div class="minicolors-opacity-slider minicolors-sprite"><div class="minicolors-picker"></div></div><div class="minicolors-grid minicolors-sprite"><div class="minicolors-grid-inner"></div><div class="minicolors-picker"><div></div></div></div></div>'),t.inline||(i.after('<span class="minicolors-swatch minicolors-sprite"><span class="minicolors-swatch-color"></span></span>'),i.next(".minicolors-swatch").on("click",function(t){t.preventDefault(),i.focus()})),i.parent().find(".minicolors-panel").on("selectstart",function(){return!1}).end(),t.inline&&i.parent().addClass("minicolors-inline"),r(i,!1),i.data("minicolors-initialized",!0))}function t(i){var t=i.parent();i.removeData("minicolors-initialized").removeData("minicolors-settings").removeProp("size").removeClass("minicolors-input"),t.before(i).remove()}function o(i){var t=i.parent(),o=t.find(".minicolors-panel"),s=i.data("minicolors-settings");!i.data("minicolors-initialized")||i.prop("disabled")||t.hasClass("minicolors-inline")||t.hasClass("minicolors-focus")||(a(),t.addClass("minicolors-focus"),o.stop(!0,!0).fadeIn(s.showSpeed,function(){s.show&&s.show.call(i.get(0))}))}function a(){$acs(".minicolors-focus").each(function(){var i=$acs(this),t=i.find(".minicolors-input"),o=i.find(".minicolors-panel"),a=t.data("minicolors-settings");o.fadeOut(a.hideSpeed,function(){a.hide&&a.hide.call(t.get(0)),i.removeClass("minicolors-focus")})})}function s(i,t,o){var a=i.parents(".minicolors").find(".minicolors-input"),s=a.data("minicolors-settings"),r=i.find("[class$acs=-picker]"),e=i.offset().left,c=i.offset().top,l=Math.round(t.pageX-e),h=Math.round(t.pageY-c),d=o?s.animationSpeed:0,u,p,g,m;t.originalEvent.changedTouches&&(l=t.originalEvent.changedTouches[0].pageX-e,h=t.originalEvent.changedTouches[0].pageY-c),0>l&&(l=0),0>h&&(h=0),l>i.width()&&(l=i.width()),h>i.height()&&(h=i.height()),i.parent().is(".minicolors-slider-wheel")&&r.parent().is(".minicolors-grid")&&(u=75-l,p=75-h,g=Math.sqrt(u*u+p*p),m=Math.atan2(p,u),0>m&&(m+=2*Math.PI),g>75&&(g=75,l=75-75*Math.cos(m),h=75-75*Math.sin(m)),l=Math.round(l),h=Math.round(h)),i.is(".minicolors-grid")?r.stop(!0).animate({top:h+"px",left:l+"px"},d,s.animationEasing,function(){n(a,i)}):r.stop(!0).animate({top:h+"px"},d,s.animationEasing,function(){n(a,i)})}function n(i,t){function o(i,t){var o,a;return i.length&&t?(o=i.offset().left,a=i.offset().top,{x:o-t.offset().left+i.outerWidth()/2,y:a-t.offset().top+i.outerHeight()/2}):null}var a,s,n,r,c,l,d,u=i.val(),p=i.attr("data-opacity"),m,f=i.parent(),v=i.data("minicolors-settings"),b=f.find(".minicolors-swatch"),y=f.find(".minicolors-grid"),C=f.find(".minicolors-slider"),M=f.find(".minicolors-opacity-slider"),x=y.find("[class$acs=-picker]"),I=C.find("[class$acs=-picker]"),S=M.find("[class$acs=-picker]"),z=o(x,y),F=o(I,C),j=o(S,M);if(t.is(".minicolors-grid, .minicolors-slider, .minicolors-opacity-slider")){switch(v.control){case"wheel":r=y.width()/2-z.x,c=y.height()/2-z.y,l=Math.sqrt(r*r+c*c),d=Math.atan2(c,r),0>d&&(d+=2*Math.PI),l>75&&(l=75,z.x=69-75*Math.cos(d),z.y=69-75*Math.sin(d)),s=g(l/.75,0,100),a=g(180*d/Math.PI,0,360),n=g(100-Math.floor(F.y*(100/C.height())),0,100),u=w({h:a,s:s,b:n}),C.css("backgroundColor",w({h:a,s:s,b:100}));break;case"saturation":a=g(parseInt(z.x*(360/y.width()),10),0,360),s=g(100-Math.floor(F.y*(100/C.height())),0,100),n=g(100-Math.floor(z.y*(100/y.height())),0,100),u=w({h:a,s:s,b:n}),C.css("backgroundColor",w({h:a,s:100,b:n})),f.find(".minicolors-grid-inner").css("opacity",s/100);break;case"brightness":a=g(parseInt(z.x*(360/y.width()),10),0,360),s=g(100-Math.floor(z.y*(100/y.height())),0,100),n=g(100-Math.floor(F.y*(100/C.height())),0,100),u=w({h:a,s:s,b:n}),C.css("backgroundColor",w({h:a,s:s,b:100})),f.find(".minicolors-grid-inner").css("opacity",1-n/100);break;default:a=g(360-parseInt(F.y*(360/C.height()),10),0,360),s=g(Math.floor(z.x*(100/y.width())),0,100),n=g(100-Math.floor(z.y*(100/y.height())),0,100),u=w({h:a,s:s,b:n}),y.css("backgroundColor",w({h:a,s:100,b:100}))}if(p=v.opacity?parseFloat(1-j.y/M.height()).toFixed(2):1,v.opacity&&i.attr("data-opacity",p),"rgb"===v.format){var D=k(u),p=""===i.attr("data-opacity")?1:g(parseFloat(i.attr("data-opacity")).toFixed(2),0,1);(isNaN(p)||!v.opacity)&&(p=1),m=i.minicolors("rgbObject").a<=1&&D&&v.opacity?"rgba("+D.r+", "+D.g+", "+D.b+", "+parseFloat(p)+")":"rgb("+D.r+", "+D.g+", "+D.b+")"}else m=h(u,v.letterCase);i.val(m)}b.find("span").css({backgroundColor:u,opacity:p}),e(i,m,p)}function r(i,t){var o,a,s,n,r,c,l,v,y,M,k=i.parent(),x=i.data("minicolors-settings"),I=k.find(".minicolors-swatch"),S=k.find(".minicolors-grid"),z=k.find(".minicolors-slider"),F=k.find(".minicolors-opacity-slider"),j=S.find("[class$acs=-picker]"),D=z.find("[class$acs=-picker]"),T=F.find("[class$acs=-picker]");switch(m(i.val())?(o=b(i.val()),r=g(parseFloat(f(i.val())).toFixed(2),0,1),r&&i.attr("data-opacity",r)):o=h(d(i.val(),!0),x.letterCase),o||(o=h(p(x.defaultValue,!0),x.letterCase)),a=C(o),n=x.keywords?$acs.map(x.keywords.split(","),function(i){return $acs.trim(i.toLowerCase())}):[],c=""!==i.val()&&$acs.inArray(i.val().toLowerCase(),n)>-1?h(i.val()):m(i.val())?u(i.val()):o,t||i.val(c),x.opacity&&(s=""===i.attr("data-opacity")?1:g(parseFloat(i.attr("data-opacity")).toFixed(2),0,1),isNaN(s)&&(s=1),i.attr("data-opacity",s),I.find("span").css("opacity",s),v=g(F.height()-F.height()*s,0,F.height()),T.css("top",v+"px")),"transparent"===i.val().toLowerCase()&&I.find("span").css("opacity",0),I.find("span").css("backgroundColor",o),x.control){case"wheel":y=g(Math.ceil(.75*a.s),0,S.height()/2),M=a.h*Math.PI/180,l=g(75-Math.cos(M)*y,0,S.width()),v=g(75-Math.sin(M)*y,0,S.height()),j.css({top:v+"px",left:l+"px"}),v=150-a.b/(100/S.height()),""===o&&(v=0),D.css("top",v+"px"),z.css("backgroundColor",w({h:a.h,s:a.s,b:100}));break;case"saturation":l=g(5*a.h/12,0,150),v=g(S.height()-Math.ceil(a.b/(100/S.height())),0,S.height()),j.css({top:v+"px",left:l+"px"}),v=g(z.height()-a.s*(z.height()/100),0,z.height()),D.css("top",v+"px"),z.css("backgroundColor",w({h:a.h,s:100,b:a.b})),k.find(".minicolors-grid-inner").css("opacity",a.s/100);break;case"brightness":l=g(5*a.h/12,0,150),v=g(S.height()-Math.ceil(a.s/(100/S.height())),0,S.height()),j.css({top:v+"px",left:l+"px"}),v=g(z.height()-a.b*(z.height()/100),0,z.height()),D.css("top",v+"px"),z.css("backgroundColor",w({h:a.h,s:a.s,b:100})),k.find(".minicolors-grid-inner").css("opacity",1-a.b/100);break;default:l=g(Math.ceil(a.s/(100/S.width())),0,S.width()),v=g(S.height()-Math.ceil(a.b/(100/S.height())),0,S.height()),j.css({top:v+"px",left:l+"px"}),v=g(z.height()-a.h/(360/z.height()),0,z.height()),D.css("top",v+"px"),S.css("backgroundColor",w({h:a.h,s:100,b:100}))}i.data("minicolors-initialized")&&e(i,c,s)}function e(i,t,o){var a=i.data("minicolors-settings"),s=i.data("minicolors-lastChange");s&&s.value===t&&s.opacity===o||(i.data("minicolors-lastChange",{value:t,opacity:o}),a.change&&(a.changeDelay?(clearTimeout(i.data("minicolors-changeTimeout")),i.data("minicolors-changeTimeout",setTimeout(function(){a.change.call(i.get(0),t,o)},a.changeDelay))):a.change.call(i.get(0),t,o)),i.trigger("change").trigger("input"))}function c(i){var t=d($acs(i).val(),!0),o=k(t),a=$acs(i).attr("data-opacity");return o?(void 0!==a&&$acs.extend(o,{a:parseFloat(a)}),o):null}function l(i,t){var o=d($acs(i).val(),!0),a=k(o),s=$acs(i).attr("data-opacity");return a?(void 0===s&&(s=1),t?"rgba("+a.r+", "+a.g+", "+a.b+", "+parseFloat(s)+")":"rgb("+a.r+", "+a.g+", "+a.b+")"):null}function h(i,t){return"uppercase"===t?i.toUpperCase():i.toLowerCase()}function d(i,t){return i=i.replace(/^#/g,""),i.match(/^[A-F0-9]{3,6}/gi)?3!==i.length&&6!==i.length?"":(3===i.length&&t&&(i=i[0]+i[0]+i[1]+i[1]+i[2]+i[2]),"#"+i):""}function u(i,t){var o=i.replace(/[^\d,.]/g,""),a=o.split(","),s;return a[0]=g(parseInt(a[0],10),0,255),a[1]=g(parseInt(a[1],10),0,255),a[2]=g(parseInt(a[2],10),0,255),a[3]&&(a[3]=g(parseFloat(a[3],10),0,1)),t?{r:a[0],g:a[1],b:a[2],a:a[3]?a[3]:null}:"undefined"!=typeof a[3]&&a[3]<=1?"rgba("+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+")":"rgb("+a[0]+", "+a[1]+", "+a[2]+")"}function p(i,t){return m(i)?u(i):d(i,t)}function g(i,t,o){return t>i&&(i=t),i>o&&(i=o),i}function m(i){var t=i.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);return t&&4===t.length?!0:!1}function f(i){var i=i.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+(\.\d{1,2})?|\.\d{1,2})[\s+]?/i);return i&&6===i.length?i[4]:"1"}function v(i){var t={},o=Math.round(i.h),a=Math.round(255*i.s/100),s=Math.round(255*i.b/100);if(0===a)t.r=t.g=t.b=s;else{var n=s,r=(255-a)*s/255,e=(n-r)*(o%60)/60;360===o&&(o=0),60>o?(t.r=n,t.b=r,t.g=r+e):120>o?(t.g=n,t.b=r,t.r=n-e):180>o?(t.g=n,t.r=r,t.b=r+e):240>o?(t.b=n,t.r=r,t.g=n-e):300>o?(t.b=n,t.g=r,t.r=r+e):360>o?(t.r=n,t.g=r,t.b=n-e):(t.r=0,t.g=0,t.b=0)}return{r:Math.round(t.r),g:Math.round(t.g),b:Math.round(t.b)}}function b(i){return i=i.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i),i&&4===i.length?"#"+("0"+parseInt(i[1],10).toString(16)).slice(-2)+("0"+parseInt(i[2],10).toString(16)).slice(-2)+("0"+parseInt(i[3],10).toString(16)).slice(-2):""}function y(i){var t=[i.r.toString(16),i.g.toString(16),i.b.toString(16)];return $acs.each(t,function(i,o){1===o.length&&(t[i]="0"+o)}),"#"+t.join("")}function w(i){return y(v(i))}function C(i){var t=M(k(i));return 0===t.s&&(t.h=360),t}function M(i){var t={h:0,s:0,b:0},o=Math.min(i.r,i.g,i.b),a=Math.max(i.r,i.g,i.b),s=a-o;return t.b=a,t.s=0!==a?255*s/a:0,0!==t.s?i.r===a?t.h=(i.g-i.b)/s:i.g===a?t.h=2+(i.b-i.r)/s:t.h=4+(i.r-i.g)/s:t.h=-1,t.h*=60,t.h<0&&(t.h+=360),t.s*=100/255,t.b*=100/255,t}function k(i){return i=parseInt(i.indexOf("#")>-1?i.substring(1):i,16),{r:i>>16,g:(65280&i)>>8,b:255&i}}$acs.minicolors={defaults:{animationSpeed:50,animationEasing:"swing",change:null,changeDelay:0,control:"hue",dataUris:!0,defaultValue:"",format:"hex",hide:null,hideSpeed:100,inline:!1,keywords:"",letterCase:"lowercase",opacity:!1,position:"bottom left",show:null,showSpeed:100,theme:"default"}},$acs.extend($acs.fn,{minicolors:function(s,n){switch(s){case"destroy":return $acs(this).each(function(){t($acs(this))}),$acs(this);case"hide":return a(),$acs(this);case"opacity":return void 0===n?$acs(this).attr("data-opacity"):($acs(this).each(function(){r($acs(this).attr("data-opacity",n))}),$acs(this));case"rgbObject":return c($acs(this),"rgbaObject"===s);case"rgbString":case"rgbaString":return l($acs(this),"rgbaString"===s);case"settings":return void 0===n?$acs(this).data("minicolors-settings"):($acs(this).each(function(){var i=$acs(this).data("minicolors-settings")||{};t($acs(this)),$acs(this).minicolors($acs.extend(!0,i,n))}),$acs(this));case"show":return o($acs(this).eq(0)),$acs(this);case"value":return void 0===n?$acs(this).val():($acs(this).each(function(){"object"==typeof n?(n.opacity&&$acs(this).attr("data-opacity",g(n.opacity,0,1)),n.color&&$acs(this).val(n.color)):$acs(this).val(n),r($acs(this))}),$acs(this));default:return"create"!==s&&(n=s),$acs(this).each(function(){i($acs(this),n)}),$acs(this)}}}),$acs(document).on("mousedown.minicolors touchstart.minicolors",function(i){$acs(i.target).parents().add(i.target).hasClass("minicolors")||a()}).on("mousedown.minicolors touchstart.minicolors",".minicolors-grid, .minicolors-slider, .minicolors-opacity-slider",function(i){var t=$acs(this);i.preventDefault(),$acs(document).data("minicolors-target",t),s(t,i,!0)}).on("mousemove.minicolors touchmove.minicolors",function(i){var t=$acs(document).data("minicolors-target");t&&s(t,i)}).on("mouseup.minicolors touchend.minicolors",function(){$acs(this).removeData("minicolors-target")}).on("mousedown.minicolors touchstart.minicolors",".minicolors-swatch",function(i){var t=$acs(this).parent().find(".minicolors-input");i.preventDefault(),o(t)}).on("focus.minicolors",".minicolors-input",function(){var i=$acs(this);i.data("minicolors-initialized")&&o(i)}).on("blur.minicolors",".minicolors-input",function(){var i=$acs(this),t=i.data("minicolors-settings"),o,a,s,n,r;i.data("minicolors-initialized")&&(o=t.keywords?$acs.map(t.keywords.split(","),function(i){return $acs.trim(i.toLowerCase())}):[],""!==i.val()&&$acs.inArray(i.val().toLowerCase(),o)>-1?r=i.val():(m(i.val())?s=u(i.val(),!0):(a=d(i.val(),!0),s=a?k(a):null),r=null===s?t.defaultValue:"rgb"===t.format?u(t.opacity?"rgba("+s.r+","+s.g+","+s.b+","+i.attr("data-opacity")+")":"rgb("+s.r+","+s.g+","+s.b+")"):y(s)),n=t.opacity?i.attr("data-opacity"):1,"transparent"===r.toLowerCase()&&(n=0),i.closest(".minicolors").find(".minicolors-swatch > span").css("opacity",n),i.val(r),""===i.val()&&i.val(p(t.defaultValue,!0)),i.val(h(i.val(),t.letterCase)))}).on("keydown.minicolors",".minicolors-input",function(i){var t=$acs(this);if(t.data("minicolors-initialized"))switch(i.keyCode){case 9:a();break;case 13:case 27:a(),t.blur()}}).on("keyup.minicolors",".minicolors-input",function(){var i=$acs(this);i.data("minicolors-initialized")&&r(i,!0)}).on("paste.minicolors",".minicolors-input",function(){var i=$acs(this);i.data("minicolors-initialized")&&setTimeout(function(){r(i,!0)},1)})});
+
+//jquery.nice-select.js
+
+/*  jQuery Nice Select - v1.0
+    https://github.com/hernansartorio/jquery-nice-select
+    Made by Hernán Sartorio  */
+ var currencyMap = {"AED":{"symbol":"AED","symbol_native":"د.إ.\u200F","decimal_digits":2,"rounding":0.0,"code":"AED"},"AFN":{"symbol":"AFN","symbol_native":"؋","decimal_digits":0,"rounding":0.0,"code":"AFN"},"ALL":{"symbol":"ALL","symbol_native":"Lek","decimal_digits":0,"rounding":0.0,"code":"ALL"},"AMD":{"symbol":"AMD","symbol_native":"դր.","decimal_digits":0,"rounding":0.0,"code":"AMD"},"AOA":{"symbol":"AOA","symbol_native":"Kz","decimal_digits":2,"rounding":0.0,"code":"AOA"},"ARS":{"symbol":"ARS","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"ARS"},"AUD":{"symbol":"AU$","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"AUD"},"AWG":{"symbol":"AWG","symbol_native":"Afl.","decimal_digits":2,"rounding":0.0,"code":"AWG"},"AZN":{"symbol":"AZN","symbol_native":"ман.","decimal_digits":2,"rounding":0.0,"code":"AZN"},"BAM":{"symbol":"BAM","symbol_native":"KM","decimal_digits":2,"rounding":0.0,"code":"BAM"},"BBD":{"symbol":"BBD","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"BBD"},"BDT":{"symbol":"BDT","symbol_native":"৳","decimal_digits":2,"rounding":0.0,"code":"BDT"},"BGN":{"symbol":"BGN","symbol_native":"лв.","decimal_digits":2,"rounding":0.0,"code":"BGN"},"BHD":{"symbol":"BHD","symbol_native":"د.ب.\u200F","decimal_digits":3,"rounding":0.0,"code":"BHD"},"BIF":{"symbol":"BIF","symbol_native":"FBu","decimal_digits":0,"rounding":0.0,"code":"BIF"},"BMD":{"symbol":"BMD","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"BMD"},"BND":{"symbol":"BND","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"BND"},"BOB":{"symbol":"BOB","symbol_native":"Bs","decimal_digits":2,"rounding":0.0,"code":"BOB"},"BRL":{"symbol":"R$","symbol_native":"R$","decimal_digits":2,"rounding":0.0,"code":"BRL"},"BWP":{"symbol":"BWP","symbol_native":"P","decimal_digits":2,"rounding":0.0,"code":"BWP"},"BYR":{"symbol":"BYR","symbol_native":"BYR","decimal_digits":0,"rounding":0.0,"code":"BYR"},"BZD":{"symbol":"BZD","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"BZD"},"CAD":{"symbol":"CA$","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"CAD"},"CDF":{"symbol":"CDF","symbol_native":"FrCD","decimal_digits":2,"rounding":0.0,"code":"CDF"},"CHF":{"symbol":"CHF","symbol_native":"CHF","decimal_digits":2,"rounding":0.05,"code":"CHF"},"CLP":{"symbol":"CLP","symbol_native":"$","decimal_digits":0,"rounding":0.0,"code":"CLP"},"CNY":{"symbol":"CN¥","symbol_native":"CN¥","decimal_digits":2,"rounding":0.0,"code":"CNY"},"COP":{"symbol":"COP","symbol_native":"$","decimal_digits":0,"rounding":0.0,"code":"COP"},"CRC":{"symbol":"CRC","symbol_native":"\u20A1","decimal_digits":0,"rounding":0.0,"code":"CRC"},"CVE":{"symbol":"CVE","symbol_native":"CVE","decimal_digits":2,"rounding":0.0,"code":"CVE"},"CZK":{"symbol":"CZK","symbol_native":"Kč","decimal_digits":2,"rounding":0.0,"code":"CZK"},"DJF":{"symbol":"DJF","symbol_native":"Fdj","decimal_digits":0,"rounding":0.0,"code":"DJF"},"DKK":{"symbol":"DKK","symbol_native":"kr","decimal_digits":2,"rounding":0.0,"code":"DKK"},"DOP":{"symbol":"DOP","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"DOP"},"DZD":{"symbol":"DZD","symbol_native":"د.ج.\u200F","decimal_digits":2,"rounding":0.0,"code":"DZD"},"EGP":{"symbol":"EGP","symbol_native":"ج.م.\u200F","decimal_digits":2,"rounding":0.0,"code":"EGP"},"ERN":{"symbol":"ERN","symbol_native":"Nfk","decimal_digits":2,"rounding":0.0,"code":"ERN"},"ETB":{"symbol":"ETB","symbol_native":"ብር","decimal_digits":2,"rounding":0.0,"code":"ETB"},"EUR":{"symbol":"\u20AC","symbol_native":"\u20AC","decimal_digits":2,"rounding":0.0,"code":"EUR"},"GBP":{"symbol":"£","symbol_native":"£","decimal_digits":2,"rounding":0.0,"code":"GBP"},"GEL":{"symbol":"GEL","symbol_native":"GEL","decimal_digits":2,"rounding":0.0,"code":"GEL"},"GHS":{"symbol":"GHS","symbol_native":"GHS","decimal_digits":2,"rounding":0.0,"code":"GHS"},"GNF":{"symbol":"GNF","symbol_native":"FG","decimal_digits":0,"rounding":0.0,"code":"GNF"},"GTQ":{"symbol":"GTQ","symbol_native":"Q","decimal_digits":2,"rounding":0.0,"code":"GTQ"},"GYD":{"symbol":"GYD","symbol_native":"GYD","decimal_digits":0,"rounding":0.0,"code":"GYD"},"HKD":{"symbol":"HK$","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"HKD"},"HNL":{"symbol":"HNL","symbol_native":"L","decimal_digits":2,"rounding":0.0,"code":"HNL"},"HRK":{"symbol":"HRK","symbol_native":"kn","decimal_digits":2,"rounding":0.0,"code":"HRK"},"HUF":{"symbol":"HUF","symbol_native":"Ft","decimal_digits":0,"rounding":0.0,"code":"HUF"},"IDR":{"symbol":"IDR","symbol_native":"Rp","decimal_digits":0,"rounding":0.0,"code":"IDR"},"ILS":{"symbol":"\u20AA","symbol_native":"\u20AA","decimal_digits":2,"rounding":0.0,"code":"ILS"},"INR":{"symbol":"\u20B9","symbol_native":"\u20B9","decimal_digits":2,"rounding":0.0,"code":"INR"},"IQD":{"symbol":"IQD","symbol_native":"د.ع.\u200F","decimal_digits":0,"rounding":0.0,"code":"IQD"},"IRR":{"symbol":"IRR","symbol_native":"﷼","decimal_digits":0,"rounding":0.0,"code":"IRR"},"ISK":{"symbol":"ISK","symbol_native":"kr","decimal_digits":0,"rounding":0.0,"code":"ISK"},"JMD":{"symbol":"JMD","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"JMD"},"JOD":{"symbol":"JOD","symbol_native":"د.أ.\u200F","decimal_digits":3,"rounding":0.0,"code":"JOD"},"JPY":{"symbol":"¥","symbol_native":"￥","decimal_digits":0,"rounding":0.0,"code":"JPY"},"KES":{"symbol":"KES","symbol_native":"Ksh","decimal_digits":2,"rounding":0.0,"code":"KES"},"KHR":{"symbol":"KHR","symbol_native":"៛","decimal_digits":2,"rounding":0.0,"code":"KHR"},"KMF":{"symbol":"KMF","symbol_native":"CF","decimal_digits":0,"rounding":0.0,"code":"KMF"},"KRW":{"symbol":"\u20A9","symbol_native":"\u20A9","decimal_digits":0,"rounding":0.0,"code":"KRW"},"KWD":{"symbol":"KWD","symbol_native":"د.ك.\u200F","decimal_digits":3,"rounding":0.0,"code":"KWD"},"KZT":{"symbol":"KZT","symbol_native":"\u20B8","decimal_digits":2,"rounding":0.0,"code":"KZT"},"LBP":{"symbol":"LBP","symbol_native":"ل.ل.\u200F","decimal_digits":0,"rounding":0.0,"code":"LBP"},"LKR":{"symbol":"LKR","symbol_native":"රු.","decimal_digits":2,"rounding":0.0,"code":"LKR"},"LRD":{"symbol":"LRD","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"LRD"},"LTL":{"symbol":"LTL","symbol_native":"Lt","decimal_digits":2,"rounding":0.0,"code":"LTL"},"LVL":{"symbol":"LVL","symbol_native":"Ls","decimal_digits":2,"rounding":0.0,"code":"LVL"},"LYD":{"symbol":"LYD","symbol_native":"د.ل.\u200F","decimal_digits":3,"rounding":0.0,"code":"LYD"},"MAD":{"symbol":"MAD","symbol_native":"د.م.\u200F","decimal_digits":2,"rounding":0.0,"code":"MAD"},"MDL":{"symbol":"MDL","symbol_native":"MDL","decimal_digits":2,"rounding":0.0,"code":"MDL"},"MGA":{"symbol":"MGA","symbol_native":"MGA","decimal_digits":0,"rounding":0.0,"code":"MGA"},"MKD":{"symbol":"MKD","symbol_native":"MKD","decimal_digits":2,"rounding":0.0,"code":"MKD"},"MMK":{"symbol":"MMK","symbol_native":"K","decimal_digits":0,"rounding":0.0,"code":"MMK"},"MOP":{"symbol":"MOP","symbol_native":"MOP","decimal_digits":2,"rounding":0.0,"code":"MOP"},"MUR":{"symbol":"MUR","symbol_native":"MUR","decimal_digits":0,"rounding":0.0,"code":"MUR"},"MXN":{"symbol":"MX$","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"MXN"},"MYR":{"symbol":"MYR","symbol_native":"RM","decimal_digits":2,"rounding":0.0,"code":"MYR"},"MZN":{"symbol":"MZN","symbol_native":"MTn","decimal_digits":2,"rounding":0.0,"code":"MZN"},"NAD":{"symbol":"NAD","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"NAD"},"NGN":{"symbol":"NGN","symbol_native":"\u20A6","decimal_digits":2,"rounding":0.0,"code":"NGN"},"NIO":{"symbol":"NIO","symbol_native":"C$","decimal_digits":2,"rounding":0.0,"code":"NIO"},"NOK":{"symbol":"NOK","symbol_native":"kr","decimal_digits":2,"rounding":0.0,"code":"NOK"},"NPR":{"symbol":"NPR","symbol_native":"नेरू","decimal_digits":2,"rounding":0.0,"code":"NPR"},"NZD":{"symbol":"NZ$","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"NZD"},"OMR":{"symbol":"OMR","symbol_native":"ر.ع.\u200F","decimal_digits":3,"rounding":0.0,"code":"OMR"},"PAB":{"symbol":"PAB","symbol_native":"B\/.","decimal_digits":2,"rounding":0.0,"code":"PAB"},"PEN":{"symbol":"PEN","symbol_native":"S\/.","decimal_digits":2,"rounding":0.0,"code":"PEN"},"PHP":{"symbol":"PHP","symbol_native":"\u20B1","decimal_digits":2,"rounding":0.0,"code":"PHP"},"PKR":{"symbol":"PKR","symbol_native":"\u20A8","decimal_digits":0,"rounding":0.0,"code":"PKR"},"PLN":{"symbol":"PLN","symbol_native":"zł","decimal_digits":2,"rounding":0.0,"code":"PLN"},"PYG":{"symbol":"PYG","symbol_native":"\u20B2","decimal_digits":0,"rounding":0.0,"code":"PYG"},"QAR":{"symbol":"QAR","symbol_native":"ر.ق.\u200F","decimal_digits":2,"rounding":0.0,"code":"QAR"},"RON":{"symbol":"RON","symbol_native":"RON","decimal_digits":2,"rounding":0.0,"code":"RON"},"RSD":{"symbol":"RSD","symbol_native":"дин.","decimal_digits":0,"rounding":0.0,"code":"RSD"},"RUB":{"symbol":"RUB","symbol_native":"руб.","decimal_digits":2,"rounding":0.0,"code":"RUB"},"RWF":{"symbol":"RWF","symbol_native":"FR","decimal_digits":0,"rounding":0.0,"code":"RWF"},"SAR":{"symbol":"SAR","symbol_native":"ر.س.\u200F","decimal_digits":2,"rounding":0.0,"code":"SAR"},"SDG":{"symbol":"SDG","symbol_native":"SDG","decimal_digits":2,"rounding":0.0,"code":"SDG"},"SEK":{"symbol":"SEK","symbol_native":"kr","decimal_digits":2,"rounding":0.0,"code":"SEK"},"SGD":{"symbol":"SGD","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"SGD"},"SOS":{"symbol":"SOS","symbol_native":"SOS","decimal_digits":0,"rounding":0.0,"code":"SOS"},"STD":{"symbol":"STD","symbol_native":"Db","decimal_digits":0,"rounding":0.0,"code":"STD"},"SYP":{"symbol":"SYP","symbol_native":"ل.س.\u200F","decimal_digits":0,"rounding":0.0,"code":"SYP"},"THB":{"symbol":"฿","symbol_native":"฿","decimal_digits":2,"rounding":0.0,"code":"THB"},"TND":{"symbol":"TND","symbol_native":"د.ت.\u200F","decimal_digits":3,"rounding":0.0,"code":"TND"},"TOP":{"symbol":"TOP","symbol_native":"T$","decimal_digits":2,"rounding":0.0,"code":"TOP"},"TRY":{"symbol":"TRY","symbol_native":"TL","decimal_digits":2,"rounding":0.0,"code":"TRY"},"TTD":{"symbol":"TTD","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"TTD"},"TWD":{"symbol":"NT$","symbol_native":"NT$","decimal_digits":2,"rounding":0.0,"code":"TWD"},"TZS":{"symbol":"TZS","symbol_native":"TSh","decimal_digits":0,"rounding":0.0,"code":"TZS"},"UAH":{"symbol":"UAH","symbol_native":"\u20B4","decimal_digits":2,"rounding":0.0,"code":"UAH"},"UGX":{"symbol":"UGX","symbol_native":"USh","decimal_digits":0,"rounding":0.0,"code":"UGX"},"USD":{"symbol":"$","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"USD"},"UYU":{"symbol":"UYU","symbol_native":"$","decimal_digits":2,"rounding":0.0,"code":"UYU"},"UZS":{"symbol":"UZS","symbol_native":"UZS","decimal_digits":0,"rounding":0.0,"code":"UZS"},"VEF":{"symbol":"VEF","symbol_native":"Bs.F.","decimal_digits":2,"rounding":0.0,"code":"VEF"},"VND":{"symbol":"\u20AB","symbol_native":"\u20AB","decimal_digits":0,"rounding":0.0,"code":"VND"},"XAF":{"symbol":"FCFA","symbol_native":"FCFA","decimal_digits":0,"rounding":0.0,"code":"XAF"},"XOF":{"symbol":"CFA","symbol_native":"CFA","decimal_digits":0,"rounding":0.0,"code":"XOF"},"YER":{"symbol":"YER","symbol_native":"ر.ي.\u200F","decimal_digits":0,"rounding":0.0,"code":"YER"},"ZAR":{"symbol":"ZAR","symbol_native":"R","decimal_digits":2,"rounding":0.0,"code":"ZAR"},"ZMK":{"symbol":"ZMK","symbol_native":"ZK","decimal_digits":0,"rounding":0.0,"code":"ZMK"}};
+(function($acs) {
+
+  $acs.fn.niceSelect = function() {  
+    
+    
+    {% if settings.mlvedaACS_currencysymbol == true %}
+    {% if settings.mlvedaACS_currencysymbolposition == "left" %}
+    jQuery("[name=currencies] option").each(function(){
+      var symbol="";
+      if(!currencyMap[jQuery(this).val()]){
+        currencyMap[jQuery(this).val()] = {};
+        currencyMap[jQuery(this).val()].symbol_native = "";
+      }else{
+      symbol = currencyMap[jQuery(this).val()].symbol_native + " - ";
+      }
+      jQuery(this).html(symbol + jQuery(this).val());
+    });
+    {% endif %}
+    {% if settings.mlvedaACS_currencysymbolposition == "right" %}
+    jQuery("[name=currencies] option").each(function(){
+      var symbol="";
+      if(!currencyMap[jQuery(this).val()]){
+        currencyMap[jQuery(this).val()] = {};
+        currencyMap[jQuery(this).val()].symbol_native = "";
+      }else{
+      symbol = " - "+currencyMap[jQuery(this).val()].symbol_native;
+      }
+      jQuery(this).html(jQuery(this).val() + symbol);
+    });
+    {% endif %}                  
+    {% endif %}
+                       
+//    var flaglink = '//www.mlveda.com/MultiCurrency/flags/big/{{mlvedaACS_flagStyle}}/';
+//var flaglink = '//s3.amazonaws.com/mlveda-shopifyapps/currencySwitcherNew/flags/{{settings.mlvedaACS_flagStyle}}/';
+    // Hide native select
+    this.hide();
+
+    // Create custom markup
+    this.each(function() {
+      var select = $acs(this);
+      
+      if (!select.next().hasClass('nice-select')) {
+        select.after('<div class="nice-select' +
+          (' ' + select.attr('class') || '') +
+          (select.attr('disabled') ? ' disabled' : '" tabindex="0') +
+                     '"><span class="{{ settings.mlvedaACS_flagStyle }} {{ settings.mlvedaACS_flagStyle }}-'+ $acs(this).val().toLowerCase()+ ' flags current-flags"></span><span class="current"></span><ul class="list"></ul></div><i class="fa fa-angle-down mldarrow"></i>');
+        
+        var dropdown = select.next();
+        var options = select.find('option');
+        var selected = select.find('option:selected');
+        
+        dropdown.find('.current').html(selected.data('display') || selected.text());
+        
+        options.each(function() {
+          var display = $acs(this).data('display');
+          dropdown.find('ul').append('<li class="option' +
+            ($acs(this).is(':selected') ? ' selected' : '') +
+            ($acs(this).is(':disabled') ? ' disabled' : '') +
+            '" data-value="' + $acs(this).val() + '"' +
+            (display ? ' data-display="' + display : '') + '"' +
+            '>' + '<span class="{{ settings.mlvedaACS_flagStyle }} {{ settings.mlvedaACS_flagStyle }}-'+ $acs(this).val().toLowerCase()+ ' flags"></span> <span class="cn">'+ $acs(this).text() + '</span></li>');
+        });
+      }
+    });
+    
+    /* Event listeners */
+    
+    // Unbind existing events in case that the plugin has been initialized before
+    $acs(document).off('.nice_select');
+    
+    // Open/close
+    $acs(document).on('click.nice_select', '.nice-select', function(event) {
+      var dropdown = $acs(this);
+      
+      $acs('.nice-select').not(dropdown).removeClass('open');
+      dropdown.toggleClass('open');
+      
+      if (dropdown.hasClass('open')) {
+        dropdown.find('.option');  
+        dropdown.find('.focus').removeClass('focus');
+        dropdown.find('.selected').addClass('focus');
+          $acs(".mldarrow").removeClass("fa-angle-down");
+    $acs(".mldarrow").addClass("fa-angle-up");
+      } else {
+        dropdown.focus();
+          $acs(".mldarrow").removeClass("fa-angle-up");
+    $acs(".mldarrow").addClass("fa-angle-down");
+      }
+    });
+    
+    // Close when clicking outside
+    $acs(document).on('click.nice_select', function(event) {
+      if ($acs(event.target).closest('.nice-select').length === 0) {
+        $acs('.nice-select').removeClass('open').find('.option'); 
+          $acs(".mldarrow").removeClass("fa-angle-up");
+    $acs(".mldarrow").addClass("fa-angle-down");
+      }
+    });
+
+
+//For mldarrow click
+     $acs('.mldarrow').on('click', function(event) {
+    $acs(this).parent().find('.nice-select').click();
+      // console.log("arrow clicked");
+                event.stopImmediatePropagation();
+       
+     });
+
+   
+    // Option click
+    $acs(document).on('click.nice_select', '.nice-select .option:not(.disabled)', function(event) {
+      var option = $acs(this);
+      var dropdown = option.closest('.nice-select');
+      
+      dropdown.find('.selected').removeClass('selected');
+      option.addClass('selected');
+      
+      var text = option.data('display') || option.text();
+      text=text.trim();
+       dropdown.find('.current').text(text);
+       {% if settings.mlvedaACS_currencysymbol == true %}
+          {% if settings.mlvedaACS_currencysymbolposition == "left" %}
+             text= text.substring(text.length - 3);
+          {% endif %}
+          {% if settings.mlvedaACS_currencysymbolposition == "right" %}
+             text=text.substring(0,3);
+          {% endif %}  
+      {% endif %}
+     
+      
+    
+      dropdown.find(".current-flags").removeClass (function (index, className) {
+        return (className.match (/{{ settings.mlvedaACS_flagStyle }}-\S+/g) || []).join(' ');
+});
+                
+      {% if settings.mlvedaACS_currencysymbol == true %}
+          {% if settings.mlvedaACS_currencysymbolposition == "left" %}
+           dropdown.find(".current-flags").addClass("{{ settings.mlvedaACS_flagStyle }}-"+text.toLowerCase());
+          {% endif %}
+          {% if settings.mlvedaACS_currencysymbolposition == "right" %}
+          dropdown.find(".current-flags").addClass("{{ settings.mlvedaACS_flagStyle }}-"+text.toLowerCase());
+          {% endif %}                                
+      {% else %}
+                dropdown.find(".current-flags").addClass("{{ settings.mlvedaACS_flagStyle }}-"+text.toLowerCase());                                   
+      {% endif %}
+                                                   
+                
+    //  dropdown.find('.current-flags').css("background","url("+flaglink+text.toLowerCase()+".png) left center no-repeat");
+//       dropdown.find('.current-flags').css("background-size","20px 15px");
+      
+      dropdown.prev('select').val(option.data('value')).trigger('change');
+    });
+
+    // Keyboard events
+    $acs(document).on('keydown.nice_select', '.nice-select', function(event) {    
+      var dropdown = $acs(this);
+      var focused_option = $acs(dropdown.find('.focus') || dropdown.find('.list .option.selected'));
+      
+      // Space or Enter
+      if (event.keyCode == 32 || event.keyCode == 13) {
+        if (dropdown.hasClass('open')) {
+          focused_option.trigger('click');
+        } else {
+          dropdown.trigger('click');
+        }
+        return false;
+      // Down
+      } else if (event.keyCode == 40) {
+        if (!dropdown.hasClass('open')) {
+          dropdown.trigger('click');
+        } else {
+          var next = focused_option.nextAll('.option:not(.disabled)').first();
+          if (next.length > 0) {
+            dropdown.find('.focus').removeClass('focus');
+            next.addClass('focus');
+          }
+        }
+        return false;
+      // Up
+      } else if (event.keyCode == 38) {
+        if (!dropdown.hasClass('open')) {
+          dropdown.trigger('click');
+        } else {
+          var prev = focused_option.prevAll('.option:not(.disabled)').first();
+          if (prev.length > 0) {
+            dropdown.find('.focus').removeClass('focus');
+            prev.addClass('focus');
+          }
+        }
+        return false;
+      // Esc
+      } else if (event.keyCode == 27) {
+        if (dropdown.hasClass('open')) {
+          dropdown.trigger('click');
+        }
+      // Tab
+      } else if (event.keyCode == 9) {
+        if (dropdown.hasClass('open')) {
+          return false;
+        }
+      }
+    });
+
+    // Detect CSS pointer-events support, for IE <= 10. From Modernizr.
+    var style = document.createElement('a').style;
+    style.cssText = 'pointer-events:auto';
+    if (style.pointerEvents !== 'auto') {
+      $acs('html').addClass('no-csspointerevents');
+    }
+
+  };
+
+}($acs));
+//mlvedascript.js
+ $acs(document).ready( function($acs) {
+
+            $acs('.demo').each( function() {
+                //
+                // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                //
+                //  $acs(selector).minicolors();
+                //
+                // The way I've done it below is just for the demo, so don't get confused
+                // by it. Also, data- attributes aren't supported at this time. Again,
+                // they're only used for the purposes of this demo.
+                //
+                $acs(this).minicolors({
+                    control: $acs(this).attr('data-control') || 'hue',
+                    defaultValue: $acs(this).attr('data-defaultValue') || '',
+                    format: $acs(this).attr('data-format') || 'hex',
+                    keywords: $acs(this).attr('data-keywords') || '',
+                    inline: $acs(this).attr('data-inline') === 'true',
+                    letterCase: $acs(this).attr('data-letterCase') || 'lowercase',
+                    opacity: $acs(this).attr('data-opacity'),
+                    position: $acs(this).attr('data-position') || 'bottom left',
+                    swatches: $acs(this).attr('data-swatches') ? $acs(this).attr('data-swatches').split('|') : [],
+                    change: function(hex, opacity) {
+                        var log;
+                        try {
+                            log = hex ? hex : 'transparent';
+                            if( opacity ) log += ', ' + opacity;
+                            console.log(log);
+                        } catch(e) {}
+                    },
+                    theme: 'default'
+                });
+
+            });
+mlflag1 = true;
+        }($acs));
+
+
+$acs(document).ready(function($acs) {
+     
+     // Positions
+     
+     
+     $acs("#currency").blur(function(){
+      var currencyText =  $acs(this).val();
+      console.log(currencyText);
+      $acs("#lblText").text(currencyText);
+     });
+     $acs("#currency").keyup(function(e){
+      if (e.which == 13){
+      var currencyText =  $acs(this).val();
+      console.log(currencyText);
+      $acs("#lblText").text(currencyText);
+      }
+     });
+    ///////////////////////
+     
+     $acs('#alignment input').on('change', function() {
+       var FloatValue = ($acs('input[name=align]:checked', '#alignment').val());
+       $acs(".switchContainer").css("float", FloatValue ); 
+    });
+
+    ////////////////////////////////
+    
+     $acs("#hMargin").blur(function(){
+      var hMarginValue =  parseInt($acs(this).val());
+      $acs(".switchContainer").css("margin-left", hMarginValue );
+      $acs(".switchContainer").css("margin-right", hMarginValue )
+     });
+     $acs("#hMargin").keyup(function(e){
+      if (e.which == 13){
+        var hMarginValue =  parseInt($acs(this).val());
+        $acs(".switchContainer").css("margin-left", hMarginValue );
+        $acs(".switchContainer").css("margin-right", hMarginValue )
+      }
+     });
+     
+     ////////////////////////////////
+     
+     $acs("#vMargin").blur(function(){
+      var vMarginValue =  parseInt($acs(this).val());
+      $acs(".switchContainer").css("margin-top", vMarginValue )
+      $acs(".switchContainer").css("margin-bottom", vMarginValue )
+     });
+     $acs("#vMargin").keyup(function(e){
+      if (e.which == 13){
+        var vMarginValue =  parseInt($acs(this).val());
+        $acs(".switchContainer").css("margin-top", vMarginValue )
+        $acs(".switchContainer").css("margin-bottom", vMarginValue )
+      }
+     });
+     
+     ////////////////////////////////
+     
+     $acs("#dropHeight").blur(function(){
+      var HeightValue =  parseInt($acs(this).val());
+      $acs(".nice-select").css("height", HeightValue )
+      $acs(".nice-select").css("line-height", HeightValue + "px")
+     });
+     $acs("#dropHeight").keyup(function(e){
+      if (e.which == 13){
+        var HeightValue =  parseInt($acs(this).val());
+        $acs(".nice-select").css("height", HeightValue )
+        $acs(".nice-select").css("line-height", HeightValue + "px")
+      }
+     });
+     
+     ////////////////////////////////
+     
+     $acs("#dropWidth").blur(function(){
+      var WidthValue =  parseInt($acs(this).val());
+      $acs(".nice-select").css("width", WidthValue );
+      $acs(".nice-select .list").css("width", WidthValue )
+     });
+     $acs("#dropWidth").keyup(function(e){
+      if (e.which == 13){
+        var WidthValue =  parseInt($acs(this).val());
+        $acs(".nice-select").css("width", WidthValue );
+        $acs(".nice-select .list").css("width", WidthValue )
+      }
+     });
+     
+     
+     ////////////////////////////////
+      
+      
+     $acs("#dropFont").blur(function(){
+      var FontValue =  parseInt($acs(this).val());
+      $acs(".nice-select.switch").css("font-size", FontValue );
+     });
+     $acs("#dropFont").keyup(function(e){
+      if (e.which == 13){
+        var FontValue =  parseInt($acs(this).val());
+        $acs(".nice-select.switch").css("font-size", FontValue );
+      }
+     });
+     
+     
+     
+     // Styles
+     
+     $acs('#borderContainer input').on('change', function() {
+       var borderValue = ($acs('input[name=border]:checked', '#borderContainer').val());
+       $acs(".nice-select.switch").css("border", borderValue );
+       $acs(".nice-select ul.list").css("border", borderValue );
+       $acs(".nice-select ul.list li").css("border", borderValue ); 
+    });
+    
+    
+    $acs('#flagContainer input').on('change', function() {
+       var flagValue = ($acs('input[name=flag]:checked', '#flagContainer').val());
+       console.log(flagValue);
+       $acs(".flags").css("display", flagValue ); 
+    });
+    
+    $acs('#transContainer input').on('change', function() {
+       var transValue = ($acs('input[name=transparentCol]:checked', '#transContainer').val());
+       $acs(".nice-select").css("background-color", transValue );
+       $acs(".nice-select").css("border", "0px solid #e8e8e8" ); 
+      if ($acs('#trans2').is(':checked')) {
+        $acs(".nice-select").css("border", "1px solid #e8e8e8" ); 
+      }
+    });
+    
+    $acs('#displayContainer input').on('change', function() {
+       var displayValue = ($acs('input[name=displayBox]:checked', '#displayContainer').val());
+       $acs(".switchContainer").css("display", displayValue ); 
+    });
+     
+     
+     // Colors
+     
+     
+     $acs("#txtColor").blur(function(){
+      var txtColorVale =  $acs(this).val();
+      $acs(".nice-select").css("color", txtColorVale );
+      $acs(".nice-select ul li").css("color", txtColorVale );
+       $acs( "<style type='text/css'>.nice-select:after { border-color: " + txtColorVale + "; }</style>" ).appendTo( "head" )
+     });
+     
+     
+     $acs("#bgColor").blur(function(e){
+      var bgColorVale =  $acs(this).val();
+      $acs(".nice-select").css("background-color", bgColorVale );
+      $acs(".nice-select .option").css("background-color", bgColorVale );
+      
+     });
+     
+    $acs("#brdrColor").blur(function(e){
+      var brdrColorVale =  $acs(this).val();
+      $acs(".nice-select").css("border-color", brdrColorVale );
+      $acs(".nice-select .option").css("border-color", brdrColorVale );
+      $acs(".nice-select .list").css("border-color", brdrColorVale );
+     });
+mlflag2 = true;    
+}($acs));
+
+
+
+</script>
+<style>
+.nice-select {
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent !important;
+  border-radius: 0px;
+/*  comment this line border: solid 1px; */
+  border-color: inherit !important;
+  box-sizing: border-box;
+  clear: both;
+  cursor: pointer;
+  display: block;
+  /* float: left; */
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: normal;
+  height: 30px;
+  line-height: 30px;
+  outline: none;
+  padding-left: 5px;
+  padding-right: 20px;
+  position: relative;
+  text-align: left !important;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  white-space: nowrap;
+  width: 90px; }
+.nice-select:after {
+/*   border-bottom: 2px solid;
+  border-right: 2px solid; */
+/*  comment this line border-color: inherit !important; */
+/*   content: '';
+  display: block;
+  height: 5px;
+  margin-top: -4px;
+  pointer-events: none;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  -webkit-transform-origin: 66% 66%;
+          transform-origin: 66% 66%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  transition: all 0.15s ease-in-out;
+  width: 5px; */}
+.nice-select.open:after {
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg); }
+.nice-select.open .list {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: scale(1) translateY(0);
+          transform: scale(1) translateY(0); }
+.nice-select.switch {
+  font-size: 12px;
+  height: 30px;
+  width:90px;
+  line-height: 30px; 
+  display:inline-block;
+  }
+.nice-select.switch:after {
+  height: 4px;
+  width: 4px; }
+.nice-select.switch .option {
+  line-height: 30px;
+  min-height: 30px; }
+.nice-select .list {
+/*   color: #000 !important; */
+  background-color:#fff;
+  z-index: 999 !important;
+/*   width:96px !important; */
+  width:92px !important;
+  border-radius: 0px;
+  border:1px solid #e8e8e8;
+  box-sizing: border-box;
+  margin-top:0px;
+  margin-left:0px !important;
+  margin-bottom:0px !important;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  -webkit-transform-origin: 50% 0;
+          transform-origin: 50% 0;
+  -webkit-transform: scale(0.75) translateY(-21px);
+          transform: scale(0.75) translateY(-21px);
+  transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
+  z-index: 9; }
+.nice-select .option:hover {
+  background-color: #f8f8f8; }
+.nice-select .option {
+  cursor: pointer;
+   border-bottom: solid 1px #e8e8e8;
+  font-weight: 400;
+  line-height: 30px !important;
+  list-style: none;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  height: 30px !important;
+  outline: none;
+/*   padding-left: 5px!important; */
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: left;
+  transition: all 0.2s; 
+  float: left !important;
+  border-left: 0px !important;
+    border-top: 0px !important;
+    border-right: 0px !important;
+  width: 94px !important;
+  
+}
+  .nice-select .option:last-child{ border-bottom:0 none}
+.nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
+  }
+.nice-select .option.selected {
+  font-weight: bold; }
+
+/*# sourceMappingURL=nice-select.css.map */
+
+.nice-select.switch .flags{ position:relative; top:50%; margin-top:-7px}
+
+.mldarrow:hover{
+  cursor: pointer !important; 
+  }
+
+</style>
+{% endif %}

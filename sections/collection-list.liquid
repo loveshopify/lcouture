@@ -1,0 +1,214 @@
+{%- capture flickity_options -%}
+{
+  "prevNextButtons": false,
+  "pageDots": {% if section.blocks.size > 1 %}true{% else %}false{% endif %},
+  "setGallerySize": true,
+  "wrapAround": true,
+  "watchCSS": true,
+  "dragThreshold": 8
+}
+{%- endcapture -%}
+
+<section id="section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="collection-list">
+  {%- capture collection_items -%}
+    {%- for block in section.blocks -%}
+      {%- assign collection = collections[block.settings.collection] -%}
+      {%- render 'collection-item', block: block, collection: collection, apply_overlay: block.settings.apply_overlay -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {% if section.settings.section_title != blank %}
+    <div class="section-title">
+      {{ section.settings.section_title }}
+    </div>
+  {% endif %}
+    {% if section.settings.content_text != blank %}
+      <div class="section-text">
+        {{ section.settings.content_text }}
+      </div>
+    {% endif %}
+  
+  {%- if section.settings.stack_on_mobile -%}
+    <div class="CollectionList {{ section.settings.image_size }} CollectionList--grid {% if section.settings.add_spacing %}CollectionList--spaced{% endif %}" data-collection-leaset-slider>
+      {{ collection_items }}
+    </div>
+  {%- else -%}
+    <div class="Carousel Carousel--insideDots CollectionList {% if section.settings.add_spacing %}CollectionList--spaced{% endif %}" data-flickity-config='{{ flickity_options }}'>
+      {{ collection_items }}
+    </div>
+  {%- endif -%}
+</section>
+
+<style>
+  #section-{{ section.id }} .CollectionItem .Heading,
+  #section-{{ section.id }} .flickity-page-dots {
+    color: {{ section.settings.text_color }};
+  }
+
+  #section-{{ section.id }} .CollectionItem__Link {
+    color: {{ section.settings.button_color }};
+    border-color: {{ section.settings.text_color }};
+  }
+
+  #section-{{ section.id }} .CollectionItem__Link::before {
+    background-color: {{ section.settings.text_color }};
+  }
+
+  
+  @media (-moz-touch-enabled: 0), (hover: hover) {
+    #section-{{ section.id }} .CollectionItem__Link:hover {
+      color: {{ section.settings.text_color }};
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection list",
+  "class": "leaset collection-list",
+  "max_blocks": 18,
+  "settings": [
+    {
+      "id": "section_title",
+      "type": "text",
+      "label": "Section Title"
+    },
+    {
+      "id": "content_text",
+      "type": "richtext",
+      "label": "Text"
+    },
+    {
+      "type": "select",
+      "id": "image_size",
+      "label": "Image size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_spacing",
+      "label": "Add spacing",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "expand_collection",
+      "label": "Expand collections to fill row",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_on_mobile",
+      "label": "Stack on mobile",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button text",
+      "default": "#363636"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "1120 x 1200px .jpg recommended"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Content position",
+          "options": [
+            {
+              "value": "bottomLeft",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottomRight",
+              "label": "Bottom right"
+            },
+            {
+              "value": "bottomCenter",
+              "label": "Bottom center"
+            }
+          ],
+          "default": "bottomLeft"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Sub-heading",
+          "default": "Sub-heading"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Collection name"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#000000"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Collection Description</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Collection list",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

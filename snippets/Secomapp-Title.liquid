@@ -1,0 +1,32 @@
+{%- if template contains "404" -%}
+
+{%- elsif template contains "index" -%}
+
+{% capture secomapp_index %}{{ page_title }} | {{ shop.name }}{% endcapture %}
+<title>{{ secomapp_index | strip_html | strip | strip_newlines | replace: '"', "'" | truncate: 70 }}</title>
+
+{%- elsif template contains "product" -%}
+
+{% capture secomapp_product %}{{ page_title | strip}} {% endcapture %}
+<title>{{ secomapp_product | strip_html | strip | strip_newlines | replace: '"', "'" | truncate: 70}}</title>
+
+{%- elsif template contains "collection" -%}
+
+{% capture secomapp_collection %}{{ page_title | strip}} {% endcapture %}
+<title>{{ secomapp_collection | strip_html | strip | strip_newlines | replace: '"', "'" | truncate: 70}}</title>
+
+{%- elsif template contains "blog" -%}
+
+{% capture secomapp_blog %}{{ page_title | strip}} {% endcapture %}
+<title>{{ secomapp_blog | strip_html | strip | strip_newlines | replace: '"', "'" | truncate: 70}}</title>
+
+{%- elsif template contains "article" -%}
+
+{% capture secomapp_article %} {{ page_title | strip}} {% endcapture %}
+<title>{{ secomapp_article | strip_html | strip | strip_newlines | replace: '"', "'" | truncate: 70}}</title>
+
+{% else %}
+{% capture secomapp_other %}{{ page_title }}{% endcapture %}
+<title>{{ secomapp_other | strip_html | strip | strip_newlines | replace: '"', "'" | truncate: 70}}</title>
+
+{%- endif -%}

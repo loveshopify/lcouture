@@ -1,0 +1,14 @@
+<!-- product grouping metafields start -->
+    {{ newline }}
+    {%- if product.id > 0 -%}
+      {%- for _metafields in product.metafields.starapps -%}
+        {%- if _metafields[0] contains "group" -%}
+        <script type="application/json" sa-product-group="{{ _metafields[0] | escape }}" data-no-instant="true">
+        {{ _metafields[1] | json }}
+        </script>
+        {{ newline }}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {{ newline }}
+    <!-- product grouping metafields end -->

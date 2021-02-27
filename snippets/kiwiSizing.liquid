@@ -1,0 +1,18 @@
+<script>
+window.KiwiSizing = window.KiwiSizing === undefined ? {} : window.KiwiSizing;
+KiwiSizing.shop = "{{ shop.permanent_domain }}";
+{% assign t = template | prepend: '/' | append: '.' %}
+{% if t contains '/product.' %}
+KiwiSizing.data = {
+  collections: "{{ product.collections | map: 'id' | join: ','}}",
+  tags: {{ product.tags | join: ',' | json}},
+  product: "{{product.id}}",
+  vendor: {{product.vendor | json}},
+  type: {{product.type | json}},
+  title: {{product.title | json}},
+  images: {{product.images | json}},
+  options: {{product.options_with_values | json}},
+  variants: {{product.variants | json}},
+};
+{% endif %}
+</script>

@@ -1,0 +1,182 @@
+/*=========== banner image================*/ 
+.topbanner {
+   {% if settings.checkout_use_header_image %}
+    width: 100%;
+    margin: 0 auto;
+  
+ 
+    background-image: url('{{ 'checkout_header_image.jpg' | asset_url | remove: '_small' }}');
+    background-repeat: no-repeat;
+    background-position: center center;
+  
+    background-size: cover;
+  {% else %}
+    display: none;
+  {% endif %}
+      
+} 
+
+ /*=========== /banner image================*/ 
+
+.mb_zero{
+margin-bottom:0;
+}
+.toplogo{
+    display: none;
+}
+
+.leftDataContainertoplogo {
+  {% if settings.checkout_use_header_image %}
+    display: none;
+  {% else %}
+    width: 100%;
+    display:inline-block; 
+    padding-top: 20px
+  {% endif %}
+}
+/*=========== logo size================*/ 
+.logoml {
+display:inline-block;
+}
+{% if settings.checkout_logo_size == 'medium' %}
+  .logoml {
+        max-height: 2.85714em;
+    }
+{% endif %}
+{% if settings.checkout_logo_size == 'small' %}
+  .logoml {
+    max-height: 2.14286em;
+    }
+  {% endif %}
+{% if settings.checkout_logo_size == 'large' %}
+  .logoml {
+    max-height: 3.57143em;
+}
+  {% endif %}
+/*=========== /logo size================*/ 
+
+
+
+/*=========== logo position ================*/ 
+.position-logo{
+  width: 100%;
+  display: inline-block;
+  text-align: {{ settings.checkout_logo_position }}
+}
+/*=========== /logo position ================*/ 
+
+
+@media (min-width: 1000px){
+  /*=========== banner image media================*/ 
+{% if settings.checkout_use_header_image %}
+  .topbanner {
+    padding-top: 6em;
+    padding-bottom: 2em;
+  }
+  {% endif%}
+  /*=========== /banner image media================*/ 
+  
+  
+  
+  /*=========== logo size media================*/ 
+  {% if settings.checkout_logo_size == 'medium' %}
+  .logoml {
+    max-height: 4.28571em;
+    }
+  {% endif %}
+  {% if settings.checkout_logo_size == 'small' %}
+  .logoml {
+    max-height: 2.85714em;
+    }
+  {% endif %}
+   {% if settings.checkout_logo_size == 'large' %}
+  .logoml {
+    max-height: 5.71429em;
+    }
+  {% endif %}
+   /*=========== /logo size media================*/ 
+  .leftDataContainer {
+    min-height: 100vh;
+  }
+  .rightDataContainer {
+    min-height: 100vh;
+  }
+}
+
+{% if settings.checkout_logo == 'checkout_logo.png' %}
+.checkoutLogoSpan .logoml {
+  background-image: url('{{ 'checkout_logo.png' | asset_url | remove: '_small' }}');
+  background-repeat: no-repeat;
+}
+.logoSpan {
+  display: none;
+}
+.shopNameSpan {
+  display: none;
+}
+
+{% elsif settings.checkout_logo == 'logo.png'  %}
+.logoSpan .logoml {
+  background-image: url('{{ 'logo.png' | asset_url | remove: '_small' }}');
+  background-repeat: no-repeat;
+}
+.checkoutLogoSpan {
+  display: none;
+}
+.shopNameSpan {
+  display: none;
+}
+
+{% else %}
+.logoSpan {
+  display: none;
+}
+.checkoutLogoSpan {
+  display: none;
+}
+{% endif %}
+
+.pageContainer p {
+  color: #a4a5a5;
+}
+
+.rightDataContainer {
+  background-color: {{ settings.checkout_sidebar_background_color }};
+}
+.rightDataContainer:after {
+  background-color: {{ settings.checkout_sidebar_background_color }};
+}
+.leftDataContainer {
+  padding-top: 45px;
+}
+
+input.greenBtn {
+  background-color: {{ settings.checkout_button_color }} !important;
+}
+
+.pageContainer a {
+  color: {{ settings.checkout_accent_color }};
+}
+
+.pageContainer h2 {
+  color: #000;
+}
+
+.pageContainer input:focus {
+  box-shadow: 0 0 0 1px {{ settings.checkout_accent_color }};
+}
+
+.pageContainer select:focus {
+  box-shadow: 0 0 0 1px {{ settings.checkout_accent_color }};
+}
+
+.leftDataContainer {
+  background-color: {{ settings.checkout_body_background_color }};
+}
+.leftDataContainer:after {
+  background-color: {{ settings.checkout_body_background_color }};
+}
+
+.pageContainer .shippingMethod {
+  background-color: #fafafa;
+}

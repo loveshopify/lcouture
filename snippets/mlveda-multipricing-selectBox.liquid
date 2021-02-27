@@ -1,0 +1,94 @@
+<script>
+
+//$m(document).ready(function(){
+//window.pattern = /(jp|fr|ca|uk|ma|au|in)/;
+ // window.pattern = /^(do|sv|ee|fi|fr|gd|gp|gg|hu|is|im|il|kz|ke|kg|la|mo|mk|mh|mq|ms|ma|nl|ne|ng|no|pw|py|pl|pt|kn|st|sc|sg|sk|za|sr|sj|th|to|tm|tc|uz|vu|vn|zm|af|al|as|ao|ai|an|ag|ar|as|bb|by|aq|bm|bq|bv|au|vg|bs|cv|bh|cf|bd|cn|be|co|ba|ci|bw|dk|bn|dm|bi|cd|cm|ec|ca|eg|td|gq|cx|er|cc|et|cr|eu|ga|gh|cy|gi|dj|gu|eu|gt|fk|gn|fo|gw|gf|hm|pf|hn|gm|iq|ge|ie|de|jm|gr|jp|in|ki|id|lr|je|mw|lv|my|ly|mu|li|yt|mv|mx|mc|mn|mz|nr|np|ni|nu|nf|pk|na|ph|oc|pn|om|qa|pg|re|pr|sh|ro|ru|rw|sm|bl|rs|pm|sx|vc|gs|sa|sd|sl|se|si|tj|tz|sb|tt|sa|tn|es|gb|lk|va|ch|zw|sy|tw|tl|tg|tr|um|vi|ug|us|uy|ve|af|ax|dz|ad|am|aw|at|az|bz|bj|bt|bo|br|io|bg|bf|kh|ky|cl|km|cg|ck|hr|cu|cw|cz|fj|tf|gl|gy|ht|hk|ir|it|jo|kw|lb|ls|lt|lu|mg|ml|mt|mr|fm|md|me|mm|na|nc|nz|kp|mp|ps|pa|pe|lc|mf|ws|sn|so|kr|ss|sz|tk|tv|ua|ae|wf|eh|ye|intl)$/;
+
+var mlveda_observer = new MutationObserver(function(mutations){
+			//console.log(mutations.length);
+		
+        
+			mutations.forEach(function(mutation) {
+              
+              
+                if(mutation.addedNodes[0] && mutation.addedNodes[0].childNodes[0] && mutation.addedNodes[0].childNodes[0].innerHTML === "mlveda_country" ){
+                                 window.mlveda_label = mutation.addedNodes[0].childNodes[0];
+                  				console.log("hello");
+                                $m(mlveda_label).parent().css("display" , "none");
+                }
+    
+              
+                $m("select:not(.mlveda_country,.vichitra)").each(function(){
+                      var flag = 1;
+                      console.log("select "+this);
+                      console.log($m(this).children().length);
+                      $m(this).children().each(function(option){
+                        console.log($m(this).parent().attr("class"));
+                        //if(($(this).parent().attr("class") !== 'mlveda_country') || ($(this).parent().attr("class") !== 'vichitra')){
+                        console.log("option "+this);
+
+
+                        var str = $m(this).val().trim();
+                        console.log("value "+str);
+                        var res = pattern.test(str);
+                        console.log("result "+res);
+                        if(res){
+                          flag=2;
+                            return;
+                        }
+                        else{
+                          console.log("in else "+str);
+                          $m(this).parent().addClass("vichitra");
+                            flag = 0;
+                            return false;
+                        }
+                      //}
+                      });
+                      console.log("flag "+flag);
+                      if(flag==2){
+                        console.log("it's time for magic");
+                         $m(this).addClass("mlveda_country");
+                        console.log($m(this));
+                        $m(this).parent().css("display" , "none");
+                        console.log($m(this).val());
+                      /*$m(this).val($m(this).val()).trigger("change");
+                       var event1 = new Event("change" , {bubbles : true});
+                        var mlveda_select = this;
+                        $m(this).val($m(this).val())[0].dispatchEvent(event1);		*/	
+                        
+                        
+                     if(country && country !== null && $m(this).val() == country){
+                          $m(this).attr("mlveda_country_found","true");
+                          $m(this).val($m(this).val()).trigger("change");
+                        }
+                        else if(continent && continent !== null && $m(this).val() == continent){
+                          $m(this).attr("mlveda_continent_found","true");
+                          $m(this).val($m(this).val()).trigger("change");
+                        }
+                        else if(country !== null && continent !== null){
+                          $m(this).val($m(this).val()).trigger("change");
+                        }
+                 
+                 
+                            //$m(this).addClass("mlveda_country");
+		
+                      }
+                    });
+
+            });
+        });
+  
+  var div2 = document.querySelector('body');
+		//var div3 = div2.nextSibling;
+	
+	
+		mlveda_observer.observe(document, { childList: true , subtree : true});
+ //});
+
+ window.onload = function(){
+    setTimeout(function(){
+    	 $m("<style type=\"text/css\">  div.mlvedaform span.money {visibility:visible;}</style>").appendTo("head");
+         $m("<style type=\"text/css\">  button[name='add'] {visibility:visible;}</style>").appendTo("head");
+    },2000);
+  }
+  </script>

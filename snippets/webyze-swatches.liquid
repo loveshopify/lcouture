@@ -1,0 +1,10 @@
+{% for opt in product.options %}
+	{% assign opt_name = opt | downcase %}
+	{% assign opt_index = forloop.index0 %}
+	{% if opt_name == 'color' or opt_name == 'colour' or opt_name == 'material' or opt_name == 'finish' or opt_name contains 'color' or opt_name contains 'colour' %}
+		{% assign swatch_list = '' %}
+		{% capture swatch_list %}{% for vari in product.variants %}{{ vari.options[ opt_index ] | url_param_escape }}{% unless forloop.last %}|{% endunless %}{% endfor %}{% endcapture %}
+		{% capture swatchRequest %}{{ shop.permanent_domain }}|{{ product.id }}|{{ opt_index }}|{{ swatch_list | replace : '+', '%2B' | replace : '?', '%3F' | url_param_escape }}{% endcapture %}
+		<script type="text/javascript" src="https://s-1.webyze.com/Swatches/{{ shop.permanent_domain | md5 }}|{{ swatchRequest | md5 }}|{{ swatchRequest }}" async></script>
+	{% endif %}
+{% endfor %}

@@ -1,0 +1,22 @@
+{%- if product.id > 0 -%}
+    <script type="application/json" sa-swatch-json="true">
+          {
+            "id": {{ product.id | json }},
+            "title": {{ product.title | json }},
+            "handle": {{ product.handle | json }},
+        "metafields": {{ product.metafields.starapps | json }}{%- if product.variants.size <= 5 -%},
+            "vendor": {{ product.vendor | json }},
+            "variants": {{ product.variants | json }},
+            "url": {{ product.url | json }},
+            "options": {{ product.options_with_values | json }},
+            "images": {{ product.images | json }},
+            "featured_image": {{ product.featured_image | json }},
+            "tags": {{ product.tags | json }},
+            "available": {{ product.available | json }},
+            "price_min": {{ product.price_min | json }},
+            "price_max": {{ product.price_max | json }},
+            "compare_at_price_min": {{ product.compare_at_price_min | json }},
+            "compare_at_price_max": {{ product.compare_at_price_max | json }}{%- endif -%}
+          }
+    </script>
+    {%- endif -%}

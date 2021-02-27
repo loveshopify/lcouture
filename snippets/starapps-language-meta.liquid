@@ -1,0 +1,10 @@
+<script type="application/json" sa-language-info="true" data-no-instant="true">
+    {
+        "current_language":{{ shop.locale | json }},{{ newline }}
+        {%- if shop.metafields.etranslate.selector_config.default_language -%}
+        "default_language": {{ shop.metafields.etranslate.selector_config.default_language | json }}
+        {%- else -%}
+        "default_language": {%- for locale in shop.published_locales -%}{%- if locale.primary -%}{{ locale.iso_code | json }}{%- endif -%}{%- endfor -%}{{ newline }}
+        {%- endif -%}
+      }
+    </script>

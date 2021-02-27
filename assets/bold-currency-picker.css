@@ -1,0 +1,240 @@
+.BOLD-mc-picker-mnt {
+    position: relative;
+    display: inline-block; }
+
+.BOLD-mc-picker-mnt.injected {
+    position: fixed;
+    overflow: visible;
+    z-index: 99999; }
+
+.BOLD-mc-picker-mnt[data-picker-location="bottom-middle"] {
+    bottom: 0;
+    top: initial !important;
+    margin-bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%); }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-middle"][data-edge-placement="float"] {
+    bottom: 2%; }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-middle"] > .BOLD-mc-picker > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(0);
+    transform: rotate(0); }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-middle"] > .BOLD-mc-picker.open > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-middle"] > .BOLD-mc-picker > .currencyList {
+    bottom: 31px;
+    top: auto; }
+
+.BOLD-mc-picker-mnt[data-picker-location="top-middle"] {
+    top: 0;
+    bottom: initial !important;
+    margin-top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%); }
+.BOLD-mc-picker-mnt[data-picker-location="top-middle"][data-edge-placement="float"] {
+    top: 2%; }
+.BOLD-mc-picker-mnt[data-picker-location="top-middle"] > .BOLD-mc-picker > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+.BOLD-mc-picker-mnt[data-picker-location="top-middle"] > .BOLD-mc-picker.open > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(0);
+    transform: rotate(0); }
+.BOLD-mc-picker-mnt[data-picker-location="top-middle"] > .BOLD-mc-picker > .currencyList {
+    top: 31px;
+    bottom: auto; }
+
+.BOLD-mc-picker-mnt[data-picker-location="bottom-left"] {
+    bottom: 0;
+    top: initial !important;
+    margin-bottom: 0;
+    left: 2%; }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-left"][data-edge-placement="float"] {
+    bottom: 2%; }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-left"] > .BOLD-mc-picker > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(0);
+    transform: rotate(0); }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-left"] > .BOLD-mc-picker.open > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-left"] > .BOLD-mc-picker > .currencyList {
+    bottom: 31px;
+    top: auto; }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-left"] > .BOLD-mc-picker > .currencyList {
+    left: 0;
+    -webkit-transform: none;
+    transform: none; }
+
+.BOLD-mc-picker-mnt[data-picker-location="top-left"] {
+    top: 0;
+    bottom: initial !important;
+    margin-top: 0;
+    left: 2%; }
+.BOLD-mc-picker-mnt[data-picker-location="top-left"][data-edge-placement="float"] {
+    top: 2%; }
+.BOLD-mc-picker-mnt[data-picker-location="top-left"] > .BOLD-mc-picker > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+.BOLD-mc-picker-mnt[data-picker-location="top-left"] > .BOLD-mc-picker.open > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(0);
+    transform: rotate(0); }
+.BOLD-mc-picker-mnt[data-picker-location="top-left"] > .BOLD-mc-picker > .currencyList {
+    top: 31px;
+    bottom: auto; }
+.BOLD-mc-picker-mnt[data-picker-location="top-left"] > .BOLD-mc-picker > .currencyList {
+    left: 0;
+    -webkit-transform: none;
+    transform: none; }
+
+.BOLD-mc-picker-mnt[data-picker-location="bottom-right"] {
+    bottom: 0;
+    top: initial !important;
+    margin-bottom: 0;
+    right: 2%; }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-right"][data-edge-placement="float"] {
+    bottom: 2%; }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-right"] > .BOLD-mc-picker > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(0);
+    transform: rotate(0); }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-right"] > .BOLD-mc-picker.open > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-right"] > .BOLD-mc-picker > .currencyList {
+    bottom: 31px;
+    top: auto; }
+.BOLD-mc-picker-mnt[data-picker-location="bottom-right"] > .BOLD-mc-picker > .currencyList {
+    left: 0;
+    -webkit-transform: translateX(-37%);
+    transform: translateX(-37%); }
+
+.BOLD-mc-picker-mnt[data-picker-location="top-right"] {
+    top: 0;
+    bottom: initial !important;
+    margin-top: 0;
+    right: 2%; }
+.BOLD-mc-picker-mnt[data-picker-location="top-right"][data-edge-placement="float"] {
+    top: 2%; }
+.BOLD-mc-picker-mnt[data-picker-location="top-right"] > .BOLD-mc-picker > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+.BOLD-mc-picker-mnt[data-picker-location="top-right"] > .BOLD-mc-picker.open > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(0);
+    transform: rotate(0); }
+.BOLD-mc-picker-mnt[data-picker-location="top-right"] > .BOLD-mc-picker > .currencyList {
+    top: 31px;
+    bottom: auto; }
+.BOLD-mc-picker-mnt[data-picker-location="top-right"] > .BOLD-mc-picker > .currencyList {
+    left: 0;
+    -webkit-transform: translateX(-37%);
+    transform: translateX(-37%); }
+
+.BOLD-mc-picker > .currentCurrency > .flag, .BOLD-mc-picker > .currencyList > .option > .flag {
+    background-image: url("https://static.boldcommerce.com/multicurrency/flags.png");
+    position: absolute;
+    height: 11px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 6px;
+    width: 16px; }
+
+.BOLD-mc-picker {
+    margin-bottom: 0;
+    white-space: nowrap;
+    height: 32px; }
+.BOLD-mc-picker * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+.BOLD-mc-picker > .currentCurrency {
+    position: relative;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    width: 80px;
+    border: 1px solid #e5e5e5;
+    background: white;
+    -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    padding: 0 0 0 27px;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap; }
+.BOLD-mc-picker > .currentCurrency > .flag.flag-loading {
+    background: gray;
+    display: inline-block; }
+.BOLD-mc-picker > .currentCurrency > .chevron {
+    position: absolute;
+    right: 3px;
+    top: 53%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    display: block;
+    margin-left: -3px; }
+.BOLD-mc-picker > .currentCurrency > .chevron > svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s; }
+.BOLD-mc-picker > .currencyList {
+    width: auto;
+    vertical-align: inherit;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-color: #fff;
+    /* prevent horizontal scrollbars on windows */
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 145px;
+    border: 1px solid #e5e5e5;
+    z-index: 111;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none !important; }
+.BOLD-mc-picker > .currencyList > .option {
+    border-bottom: 1px solid #e5e5e5;
+    width: 125px;
+    margin: 0;
+    padding: 0 0 0 27px;
+    cursor: pointer;
+    text-align: left;
+    float: none;
+    height: 32px;
+    line-height: 32px; }
+.BOLD-mc-picker > .currencyList > .option:last-child {
+    border-bottom: none; }
+.BOLD-mc-picker.open > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+.BOLD-mc-picker.open > .currencyList {
+    display: block !important; }
+.BOLD-mc-picker-mnt[data-open="up"] > .BOLD-mc-picker > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(0);
+    transform: rotate(0); }
+.BOLD-mc-picker-mnt[data-open="up"] > .BOLD-mc-picker.open > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+.BOLD-mc-picker-mnt[data-open="up"] > .BOLD-mc-picker > .currencyList {
+    bottom: 31px;
+    top: auto; }
+.BOLD-mc-picker-mnt[data-open="down"] > .BOLD-mc-picker > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+.BOLD-mc-picker-mnt[data-open="down"] > .BOLD-mc-picker.open > .currentCurrency > .chevron > svg {
+    -webkit-transform: rotate(0);
+    transform: rotate(0); }
+.BOLD-mc-picker-mnt[data-open="down"] > .BOLD-mc-picker > .currencyList {
+    top: 31px;
+    bottom: auto; }

@@ -1,0 +1,436 @@
+{% if settings.mlvedaACS_enable %}
+
+<form action="/apps/checkout/customer_information" method="post" id="mCheckout">
+  <input type="hidden" name="shopName" value="{{shop.permanent_domain}}">
+  {% if customer %}<input type="hidden" name="customerID" value="{{ customer.id }}">{% endif %}
+  <input type="hidden" name="checkoutCss" value="{{ "mlveda-checkout.scss" | asset_url }}">
+  <input type="hidden" name="shopTitle" value="{{shop.name}}">
+  <input type="hidden" name="checkoutCurrency" value="">
+  <input type="hidden" name="cart_token" value="">
+  <input type="hidden" name="cart_images" value="">
+  <input type="hidden" name="cart_note" value="">
+  <input type="hidden" name="couponCodeInput" value="">
+  <input type="hidden" name="clientId" value="">
+</form>
+
+<script type="text/javascript">
+document.write('<scr'+'ipt src="//mlveda-shopifyapps.s3.amazonaws.com/multiCurrencyPricing/js/currencies.js?rnd='+Math.floor((Math.random() * 10000000000) + 1)+'" type="text/javascript"></scr'+'ipt>');
+document.write('<scr'+'ipt src="/apps/MultiCurrency/New/jquery.currencies.min.js?rnd='+Math.floor((Math.random() * 10000000000) + 1)+'" type="text/javascript"></scr'+'ipt>');
+</script>
+
+<script>
+  var ACSCurrency = Currency;
+  var clientId = "";
+if( typeof ga !== "undefined") {
+ga(function(tracker) {
+  var clientId = tracker.get('clientId');
+});
+}
+  
+function mlvedaCreateCookie(name, value, days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = "; expires=" + date.toGMTString();
+    }
+    else
+        var expires = "";
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function mlvedaReadCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ')
+            c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0)
+            return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function mlvedaEraseCookie(name) {
+    createCookie(name, "", -1);
+}
+
+function roundCurrency() {
+  {% if settings.mlvedaACS_roundDecimal %}
+    {% if settings.mlvedaACS_hideDecimal %}
+    {% else %}
+    $acs('.money').each(function(){
+       if (ACSCurrency.currentCurrency === "JOD" || ACSCurrency.currentCurrency === "KWD" || ACSCurrency.currentCurrency === "BHD") {
+         var moneyraw = parseFloat($acs(this).html().replace(/[^0-9]/g, ""), 10) / 10 ;
+       }
+       else if( ACSCurrency.currentCurrency === "KRW" || ACSCurrency.currentCurrency === "JPY" || ACSCurrency.currentCurrency === "SEK" || ACSCurrency.currentCurrency === "HUF" || ACSCurrency.currentCurrency === "ISK") {
+         var moneyraw = parseFloat($acs(this).html().replace(/[^0-9]/g, ""), 10) * 100 ;
+       } else {
+         var moneyraw = parseFloat($acs(this).html().replace(/[^0-9]/g, ""), 10)  ;
+       }
+       var moneyrounded = ((Math.ceil(moneyraw / 100)) - 1 + {{ settings.mlvedaACS_roundDecimalValue }}) * 100 ;
+       if(ACSCurrency.format === "money_with_currency_format") {
+         var acuree = ACSCurrency.formatMoney(moneyrounded, ACSCurrency.moneyFormats[ACSCurrency.currentCurrency].money_with_currency_format)
+       }
+       else {
+         var acuree = ACSCurrency.formatMoney(moneyrounded, ACSCurrency.moneyFormats[ACSCurrency.currentCurrency].money_format)
+       }        $acs(this).html(acuree);
+     });
+    {% endif %}
+  {% endif %}
+}
+
+{% if settings.mlvedaACS_hideDecimal %}
+  var firstTimeSwitchFlag=0;
+{% endif %}
+
+  window.ajaxMlvedaResponse = {"staus": "failure"};
+  
+  function mlvedacheckoutajax() {  
+$acs.ajax({
+    url: "//www.mlveda.com/checkout/checkCartToken?cart_token="+mlvedaReadCookie('cart')+"&shopName={{shop.permanent_domain}}",
+    type: "GET",
+    timeout: 2000,
+    success: function(response) {
+    	window.ajaxMlvedaResponse = response;        
+  		if(ACSCurrency.moneyFormats) {
+  			mlvedaload();
+		}
+    }
+});
+  }
+  
+  mlvedacheckoutajax();
+  
+var mlvedaflag = true;
+  
+  var jsonData = {};
+
+  {% for item in cart.items %}
+    jsonData["{{ item.id }}"] = "{{ item | img_url: 'small' }}";
+  {% endfor %}
+
+$acs('span.money span.money').each(function() {
+  $acs(this).parents('span.money').removeClass('money');
+});
+             
+function mlvedaload(){
+
+{% if settings.mlvedaACS_currencyFormat %}
+ACSCurrency.format = '{{ settings.mlvedaACS_currencyFormat }}';
+{% endif %}
+
+var shopCurrency = '{{ shop.currency }}';
+                 
+
+/* Sometimes merchants change their shop currency, let's tell our JavaScript file */
+ACSCurrency.moneyFormats[shopCurrency].money_with_currency_format = {{ shop.money_with_currency_format | strip_html | json }};
+ACSCurrency.moneyFormats[shopCurrency].money_format = {{ shop.money_format | strip_html | json }};
+  
+{% if settings.mlvedaACS_hideDecimal %}
+if(firstTimeSwitchFlag==0) {
+  var local_supported_currencies = window.supported_currencies.split(" ");
+  for(var i=0; i<local_supported_currencies.length; i++)
+  {
+    if(local_supported_currencies[i] !== shopCurrency && local_supported_currencies[i] !== "JOD" && local_supported_currencies[i] !== "KWD" && local_supported_currencies[i] !== "BHD" && local_supported_currencies[i] !== "JPY" ) {
+      if(ACSCurrency.moneyFormats[local_supported_currencies[i]] && ACSCurrency.moneyFormats[local_supported_currencies[i]].money_with_currency_format.indexOf("amount_no_decimals") == -1) {
+        ACSCurrency.moneyFormats[local_supported_currencies[i]].money_with_currency_format = ACSCurrency.moneyFormats[local_supported_currencies[i]].money_with_currency_format.replace("amount","amount_no_decimals");
+        ACSCurrency.moneyFormats[local_supported_currencies[i]].money_format = ACSCurrency.moneyFormats[local_supported_currencies[i]].money_format.replace("amount","amount_no_decimals");
+      }
+    }
+  }
+  firstTimeSwitchFlag=1;
+}
+{% endif %}
+
+/* Default currency */
+var defaultCurrency = "{{ settings.mlvedaACS_defaultCurrency }}";
+  
+/* Cookie currency */
+var cookieCurrency = ACSCurrency.cookie.read();
+var resetCurrencyCookie = mlvedaReadCookie("resetCurrencyCookie");
+if (resetCurrencyCookie == null)
+{
+    cookieCurrency = null;
+    mlvedaCreateCookie("resetCurrencyCookie", 1, 365);
+}
+{% if settings.mlvedaACS_autoSwitch %}
+  if(cookieCurrency == null) {
+	if( window.temp_currency_array[0] !== window.mlvedadefaultcurrency && window.temp_currency_array[1] !== window.mlvedadefaultcurrency) {
+  	  cookieCurrency = "{{ settings.mlvedaACS_defaultCurrency }}";
+	}
+	else {
+  	  cookieCurrency = window.mlvedadefaultcurrency;
+	}
+  }
+{% endif %}
+/* Fix for customer account pages */
+$acs('span.money span.money').each(function() {
+  $acs(this).parents('span.money').removeClass('money');
+});
+
+/* Saving the current price */
+$acs('span.money').each(function() {
+if(!$acs(this).attr('data-currency-{{ shop.currency }}'))
+{
+  $acs(this).attr('data-currency-{{ shop.currency }}', $acs(this).html());
+}
+});
+   
+if(mlvedaflag) {
+  ACSCurrency.rates["{{ shop.currency }}"] = ACSCurrency.rates["{{ shop.currency }}"] / 0.97;
+  
+  $acs('.single-option-selector').change(function() {
+    mlvedaload();
+  });
+      $acs('.selector-wrapper').change(function() {
+    mlvedaload();
+  });           
+
+  $acs(document).ajaxComplete(function(event, xhr, settings) {
+                 if(settings) {
+     if(settings.url.indexOf("cart.js")!=-1 || settings.url.indexOf("/products")!=-1) {
+         setTimeout(function() {
+           mlvedacheckoutajax();
+  		   $acs("[name=checkout]").click(function(e) {
+      if(ACSCurrency.currentCurrency !== shopCurrency && ajaxMlvedaResponse.status === "success" && ajaxMlvedaResponse.supported_currencies.toUpperCase().indexOf(ACSCurrency.cookie.read())!=-1) {
+        e.preventDefault();
+        $acs("input[name=checkoutCurrency]").val(ACSCurrency.currentCurrency);
+        $acs("input[name=cart_token]").val(mlvedaReadCookie("cart"));
+        $acs("input[name=cart_images]").val(JSON.stringify(jsonData));
+        $acs("input[name=cart_note]").val($acs("[name=note]").val());
+        $acs("input[name=clientId]").val(clientId);
+        $acs("#mCheckout").submit();
+        return false;
+      } else {
+        return true;
+      }
+  });
+  		   $acs("form[action='/cart']").submit(function(e) {
+    if(document.activeElement.name === "checkout") {
+      if(ACSCurrency.currentCurrency !== shopCurrency && ajaxMlvedaResponse.status === "success" && ajaxMlvedaResponse.supported_currencies.toUpperCase().indexOf(ACSCurrency.cookie.read())!=-1) {
+        e.preventDefault();
+        $acs("input[name=checkoutCurrency]").val(ACSCurrency.currentCurrency);
+        $acs("input[name=cart_token]").val(mlvedaReadCookie("cart"));
+        $acs("input[name=cart_images]").val(JSON.stringify(jsonData));
+        $acs("input[name=cart_note]").val($acs("[name=note]").val());
+        $acs("input[name=clientId]").val(clientId);
+        $acs("#mCheckout").submit();
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+  });
+         }, 1000);
+     }
+  }
+  
+   });
+    $acs("[name=checkout]").click(function(e) {
+      if(ACSCurrency.currentCurrency !== shopCurrency && ajaxMlvedaResponse.status === "success" && ajaxMlvedaResponse.supported_currencies.toUpperCase().indexOf(ACSCurrency.cookie.read())!=-1) {
+        e.preventDefault();
+        $acs("input[name=checkoutCurrency]").val(ACSCurrency.currentCurrency);
+        $acs("input[name=cart_token]").val(mlvedaReadCookie("cart"));
+        $acs("input[name=cart_images]").val(JSON.stringify(jsonData));
+        $acs("input[name=cart_note]").val($acs("[name=note]").val());
+        $acs("input[name=clientId]").val(clientId);
+        $acs("#mCheckout").submit();
+        return false;
+      } else {
+        return true;
+      }
+  });
+  $acs("form[action='/cart']").submit(function(e) {
+    if(document.activeElement.name === "checkout") {
+      if(ACSCurrency.currentCurrency !== shopCurrency && ajaxMlvedaResponse.status === "success" && ajaxMlvedaResponse.supported_currencies.toUpperCase().indexOf(ACSCurrency.cookie.read())!=-1) {
+        e.preventDefault();
+        $acs("input[name=checkoutCurrency]").val(ACSCurrency.currentCurrency);
+        $acs("input[name=cart_token]").val(mlvedaReadCookie("cart"));
+        $acs("input[name=cart_images]").val(JSON.stringify(jsonData));
+        $acs("input[name=cart_note]").val($acs("[name=note]").val());
+        $acs("input[name=clientId]").val(clientId);
+        $acs("#mCheckout").submit();
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+  });
+  
+  		   $acs("[name=checkout]").click(function(e) {
+      if(ACSCurrency.currentCurrency !== shopCurrency && ajaxMlvedaResponse.status === "success" && ajaxMlvedaResponse.supported_currencies.toUpperCase().indexOf(ACSCurrency.cookie.read())!=-1) {
+        e.preventDefault();
+        $acs("input[name=checkoutCurrency]").val(ACSCurrency.currentCurrency);
+        $acs("input[name=cart_token]").val(mlvedaReadCookie("cart"));
+        $acs("input[name=cart_images]").val(JSON.stringify(jsonData));
+        $acs("input[name=cart_note]").val($acs("[name=note]").val());
+        $acs("input[name=clientId]").val(clientId);
+        $acs("#mCheckout").submit();
+        return false;
+      } else {
+        return true;
+      }
+  });
+  $acs("form[action='/checkout']").submit(function(e) {
+    if(document.activeElement.value === "Checkout") {
+      if(ACSCurrency.currentCurrency !== shopCurrency && ajaxMlvedaResponse.status === "success" && ajaxMlvedaResponse.supported_currencies.toUpperCase().indexOf(ACSCurrency.cookie.read())!=-1) {
+        e.preventDefault();
+        $acs("input[name=checkoutCurrency]").val(ACSCurrency.currentCurrency);
+        $acs("input[name=cart_token]").val(mlvedaReadCookie("cart"));
+        $acs("input[name=cart_images]").val(JSON.stringify(jsonData));
+        $acs("input[name=cart_note]").val($acs("[name=note]").val());
+        $acs("input[name=clientId]").val(clientId);
+        $acs("#mCheckout").submit();
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+  });
+  
+  mlvedaflag = false;
+}   
+  $acs("[name=checkout]").click(function(e) {
+      if(ACSCurrency.currentCurrency !== shopCurrency && ajaxMlvedaResponse.status === "success" && ajaxMlvedaResponse.supported_currencies.toUpperCase().indexOf(ACSCurrency.cookie.read())!=-1) {
+        e.preventDefault();
+        $acs("input[name=checkoutCurrency]").val(ACSCurrency.currentCurrency);
+        $acs("input[name=cart_token]").val(mlvedaReadCookie("cart"));
+        $acs("input[name=cart_images]").val(JSON.stringify(jsonData));
+        $acs("input[name=cart_note]").val($acs("[name=note]").val());
+        $acs("input[name=clientId]").val(clientId);
+        $acs("#mCheckout").submit();
+        return false;
+      } else {
+        return true;
+      }
+  });
+// If there's no cookie.
+if (cookieCurrency == null || cookieCurrency == shopCurrency) {
+  if(cookieCurrency == shopCurrency) {
+    ACSCurrency.currentCurrency = shopCurrency;
+  }
+  else if (shopCurrency !== defaultCurrency) {
+    ACSCurrency.convertAll(shopCurrency, defaultCurrency);
+  }
+  else {
+    ACSCurrency.currentCurrency = defaultCurrency;
+  }
+}
+// If the cookie value does not correspond to any value in the currency dropdown.
+else if ($acs('[name=currencies]').length && $acs('[name=currencies] option[value=' + cookieCurrency + ']').length === 0) {
+  ACSCurrency.currentCurrency = shopCurrency;
+  ACSCurrency.cookie.write(shopCurrency);
+}
+else if (cookieCurrency === shopCurrency) {
+  ACSCurrency.currentCurrency = shopCurrency;
+}
+else {
+  ACSCurrency.convertAll(shopCurrency, cookieCurrency);
+  //$acs("input[name=checkout]").css("display","none");
+  if(document.getElementById("mlvedacheckout")) {
+    document.getElementById("mlvedacheckout").value = "Checkout in " + cookieCurrency;
+  }
+  
+        if(ajaxMlvedaResponse.status === "success" && ajaxMlvedaResponse.supported_currencies.toUpperCase().indexOf(ACSCurrency.cookie.read())!=-1) {
+          $acs("#mlvedacheckout").css("display","inline");
+          $acs(".additional-checkout-button--paypal-express").css("display","none");
+        } else {
+          $acs("#mlvedacheckout").css("display","none");
+          $acs(".additional-checkout-button--paypal-express").css("display","block");
+        }
+    
+  
+  $acs(".mlvedaCartNote").css("display","block");
+  roundCurrency();
+}
+
+$acs('[name=currencies]').val(ACSCurrency.currentCurrency).change(function() {
+  var newCurrency = $acs(this).val();
+  if(ACSCurrency.currentCurrency!=shopCurrency) {
+    ACSCurrency.convertAll(ACSCurrency.currentCurrency, shopCurrency);
+    ACSCurrency.convertAll(shopCurrency, newCurrency);
+  }
+  else {
+    ACSCurrency.convertAll(ACSCurrency.currentCurrency, newCurrency);
+  }
+  $acs('.selected-currency').text(ACSCurrency.currentCurrency);
+  if(newCurrency != shopCurrency) {
+    roundCurrency();
+    //$acs("input[name=checkout]").css("display","none");
+    if(document.getElementById("mlvedacheckout")) {
+      document.getElementById("mlvedacheckout").value = "Checkout in " + newCurrency;
+    }
+    if(ajaxMlvedaResponse.status === "success" && ajaxMlvedaResponse.supported_currencies.toUpperCase().indexOf(newCurrency)!=-1) {
+      $acs("#mlvedacheckout").css("display","inline");
+      $acs(".additional-checkout-button--paypal-express").css("display","none");
+    } else {
+      $acs("#mlvedacheckout").css("display","none");
+      $acs(".additional-checkout-button--paypal-express").css("display","block");
+    }
+    $acs(".mlvedaCartNote").css("display","block");
+  } else {
+    //$acs("input[name=checkout]").css("display","inline");
+    $acs("#mlvedacheckout").css("display","none");
+    $acs(".additional-checkout-button--paypal-express").css("display","block");
+    $acs(".mlvedaCartNote").css("display","none");
+  }});
+                    
+
+var original_selectCallback = window.selectCallback;
+var selectCallback = function(variant, selector) {
+  original_selectCallback(variant, selector);
+  ACSCurrency.convertAll(shopCurrency, $acs('[name=currencies]').val());
+  $acs('.selected-currency').text(ACSCurrency.currentCurrency);
+};
+
+$acs('.selected-currency').text(ACSCurrency.currentCurrency);
+
+                    (function () {
+   const send = XMLHttpRequest.prototype.send;
+   XMLHttpRequest.prototype.send = function() {
+       this.addEventListener('load', function() {
+          // console.log('global handler', this)
+           if(this._url.indexOf("?page=")!=-1 || this._url.indexOf("search?")!=-1 || this._url.indexOf("view=")!=-1 || this._url.indexOf("type=")!=-1 ) {
+     		setTimeout(function(){ 
+             	mlvedaload();
+             }, 300);
+    }
+           // add your global handler here
+       })
+       return send.apply(this, arguments)
+   }
+
+   const fetch = window.fetch;
+   window.fetch = function(){
+     var e = arguments;
+     return fetch.apply(this, Array.prototype.slice.call(arguments)).then(function(t) {
+         if (!t.ok)
+             return t;
+         try {
+            if(t.url.indexOf("?page=")!=-1 || t.url.indexOf("search?")!=-1 || t.url.indexOf("view=")!=-1 || t.url.indexOf("type=")!=-1 ) {
+              setTimeout(function(){ 
+             mlvedaload();
+             }, 300);
+            }
+         } catch (e) {
+             console && console.warn && console.warn("[shop_events_listener] Error in handleFetchRequest:  " + e.message);
+         }
+         return t
+     })
+   }
+})();
+                    
+  $acs("#currencies").niceSelect();
+  $acs("#currencies1").niceSelect();
+  
+}
+</script>
+
+{% endif %}

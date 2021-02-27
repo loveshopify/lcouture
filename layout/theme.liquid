@@ -1,0 +1,265 @@
+<!doctype html>
+
+<html class="no-js" lang="{{ shop.locale }}">
+  <head> 
+  
+  <meta name="facebook-domain-verification" content="e8a8ov98xk8aba1om61w8hylp2zmia" />
+     
+                {% capture sb %}{% include "Secomapp-Description" %}{% endcapture %}{% unless sb contains "Liquid error" %}{% include "Secomapp-Description" %}{% endunless %} 
+                
+                {% capture sb %}{% include "Secomapp-Title" %}{% endcapture %}{% unless sb contains "Liquid error" %}{% include "Secomapp-Title" %}{% endunless %} 
+                
+{% assign mlveda_code_flag = false %}
+  
+  {% if mlveda_code_flag == true %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script>
+      	$m = $.noConflict(true);
+	 window.pattern = /^(do|sv|ee|fi|fr|gd|gp|gg|hu|is|im|il|kz|ke|kg|la|mo|mk|mh|mq|ms|ma|nl|ne|ng|no|pw|py|pl|pt|kn|st|sc|sg|sk|za|sr|sj|th|to|tm|tc|uz|vu|vn|zm|af|al|as|ao|ai|an|ag|ar|as|bb|by|aq|bm|bq|bv|au|vg|bs|cv|bh|cf|bd|cn|be|co|ba|ci|bw|dk|bn|dm|bi|cd|cm|ec|ca|eg|td|gq|cx|er|cc|et|cr|eu|ga|gh|cy|gi|dj|gu|eu|gt|fk|gn|fo|gw|gf|hm|pf|hn|gm|iq|ge|ie|de|jm|gr|jp|in|ki|id|lr|je|mw|lv|my|ly|mu|li|yt|mv|mx|mc|mn|mz|nr|np|ni|nu|nf|pk|na|ph|oc|pn|om|qa|pg|re|pr|sh|ro|ru|rw|sm|bl|rs|pm|sx|vc|gs|sa|sd|sl|se|si|tj|tz|sb|tt|sa|tn|es|gb|lk|va|ch|zw|sy|tw|tl|tg|tr|um|vi|ug|us|uy|ve|af|ax|dz|ad|am|aw|at|az|bz|bj|bt|bo|br|io|bg|bf|kh|ky|cl|km|cg|ck|hr|cu|cw|cz|fj|tf|gl|gy|ht|hk|ir|it|jo|kw|lb|ls|lt|lu|mg|ml|mt|mr|fm|md|me|mm|na|nc|nz|kp|mp|ps|pa|pe|lc|mf|ws|sn|so|kr|ss|sz|tk|tv|ua|ae|wf|eh|ye|intl)$/;
+      </script>
+
+  {% endif %}
+{% include 'booster-seo' %}
+{% include 'kiwiSizing' %}
+    <meta charset="utf-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="theme-color" content="{{ settings.accent_color }}">
+
+    {% comment %} {% endcomment %}
+
+    {%- if page_description -%}
+      {% comment %} {% endcomment %}
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '96x' }}" type="image/png">
+    {%- endif -%}
+
+    {% render 'social-meta-tags' %}
+
+    <!-- starapps_scripts_start -->
+<!-- This code is automatically managed by StarApps Studio -->
+<!-- Please contact support@starapps.studio for any help -->
+{% include "starapps-language-meta" %}
+{% include "starapps-pg-meta" %}
+<script type="text/javascript" src="https://cdn.starapps.studio/apps/vsk/lcoutureuae/script-1592397604.js?shop={{shop.permanent_domain}}" async></script>
+<!-- starapps_scripts_end -->
+{{ content_for_header }}
+{%- render 'bold-common' -%}
+
+    <link rel="stylesheet" href="{{ 'theme.scss.css' | asset_url }}">
+    
+    <link rel="stylesheet" href="{{ 'custom.scss.css' | asset_url }}">
+
+    <script>
+     var template = {{ template | json }};
+      // This allows to expose several variables to the global scope, to be used in scripts
+      window.theme = {
+        pageType: {{ request.page_type | json }},
+        moneyFormat: {{ shop.money_format | json }},
+        moneyWithCurrencyFormat: {{ shop.money_with_currency_format | json }},
+        productImageSize: {{ settings.product_image_size | json }},
+        searchMode: {{ settings.search_mode | json }},
+        showPageTransition: {{ settings.show_page_transition | json }},
+        showElementStaggering: {{ settings.show_element_staggering | json }},
+        showImageZooming: {{ settings.show_image_zooming | json }}
+      };
+
+      window.routes = {
+        rootUrl: {{ routes.root_url | json }},
+        cartUrl: {{ routes.cart_url | json }},
+        cartAddUrl: {{ routes.cart_add_url | json }},
+        cartChangeUrl: {{ routes.cart_change_url | json }},
+        searchUrl: {{ routes.search_url | json }},
+        productRecommendationsUrl: {{ routes.product_recommendations_url | json }}
+      };
+
+      window.languages = {
+        cartAddNote: {{ 'cart.general.add_note' | t | json }},
+        cartEditNote: {{ 'cart.general.edit_note' | t | json }},
+        productImageLoadingError: {{ 'product.slideshow.image_loading_error' | t | json }},
+        productFormAddToCart: {% if product.template_suffix == 'pre-order' %}{{ 'product.form.pre_order' | t | json }}{% else %}{{ 'product.form.add_to_cart' | t | json }}{% endif %},
+        productFormUnavailable: {{ 'product.form.unavailable' | t | json }},
+        productFormSoldOut: {{ 'product.form.sold_out' | t | json }},
+        shippingEstimatorOneResult: {{ 'cart.shipping_estimator.one_result_title' | t | json }},
+        shippingEstimatorMoreResults: {{ 'cart.shipping_estimator.more_results_title' | t | json }},
+        shippingEstimatorNoResults: {{ 'cart.shipping_estimator.no_results_title' | t | json }}
+      };
+
+      window.lazySizesConfig = {
+        loadHidden: false,
+        hFac: 0.5,
+        expFactor: 2,
+        ricTimeout: 150,
+        lazyClass: 'Image--lazyLoad',
+        loadingClass: 'Image--lazyLoading',
+        loadedClass: 'Image--lazyLoaded'
+      };
+
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      document.documentElement.style.setProperty('--window-height', window.innerHeight + 'px');
+
+      // We do a quick detection of some features (we could use Modernizr but for so little...)
+      (function() {
+        document.documentElement.className += ((window.CSS && window.CSS.supports('(position: sticky) or (position: -webkit-sticky)')) ? ' supports-sticky' : ' no-supports-sticky');
+        document.documentElement.className += (window.matchMedia('(-moz-touch-enabled: 1), (hover: none)')).matches ? ' no-supports-hover' : ' supports-hover';
+      }());
+    </script>
+
+    <script src="{{ 'lazysizes.min.js' | asset_url }}" async></script>
+
+    {%- if template == 'customers/addresses' -%}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
+      <script src="{{ 'customer_area.js' | shopify_asset_url }}" defer></script>
+    {%- endif -%}
+
+    <script src="https://cdn.polyfill.io/v3/polyfill.min.js?unknown=polyfill&features=fetch,Element.prototype.closest,Element.prototype.remove,Element.prototype.classList,Array.prototype.includes,Array.prototype.fill,Object.assign,CustomEvent,IntersectionObserver,IntersectionObserverEntry,URL" defer></script>
+    <script src="{{ 'libs.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'theme.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'jquery.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'slick.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'custom.js' | asset_url }}" defer></script>
+
+    <script>
+      (function () {
+        window.onpageshow = function() {
+          if (window.theme.showPageTransition) {
+            var pageTransition = document.querySelector('.PageTransition');
+
+            if (pageTransition) {
+              pageTransition.style.visibility = 'visible';
+              pageTransition.style.opacity = '0';
+            }
+          }
+
+          // When the page is loaded from the cache, we have to reload the cart content
+          document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', {
+            bubbles: true
+          }));
+        };
+      })();
+    </script>
+
+    {% render 'microdata-schema' %}
+  
+<script>
+window.mlvedaShopCurrency = "{{ shop.currency }}";
+window.shopCurrency = "{{ shop.currency }}";
+window.supported_currencies = "{{ settings.mlvedaACS_supportedCurrencies }}";
+</script>
+        {{ 'paymentfont.scss.css' | asset_url | stylesheet_tag }}
+      
+{% if mlveda_code_flag == true %}
+  	{% if template != 'cart' %}
+		<script>
+		  $m("<style type='text/css'>span.money{ display: none; }</style>").appendTo("head");
+          
+          {% if template contains 'product' %}
+            $m("<style type='text/css'>button[name='add']{visibility : hidden;}</style>").appendTo("head");
+          {% endif %}
+          
+		</script>
+	{% endif %}
+  {% endif %}
+  {% include 'judgeme_core' %}
+<script async src="https://assets.apphero.co/script_tags/559910_548290.js"></script><script async src="https://assets.apphero.co/script_tags/869523_416411.js"></script><script async src="https://assets.apphero.co/script_tags/580214_562539.js"></script><script async src="https://assets.apphero.co/script_tags/715879_702869.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--begin-boost-pfs-filter-css-->
+  {% render 'boost-pfs-style' %}
+<!--end-boost-pfs-filter-css-->
+
+
+</head>
+
+  <body class="prestige--v4 {% if template.directory %}template-{{ template.directory | handle }}{% endif %} template-{{ template.name | handle }}">
+    <a class="PageSkipLink u-visually-hidden" href="#main">{{ 'header.navigation.skip_to_content' | t }}</a>
+    <span class="LoadingBar"></span>
+    <div class="PageOverlay"></div>
+    <div class="PageTransition"></div>
+    <div class="swathOverlay"></div>
+    {% section 'popup' %}
+    {% section 'sidebar-menu' %}
+
+    {%- if template != 'cart' -%}
+      {% render 'cart-drawer' %}
+    {%- endif -%}
+
+    <div class="PageContainer">
+      {% section 'announcement' %}
+      {% section 'header' %}
+
+      <main id="main" role="main">
+        {% if mlveda_code_flag == false %}
+          	{{ content_for_layout }}
+{%include 'section-any-where'%}
+	
+          {% endif %}
+
+          {% if mlveda_code_flag == true %}
+          <div class="mlvedaform">
+            {{ content_for_layout }}
+{%include 'section-any-where'%}
+
+            {% include 'mlveda-multipricing-options' %}
+          </div>
+          	{% include 'mlveda-multipricing-selectBox' %}
+
+          	{% include 'mlveda-multipricing-selectors' %}
+          {% endif %}
+      </main>
+
+      {% section 'footer' %}
+
+    <script src="//cdn.codeblackbelt.com/js/modules/also-bought/main.min.js?shop=lcoutureuae.myshopify.com"></script>
+
+    
+    </div>
+  {% include 'mlveda-currencies-switcher' %}{% include 'mlveda-currencies' %}{% include 'mlveda-flag' %}{% include 'mlveda-currencies-style' %}{%- render 'bold-currency-converter' -%}
+{% if mlveda_code_flag == true %}
+  	{% if template != 'cart' %}
+		{% include 'mlveda-multipricing-updateprice' %}
+  	{% else %}
+        <script>mlvedaFlagCalled = true;</script>
+  	{% endif %}
+  {% else %}
+		<script>mlvedaFlagCalled = true;</script>
+  {% endif %}
+{{ 'sections-pro.min.js' | asset_url | script_tag }}
+{% include 'icart-drawer' %}
+
+
+
+
+
+
+
+
+
+
+
+
+<!--begin-boost-pfs-js-->
+  {% render 'boost-pfs' %}
+<!--end-boost-pfs-js-->
+</body>
+</html>

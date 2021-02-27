@@ -1,0 +1,65 @@
+<style>
+    #shopify-section-{{ section.id }} {
+        background: {{ section.settings.background_color }} !important;
+        padding: 100px;
+        position: relative;
+    }
+    @media (max-width: 640px) {
+      background: {{ section.settings.background_mob_color }} !important;
+    }
+</style>
+<div class="section__content">
+    <div class="text-container">
+        <div class="sub-title">{{ section.settings.subtitle }}</div>
+        <div class="title">{{ section.settings.title }}</div>
+       
+    </div>
+     {% if section.settings.button_text != blank %}
+            <a class="upto__button" href="{{ section.settings.button_url }}">{{ section.settings.button_text }}</a>
+        {% endif %}
+</div>
+{% schema %}
+{
+  "name": "upto",
+  "class": "shopify-section--bordered shopify-section--upto",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "background_mob_color",
+      "label": "Background Mobile color",
+      "default": "#ae4161"
+    },{
+        "type": "text",
+        "id": "subtitle",
+        "label": "Sub Title"
+    },
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+    },
+    {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text"
+    },
+    {
+        "type": "url",
+        "id": "button_url",
+        "label": "Button Url"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Upto"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,7 @@
+{% include 'elspw_cart' %}
+{% include 'vncpc' %}{% section 'cart-template' %}
+{% section 'recently-viewed-products' %}{% if settings.mlvedaACS_isMessageDisplay %}
+<p class="mlvedaCartNote" style="display:none">
+  {{ settings.mlvedaACS_messageContent | replace: "<<shop.name>>", shop.name | replace:"<<shop.currency>>",shop.currency|replace:"<<shop.selected_currency>>","<span class='selected-currency'></span>"}}
+</p>
+{% endif %}
