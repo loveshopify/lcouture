@@ -191,13 +191,18 @@ COLLECTION TOOLBAR
 
 	<div id="collection-filter-drawer" class="CollectionFilters Drawer Drawer--secondary Drawer--fromLeft" aria-hidden="true">
 		<header class="Drawer__Header Drawer__Header--bordered Drawer__Header--center Drawer__Container">
-			<span class="Drawer__Title Heading u-h4">{{ 'collection.filter.all' | t }}</span>
+			<div class="breadcrumb hide--desktop">
+				<a href="{{shop.url}}">Home</a>
+				<a href="{{collection.url}}">{{collection.handle | upcase}}</a>
+			</div>
+			{% comment %} <span class="Drawer__Title Heading u-h4">{{ 'collection.filter.all' | t }}</span>
 			<button class="Drawer__Close Icon-Wrapper--clickable" data-action="close-drawer" data-drawer-id="collection-filter-drawer" aria-label="{{ 'header.navigation.close_sidebar' | t }}">
 				{%- include 'icon' with 'close' -%}
-			</button>
+			</button> {% endcomment %}
 		</header>
 
 		<div class="Drawer__Content">
+			<div class="draw-filter-title">Filter By</div>
 			<div class="Drawer__Main" data-scrollable>
 				<div class="boost-pfs-filter-tree boost-pfs-filter-tree-v"></div>
 			</div>
@@ -230,10 +235,11 @@ COLLECTION TOOLBAR
 	{%- endif -%}
 
 	<div class="CollectionInner">
+		<div class="boost-pfs-filter-tree-mobile-button"><button type="button">Filter By</button></div>
 		{%- if show_filters and section.settings.filter_position == 'sidebar' -%}
 		<div class="CollectionInner__Sidebar {% if collection_toolbar != blank and section.settings.toolbar_position == 'top' %}CollectionInner__Sidebar--withTopToolbar{% endif %} hidden-pocket">
 			<div class="CollectionFilters">
-			<div class="boost-pfs-filter-tree-mobile-button">{% include 'boost-pfs-filter-skeleton', type: 'button' %}</div>
+			{% comment %} <div class="boost-pfs-filter-tree-mobile-button">{% include 'boost-pfs-filter-skeleton', type: 'button' %}</div> {% endcomment %}
 			<div class="boost-pfs-filter-tree boost-pfs-filter-tree-v">
 				{% comment %} Include placeholder template {% endcomment %}
 				{% include 'boost-pfs-filter-skeleton', type: 'filter-tree' %}

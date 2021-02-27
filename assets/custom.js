@@ -26,6 +26,14 @@ if(template == 'collection') {
   $(document).on("click", '.Popover__ValueList .Popover__Value', function(){
     $(".CollectionToolbar__Item span").text($(this).text());
   })
+  $(document).on("click", ".boost-pfs-filter-tree-mobile-button", function(){
+    $("#collection-filter-drawer").attr("aria-hidden", false);
+    $(".PageOverlay").toggleClass("is-visible");
+  })
+  $(document).on("click", ".PageOverlay", function(){
+    $(this).toggleClass("is-visible");
+    $("#collection-filter-drawer").attr("aria-hidden", true);
+  })
 }
 
 if(template == 'product') {

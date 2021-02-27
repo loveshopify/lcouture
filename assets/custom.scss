@@ -1415,6 +1415,106 @@ body.template-collection {
             }
         }
     }
+    #collection-filter-drawer {
+        .Drawer__Header--bordered {
+            justify-content: start;
+            .breadcrumb {
+                margin-left: 0;
+            }
+        }
+        .Drawer__Content {
+            .draw-filter-title {
+                padding-left: 20px;
+                color: $font-color;
+                font-weight: 600;
+                padding-top: 10px;
+            }
+            .Drawer__Main {
+                .boost-pfs-filter-tree-v {
+                    .boost-pfs-filter-tree-content {
+                        .boost-pfs-filter-options-wrapper {
+                            .boost-pfs-filter-option-list {
+                                .boost-pfs-filter-option-title {
+                                    width: 100%;
+                                    button {
+                                        width: 100%;
+                                        &[aria-expanded=false] {
+                                            span::before {
+                                                -ms-transform: rotate(45deg);
+                                                -webkit-transform: rotate(45deg);
+                                                transform: rotate(45deg);
+                                            }
+                                        }
+                                        span {
+                                            color: $font-color;
+                                            &::before {
+                                                color: #1f1f1f;
+                                                    background: none !important;
+                                                    font-size: 16px;
+                                                    text-rendering: auto;
+                                                    text-transform: none;
+                                                    -webkit-font-smoothing: antialiased;
+                                                    -moz-osx-font-smoothing: grayscale;
+                                                    content: "";
+                                                    width: 10px;
+                                                    height: 10px;
+                                                    border-right: 1px solid #1f1f1f;
+                                                    border-bottom: 1px solid #1f1f1f;
+                                                    display: inline-block;
+                                                    -moz-transition: all 100ms ease-in-out;
+                                                    -ms-transition: all 100ms ease-in-out;
+                                                    -o-transition: all 100ms ease-in-out;
+                                                    -webkit-transition: all 100ms ease-in-out;
+                                                    transition: all 100ms ease-in-out;
+                                                    -ms-transform: rotate(-135deg);
+                                                    -webkit-transform: rotate(-135deg);
+                                                    transform: rotate(-135deg);
+                                                    vertical-align: middle;
+                                                    top: 9px;
+                                                    border-width: 2px;
+                                            }
+                                        }
+                                    }
+                                }
+                                .boost-pfs-filter-option-content {
+                                    .boost-pfs-filter-option-content-inner {
+                                       &::-webkit-scrollbar
+                                        {
+                                            width: 4px;
+                                            background-color: #F5F5F5;
+                                        }
+                                        
+                                       &::-webkit-scrollbar-thumb
+                                        {
+                                            background-color: $font-color;
+                                            border: 2px solid transparent;
+                                        }
+                                        .boost-pfs-filter-option-item-list {
+                                            .boost-pfs-filter-option-item {
+                                                .boost-pfs-filter-button {
+                                                    .boost-pfs-check-box {
+                                                        top: 0;
+                                                        border-radius: 50%;
+                                                        width: 20px;
+                                                        height: 20px;
+                                                        left: 5px;
+                                                        &::before {
+                                                            width: 13.5px;
+                                                            height: 9px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     #collection-sort-popover {
         .Popover__ValueList {
             .Popover__Value {
@@ -1429,6 +1529,14 @@ body.template-collection {
         }
         .CollectionInner {
             margin-top: 20px;
+            .boost-pfs-filter-tree-mobile-button {
+                padding-right: 15px;
+                button {
+                    max-width: 50%;
+                    margin-left: auto;
+                    border-radius: 5px;
+                }
+            }
             .CollectionInner__Sidebar {
                 .CollectionFilters {
                     .boost-pfs-filter-tree {
@@ -1439,8 +1547,9 @@ body.template-collection {
                                         .boost-pfs-filter-button {
                                             width: 100%;
                                             &[aria-expanded="false"] {
+                                                width: 100%;
                                                 .boost-pfs-filter-option-title-text {
-                                                   
+                                                   width: 100%;
                                                     &::before {
                                                         -ms-transform: rotate(45deg);
                                                         -webkit-transform: rotate(45deg);
