@@ -85,7 +85,7 @@
         {%- endif -%}
 
         <h2 class="ProductItem__Title Heading">
-          <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+          <a href="{{ product.url | within: collection }}" style="font-weight: {{product.metafields.global_product.title_weight }} !important; color: {{product.metafields.global_product.title_color}} !important;">{{ product.title }}</a>
         </h2>
 {% comment %}Start automatically added Judge.me widget{% endcomment %}
   {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}

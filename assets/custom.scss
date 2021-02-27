@@ -1583,6 +1583,9 @@ body.template-collection {
                             padding: 15px;
                             width: 40%;
                             margin-top: 20px;
+                            @media (max-width: 640px) {
+                                width: 70%;
+                            }
                         }
                     }
                 }
