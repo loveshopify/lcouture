@@ -31,7 +31,7 @@ if(template == 'collection') {
     $(".PageOverlay").toggleClass("is-visible");
   })
   $(document).on("click", ".PageOverlay", function(){
-    $(this).toggleClass("is-visible");
+    $(this).removeClass("is-visible");
     $("#collection-filter-drawer").attr("aria-hidden", true);
   })
 }

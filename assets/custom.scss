@@ -49,6 +49,7 @@ html {
             svg {
                 path {
                     stroke: #dba8ae;
+                    fill: #dba8ae;
                 }
             }
         }
@@ -1413,6 +1414,19 @@ body.template-collection {
                 font-weight: 600;
                 text-align: left;
             }
+        }
+        .collection-draw-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & > div {
+                padding: 5px 20px;
+                position: relative;
+            }
+            .filter-title + .sort-title {
+                margin-left: 20px;
+            }
+            
         }
     }
     #collection-filter-drawer {

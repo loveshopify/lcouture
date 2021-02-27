@@ -87,6 +87,10 @@ COLLECTION INFO
 			<div class="filter-title">Filter By</div>
 			<div class="collection-title">{{ collection.handle | upcase }}</div>
 		</div>
+		<div class="collection-draw-header hide--desktop">
+			<div class="filter-title">Filter By</div>
+			<div class="sort-title">Featured</div>
+		</div>
 		{% comment %} <div class="SectionHeader SectionHeader--center">
 			<h1 class="SectionHeader__Heading Heading u-h1 boost-pfs-filter-collection-header">{{ collection.title }}</h1>
 
@@ -235,11 +239,11 @@ COLLECTION TOOLBAR
 	{%- endif -%}
 
 	<div class="CollectionInner">
-		<div class="boost-pfs-filter-tree-mobile-button"><button type="button">Filter By</button></div>
+		
 		{%- if show_filters and section.settings.filter_position == 'sidebar' -%}
 		<div class="CollectionInner__Sidebar {% if collection_toolbar != blank and section.settings.toolbar_position == 'top' %}CollectionInner__Sidebar--withTopToolbar{% endif %} hidden-pocket">
 			<div class="CollectionFilters">
-			{% comment %} <div class="boost-pfs-filter-tree-mobile-button">{% include 'boost-pfs-filter-skeleton', type: 'button' %}</div> {% endcomment %}
+			<div class="boost-pfs-filter-tree-mobile-button">{% include 'boost-pfs-filter-skeleton', type: 'button' %}</div>
 			<div class="boost-pfs-filter-tree boost-pfs-filter-tree-v">
 				{% comment %} Include placeholder template {% endcomment %}
 				{% include 'boost-pfs-filter-skeleton', type: 'filter-tree' %}
