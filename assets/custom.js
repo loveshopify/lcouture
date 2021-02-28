@@ -26,13 +26,19 @@ if(template == 'collection') {
   $(document).on("click", '.Popover__ValueList .Popover__Value', function(){
     $(".CollectionToolbar__Item span").text($(this).text());
   })
-  $(document).on("click", ".boost-pfs-filter-tree-mobile-button", function(){
+  $(document).on("click", ".collection-draw-header .filter-title", function(){
     $("#collection-filter-drawer").attr("aria-hidden", false);
+    
     $(".PageOverlay").toggleClass("is-visible");
   })
   $(document).on("click", ".PageOverlay", function(){
     $(this).removeClass("is-visible");
     $("#collection-filter-drawer").attr("aria-hidden", true);
+    $("#collection-sort-popover").attr("aria-hidden", true);
+  })
+  $(document).on("click", ".CollectionToolbar__Drawer--sort", function(){
+    $("#collection-sort-popover").attr("aria-hidden", false);
+    $(".PageOverlay").toggleClass("is-visible");
   })
 }
 

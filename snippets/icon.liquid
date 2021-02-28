@@ -56,22 +56,37 @@
   <!-- UI -->
 
   {%- when 'cart' -%}
-    <svg class="{{ icon_class }}" role="presentation" viewBox="0 0 17 20">
-      <path d="M0 20V4.995l1 .006v.015l4-.002V4c0-2.484 1.274-4 3.5-4C10.518 0 12 1.48 12 4v1.012l5-.003v.985H1V19h15V6.005h1V20H0zM11 4.49C11 2.267 10.507 1 8.5 1 6.5 1 6 2.27 6 4.49V5l5-.002V4.49z" fill="currentColor"></path>
-    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47 49" width="47" height="49">
+	<defs>
+		<image  width="42" height="44" id="imgCart" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAsCAMAAAAkRNp0AAAAAXNSR0IB2cksfwAAAF1QTFRFAAAA5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/HbK2wQAAAB90Uk5TACBff5+PTxBAv//vYM/A34CgMLA/kK9vcFDw4A8f0GBpVOAAAAF2SURBVHictVXZgoMgDMSjytEi2nrv7v9/ZhNAxAP0ZeelAkNIJkcJ2SNJs/yRFeXhYA/KuEWexJk5XyGeMeZLc5iUlf5QcZuMGo9r5AbtUjh8uFUjwIeQvxAR85YN3HyfM/Ho429ksHFutt0aJaQMegvhZweP2gONdoIH8Or9xJVdiGdyQTcPxeE8VriqB3oKhXYWfUuxfWOPgTtp8HMMMwnpnb4g0ivG9ESDO32cmnIu8Zfu83kCoCzUZasVzOndVGttQ+C4D1EJ77aTQtlXrbPUbLkqUdO8Wp354FHxBSj3/MJVLEdsHnkoqFMqFjnIWlxRC+M3hNJcUT9GJU+rIBKOaoGs1SXVqEj3HXUKgWoNfu8HwVAtdUMrQjpUq74uFqKFlZiBu9TqX6zKG3nV47S9VVha14GMUNk/N97HNpivzaZ20oJZ3kXt4hyY9CCQ+q+nCLB/Uz3RbO/UdohV7AA7SifXu885Pghrf8yPSgbof+/BEr+cmBmgOQrkjAAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<use id="Background" href="#imgCart" x="2" y="4" />
+</svg>
 
   {%- when 'cart-desktop' -%}
-    <svg class="{{ icon_class }}" role="presentation" viewBox="0 0 19 23">
-      <path d="M0 22.985V5.995L2 6v.03l17-.014v16.968H0zm17-15H2v13h15v-13zm-5-2.882c0-2.04-.493-3.203-2.5-3.203-2 0-2.5 1.164-2.5 3.203v.912H5V4.647C5 1.19 7.274 0 9.5 0 11.517 0 14 1.354 14 4.647v1.368h-2v-.912z" fill="currentColor"></path>
-    </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47 49" width="47" height="49">
+	<defs>
+		<image  width="42" height="44" id="imgCart" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAsCAMAAAAkRNp0AAAAAXNSR0IB2cksfwAAAF1QTFRFAAAA5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/HbK2wQAAAB90Uk5TACBff5+PTxBAv//vYM/A34CgMLA/kK9vcFDw4A8f0GBpVOAAAAF2SURBVHictVXZgoMgDMSjytEi2nrv7v9/ZhNAxAP0ZeelAkNIJkcJ2SNJs/yRFeXhYA/KuEWexJk5XyGeMeZLc5iUlf5QcZuMGo9r5AbtUjh8uFUjwIeQvxAR85YN3HyfM/Ho429ksHFutt0aJaQMegvhZweP2gONdoIH8Or9xJVdiGdyQTcPxeE8VriqB3oKhXYWfUuxfWOPgTtp8HMMMwnpnb4g0ivG9ESDO32cmnIu8Zfu83kCoCzUZasVzOndVGttQ+C4D1EJ77aTQtlXrbPUbLkqUdO8Wp354FHxBSj3/MJVLEdsHnkoqFMqFjnIWlxRC+M3hNJcUT9GJU+rIBKOaoGs1SXVqEj3HXUKgWoNfu8HwVAtdUMrQjpUq74uFqKFlZiBu9TqX6zKG3nV47S9VVha14GMUNk/N97HNpivzaZ20oJZ3kXt4hyY9CCQ+q+nCLB/Uz3RbO/UdohV7AA7SifXu885Pghrf8yPSgbof+/BEr+cmBmgOQrkjAAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<use id="Background" href="#imgCart" x="2" y="4" />
+</svg>
 
   {%- when 'search' -%}
-    <svg class="{{ icon_class }}" role="presentation" viewBox="0 0 18 17">
-      <g transform="translate(1 1)" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="square">
-        <path d="M16 16l-5.0752-5.0752"></path>
-        <circle cx="6.4" cy="6.4" r="6.4"></circle>
-      </g>
-    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 23" width="22" height="23">
+	<defs>
+		<image  width="22" height="23" id="imgSearch" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAXCAMAAAA4Nk+sAAAAAXNSR0IB2cksfwAAAFRQTFRF5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/JqMr+QAAABx0Uk5TACA/MBB/z//vn0DfoIBgkI+/b8BwD/AfsNBfUAi/4KUAAACySURBVHiclZHtGoIgDIXH5whBnRlZ3f99NgxTiT+dP/C8jH2cARQJKaWCs7SxmOUu4kB9hy7EPg78OOqN9tj1WwCh1Rslvf+MaD+1HJ3qTDjk4+r0CQMh11U4VW0JDAAz3ioM1nEOqikYVG3s/8SxUTK1Grzjso5ThRPnYHewOTwPRId4g49yC9g9y1USfp2FPvFezGRGXkOYd67jY11aCir7b3dPhfe+rPiV7M+IWWp5A4yeBvNkfkkKAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<use id="Path 87 copy" href="#imgSearch" x="0" y="0" />
+</svg>
 
   {%- when 'search-desktop' -%}
     <svg class="{{ icon_class }}" role="presentation" viewBox="0 0 21 21">
@@ -92,12 +107,15 @@
     </svg>
 
   {%- when 'account' -%}
-    <svg class="{{ icon_class }}" role="presentation" viewBox="0 0 20 20">
-      <g transform="translate(1 1)" stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="square">
-        <path d="M0 18c0-4.5188182 3.663-8.18181818 8.18181818-8.18181818h1.63636364C14.337 9.81818182 18 13.4811818 18 18"></path>
-        <circle cx="9" cy="4.90909091" r="4.90909091"></circle>
-      </g>
-    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47 49" width="47" height="49">
+	<defs>
+		<image  width="36" height="45" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAtCAMAAADx0TliAAAAAXNSR0IB2cksfwAAAGBQTFRFAAAA5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/5Lq/E8NutQAAACB0Uk5TAEB/n28wEO//319wwFCggL8g8D9gz0+wDy+vkI/QH+AI1J5dAAABc0lEQVR4nM2U25aDIAxFASvGlgootlZt5///cgKOCpF29XHOk4TNxXASxlJxIQpxKtl7yaKCRfX5HXNZkYBld5NFmKyUUsvHNQM1fkIv66/GD457aQwbuQ2veHQlCWMxWMSBEgP6eJhJIxy3tmmoBejIOryXo8t6essbwD0JOABBIUYX4r+dMhBQKLdTCuWOGwBUEii/ubhPwYNAI01BJpndMZkWyK0GfJaG3mBCat6Hjx6gtRRiz8iQg/D+yxhKPoPVjBDCBNe5I4NUE7kX2iyD4mpjGmq4SOUFLa7u7gPy72S7rjvPJmgUOKCAPI+QUT/v9SlFlUOSzsE3xEx6ldqCo8+ZW3ZuHHlzyf/IXoZChfloikWuBm/iKds+dmFDqpnKFVMsX1jfQvMnZvCQb17HCt/0Qq8/mW19yk6vLPIIfXRa8wT1reuGeP4mzJLQUFjlz/4IZtXR67zZuVStjo1c6rtqU0BpnWvlKHvB1+XkCX4BkAwXXZCp2n4AAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<use id="Background" href="#img1" x="6" y="3" />
+</svg>
 
   {%- when 'play' -%}
     <svg class="{{ icon_class }}" role="presentation" viewBox="0 0 24 24">

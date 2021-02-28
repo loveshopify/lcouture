@@ -88,8 +88,10 @@ COLLECTION INFO
 			<div class="collection-title">{{ collection.handle | upcase }}</div>
 		</div>
 		<div class="collection-draw-header hide--desktop">
-			<div class="filter-title">Filter By</div>
-			<div class="sort-title">Featured</div>
+			<div class="filter-title"><span>Filter By</span></div>
+			<button class="CollectionToolbar__Drawer--sort Heading Text--subdued u-h6">
+				{{ 'collection.sorting.title' | t }} {% include 'icon' with 'select-arrow' %}
+			</button>
 		</div>
 		{% comment %} <div class="SectionHeader SectionHeader--center">
 			<h1 class="SectionHeader__Heading Heading u-h1 boost-pfs-filter-collection-header">{{ collection.title }}</h1>
