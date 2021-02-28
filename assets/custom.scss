@@ -837,14 +837,27 @@ body.template-product {
         .Product__Wrapper {
             max-width: 100% !important;
             display: flex;
+            @media (max-width: 640px) {
+                flex-direction: column;
+            }
             .Product__Gallery {
                 // max-width: calc(100% - 500px);
                 @media (min-width: 1008px) {
-                    margin-left: 0;
+                    margin-left: 15px;
                     margin-right: 50px;
+                }
+                @media (max-width: 1007px) {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    flex: 1 auto;
+                    max-width: 60%;
                 }
                 @media (min-width: 1140px) {
                     margin-bottom: 150px;
+                }
+                @media (max-width: 640px) {
+                    margin-left: auto;
+                    margin-right: auto;
                 }
                 .product__media {
                     .variant-item {
@@ -852,6 +865,9 @@ body.template-product {
                         // grid-template-columns: 25% 75%;
                         .normal-vaiant-image {
                             max-width: 30%;
+                            @media (max-width: 640px) {
+                                max-width: 100%;
+                            }
                         }
                         @media (max-width: 640px) {
                             grid-template-columns: 1fr;
@@ -885,11 +901,18 @@ body.template-product {
             }
             .Product__InfoWrapper {
                 position: relative !important;
+                @media (max-width: 1007px) {
+                    flex: 1;
+                }
+                
                 .Product__Info {
                     margin: 0px !important;
                     z-index: 1;
                     @media (max-width: 1140px) and (min-width: 641px) {
                         margin: 0px 15px 0px 0px !important;
+                    }
+                    @media (max-width: 640px) {
+                        max-width: 100% !important;
                     }
                     .Container {
                         .ProductMeta {
@@ -1089,10 +1112,11 @@ body.template-product {
             display: flex;
             padding-left: 15px;
             padding-right: 15px;
+            padding-top: 30px;
             @media (max-width: 640px) {
                 flex-direction: column;
-                padding-left: 20px;
-                padding-right: 20px;
+                padding-left: 24px;
+                padding-right: 24px;
             }
             .text-group + .text-group {
                 margin-left: 20px;
@@ -1206,6 +1230,12 @@ body.template-product {
             }
             .cbb-also-bought-add-to-cart-button {
                 background: transparent !important;
+                @media (max-width: 915px) and (min-width: 641px) {
+                    padding: 14px 10px !important;
+                }
+                @media (max-width: 760px) and (min-width: 641px) {
+                    padding: 16px !important;
+                }
                 @media (max-width: 640px) {
                     padding-left: 6px !important;
                     padding-right: 6px !important;
@@ -1236,7 +1266,12 @@ body.template-product {
         .ProductRecommendations {
             .ProductListWrapper {
                 .ProductList {
+
                     & .Carousel__Cell:first-child {
+                        @media (min-width: 641px) and (max-width: 1007px) {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
                         @media (max-width: 640px) {
                             margin-left: 0%;
                         }
@@ -1271,6 +1306,7 @@ body.template-product {
         .jdgm-rev-widg {
             border: 0px !important;
             position: relative;
+            padding-bottom: 50px;
             @media (max-width: 640px) {
                 margin-top: 0px;
                 padding-top: 0px;
@@ -1327,6 +1363,11 @@ body.template-product {
                     border: none;
                     color: white;
                     background: $font-color;
+                    @media (max-width: 767px) and (min-width: 641px) {
+                        width: max-content;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
                     @media (max-width: 640px) {
                         padding: 10px 30px;
                     }
