@@ -2,14 +2,16 @@
   {%- unless section.settings.home_page_only and template != 'index' -%}
     <section id="section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="announcement-bar">
       <div class="AnnouncementBar">
-        <div class="AnnouncementBar__Wrapper">
-          <p class="AnnouncementBar__Content Heading">
-            {%- if section.settings.link -%}
-              <a href="{{ section.settings.link }}">{{ section.settings.content | escape }}</a>
+        <div class="AnnouncementBar__Wrapper" data-announcement-slider>
+         {% for block in section.blocks %}
+          <div class="" >
+            {%- if block.settings.link -%}
+              <a href="{{ block.settings.link }}">{{ block.settings.content | escape }}</a>
             {%- else -%}
-              {{ section.settings.content | escape }}
+              {{ block.settings.content | escape }}
             {%- endif -%}
-          </p>
+          </div>
+           {% endfor %}
         </div>
       </div>
     </section>
@@ -49,24 +51,30 @@
       "id": "background",
       "label": "Background",
       "default": "#000000"
-    },
+    }, 
     {
       "type": "color",
       "id": "text_color",
       "label": "Text",
       "default": "#ffffff"
-    },
-    {
-      "type": "text",
-      "id": "content",
-      "label": "Text",
-      "default": "Announce something here"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Link"
-    }
-  ]
+    }],
+    "blocks": [{
+      "name": "announcement content",
+      "type": "announcement",
+      "settings": [
+       
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Text",
+          "default": "Announce something here"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }]
 }
 {% endschema %}

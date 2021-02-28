@@ -113,6 +113,41 @@ html {
 #section-announcement {
     .AnnouncementBar {
         .AnnouncementBar__Wrapper {
+            position: relative;
+            .slick-arrow {
+                position: absolute;
+                font-size: 24px;
+                line-height: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1;
+                &.slick-prev {
+                    left: 30px;
+                    @media (max-width: 640px) {
+                        left: 10px;
+                    }
+                }
+                &.slick-next {
+                    right: 30px;
+                    @media (max-width: 640px) {
+                        right: 10px;
+                    }
+                }
+            }
+            .slick-list {
+                .slick-track {
+                    display: flex;
+                    .slick-slide {
+                        padding-left: 15px;
+                        padding-right: 15px;
+                        line-height: 1;
+                        // opacity: 0;
+                        &.slick-active {
+                            // opacity: 1;
+                        }
+                    }
+                }
+            }
             .AnnouncementBar__Content {
                 a {
                     @media (max-width: 640px) {
