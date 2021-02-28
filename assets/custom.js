@@ -45,7 +45,7 @@ if(template == 'collection') {
 if(template == 'product') {
   $(document).on("click", ".ColorSwatch", function(event){
     if($(window).width() > 640) {
-      event.preventDefault();
+      // event.preventDefault();
       var _class = $(this).data('tooltip');
       _class = "." + _class;
       if($(this).parents(".Product__Wrapper").find(".product__media").find(_class).length != 0) {
