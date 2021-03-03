@@ -246,8 +246,9 @@ window.supported_currencies = "{{ settings.mlvedaACS_supportedCurrencies }}";
   {% endif %}
 {{ 'sections-pro.min.js' | asset_url | script_tag }}
 {% include 'icart-drawer' %}
-
-
+{% if template.name == "product" %}
+  {% section 'size_chart' %}
+{% endif %}
 
 
 

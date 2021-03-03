@@ -194,9 +194,18 @@
         }
         {%- endcapture -%}
           {% assign key = 0 %}
-          {% for option in product.options %} 
-            {% assign key = product.options_by_name[option].values | size %}
-          {% endfor %}
+          {% for option in product.options %}
+            {% assign _option = option | downcase %}
+            {% if _option == "color" or _option == "bright" %}
+                {% for option_value in product.options_by_name[option].values limit:1 %}
+                  {% for variant in product.variants %}
+                    {% if variant.title contains option_value %}
+                        {% assign key = key | plus: 1 %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+            {% endif %}
+          {% endfor %} 
           <div class="product__media {{ key }}">
               {% for image in product.images %}
                 {% assign img_length = forloop.length | minus: 2 %}
@@ -219,7 +228,40 @@
                 {% endif %}
               {% endfor %}
               
-              {% for variant in product.variants %}
+            {% for option in product.options %}
+             
+              {% assign _option = option | downcase %}
+              {% if _option == "color" or _option == "bright" %}
+                  {% for option_value in product.options_by_name[option].values %}
+                   {% assign item = 0 %}
+                    {% for variant in product.variants %}
+                      {% if variant.title contains option_value %}
+                        {% if item == 0 %}
+                             <div class="{{option_value}} variant-item" style="display: none">
+                            <div class="normal-vaiant-image">
+                        {% endif %}
+                        {% assign item = item | plus: 2 %}
+                        {% if item == key %}<div class="main-variant-image">{% endif %}
+                        {% assign item = item | minus: 2 %}
+                         <div class="variant-image">
+                          <img src="{{ variant.image | img_url: '400x' }}" alt="image" />
+                        </div>
+                         {% assign item = item | plus: 3 %}
+                          {% if item == key %}
+                            </div>
+                          {% endif %}
+                          {% assign item = item | minus: 2 %}
+                          {% if item == key %}
+                            </div></div>
+                          {% endif %}
+                        {% comment %} {% assign item = item | plus: 1 %} {% endcomment %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endfor %}
+              {% endif %}
+            {% endfor %} 
+
+              {% comment %} {% for variant in product.variants %}
                 {% assign mode = forloop.index0 | modulo: key %}
                 {% if mode == 0 %}
                   <div class="{{ variant.title }} variant-item {{key}}" style="display: none">
@@ -239,7 +281,7 @@
                 {% if mode == key %}
                   </div></div>
                 {% endif %}
-              {% endfor %}
+              {% endfor %} {% endcomment %}
           </div>
 
         {%- comment -%}Add the "view in your space" button, which allows to show the product in customer's environment (if the device supports it){%- endcomment -%}

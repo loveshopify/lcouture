@@ -1,0 +1,64 @@
+{% assign _set = section.settings %}
+<div class="chart-wrapper" aria-hidden="true">
+    <div class="container">
+        <div class="section-title">{{ _set.section_title }}</div>
+        <div class="chart_close">
+            <svg focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 64 64"><path d="M19 17.61l27.12 27.13m0-27.12L19 44.74"></path></svg>
+        </div>
+        <div class="chart-header">
+            <div class="main-header">
+                <div class="main__title">{{ _set.main_title }}</div>
+                <div class="main__subtitle">{{ _set.main_subtitle }}</div>
+            </div>
+            <div class="sizeChart-header">
+                <div class="sizeChart__title"></div>
+                <div class="sizeChart__subtitle">{{ _set.sizeChart_subtitle }}</div>
+                <div class="sizeChart__title_group">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="chart-body">
+            <div class="size__name"></div>
+            <div class="size__value"></div>
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+  "name": "SizeChart",
+  "class": "shopify-section--bordered shopify-section--size-chart",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Chart Title",
+      "default": "Women's Clothing Size Guide"
+    },
+    {
+        "type": "text",
+        "id": "main_title",
+        "label": "Main Size Title",
+        "default": "GENERIC"
+    },
+    {
+        "type": "text",
+        "id": "main_subtitle",
+        "label": "Main Size Subtitle",
+        "default": "Product Size"
+    },
+    {
+        "type": "text",
+        "id": "sizeChart_subtitle",
+        "label": "Compare SizeChart Subtitle",
+        "default": "Tap to compare size"
+    }
+  ],
+  "presets": [
+    {
+      "category": "table",
+      "name": "size_chart"
+    }
+  ]
+}
+{% endschema %}

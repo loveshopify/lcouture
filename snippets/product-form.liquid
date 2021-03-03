@@ -40,9 +40,9 @@ for size, we use it to display a size chart (if applicable)
 
                   {%- if size_label contains downcase_option and size_chart_page != empty -%}
 
-                    {% comment %} <button type="button" class="ProductForm__LabelLink Link Text--subdued" data-action="open-modal" aria-controls="modal-{{ size_chart_page.handle }}"> {% endcomment %}
+                    <button type="button" class="ProductForm__LabelLink Link Text--subdued" data-action="open-modal" aria-controls="modal-{{ size_chart_page.handle }}">
 
-                   {% comment %} {{- 'product.form.size_chart' | t -}} {% endcomment %}
+                   {{- 'product.form.size_chart' | t -}}
                   {% comment %} </button> {% endcomment %}
                   {%- endif -%}
                 </span>
@@ -173,9 +173,6 @@ for size, we use it to display a size chart (if applicable)
 
                   <div class="Popover__Content">
                     <div class="Popover__ValueList" data-scrollable>
-
-                    
-
                       {%- for value in option.values -%}
                         <button type="button" class="Popover__Value {% if value == option.selected_value %}is-selected{% endif %} Heading Link Link--primary u-h6"
                                 data-value="{{ value | escape }}"
@@ -210,6 +207,7 @@ for size, we use it to display a size chart (if applicable)
                         </div>
                       {% endfor %}
                     </div>
+                    <a href="#" class="open_sizeChart">{{- 'product.form.size_chart' | t -}}</a>
                 {%- endif -%}
             {%- assign product_popovers = product_popovers | append: popover_html -%}
           {%- endif -%}

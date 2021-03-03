@@ -37,6 +37,8 @@ html {
         filter: blur(30px);
     }
 }
+
+
 #section-header {
     box-shadow: none !important;
 }
@@ -114,6 +116,7 @@ html {
     .AnnouncementBar {
         .AnnouncementBar__Wrapper {
             position: relative;
+            overflow: hidden;
             .slick-arrow {
                 position: absolute;
                 font-size: 24px;
@@ -141,10 +144,6 @@ html {
                         padding-left: 15px;
                         padding-right: 15px;
                         line-height: 1;
-                        // opacity: 0;
-                        &.slick-active {
-                            // opacity: 1;
-                        }
                     }
                 }
             }
@@ -1109,6 +1108,12 @@ body.template-product {
                                             }
                                         }
                                     }
+                                    .open_sizeChart {
+                                        text-decoration: underline;
+                                        color: black;
+                                        float: right;
+                                        margin-bottom: 20px;
+                                    }
                                 }
                                 .ProductForm__Option {
                                     .ProductForm__Label {
@@ -1846,6 +1851,150 @@ body.template-collection {
     }
 }
 
+// Size Chart Section
+.chart-wrapper {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    bottom: 0;
+    margin: 10%;
+    z-index: 10000;
+    background: rgba($color: #000000, $alpha: 0.5);
+    display: none;
+    &[aria-hidden=false] {
+        display: block;
+    }
+    @media (max-width: 640px) {
+        margin: 5%;
+    }
+    .container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: white;
+        padding: 30px 20px;
+        text-align: center;
+        .chart_close {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            svg {
+                stroke: black;
+            }
+        }
+        .section-title {
+            color: black;
+            font-size: 25px;
+            font-family: auto;
+        }
+        .chart-header {
+            display: flex;
+            & > div {
+                min-width: 50%;
+                max-width: 50%;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                &.main-header {
+                    background: #f4f4f4;
+                    border-radius: 2px;
+                    padding-top: 15px;
+                    padding-bottom: 8px;
+                    .main__title {
+                        color: black;
+                    }
+                    .main__subtitle {
+                        line-height: 1;
+                        font-size: 14px;
+                    }
+                }
+                &.sizeChart-header {
+                    position: relative;
+                    border: 1px solid #e8e8e1;
+                    .sizeChart__title {
+                        color: black;
+                    }
+                    .sizeChart__subtitle {
+                        line-height: 1;
+                        font-size: 14px;
+                    }
+                    & div:last-child {
+                        display: none;
+                        position: absolute;
+                        top: 100%;
+                        width: 100%;
+                        height: 300px;
+                        overflow: auto;
+                        background: #fff;
+                        border-left: 1px solid #f1f1f1;
+                        li {
+                            list-style: none;
+                            &:hover {
+                                background: #f1f1f1;
+                            }
+                        }
+                    }
+                   
+                    &::after {
+                        @media (max-width: 640px) {
+                                right: 5px;
+                                width: 10px;
+                                height: 10px;
+                        }
+                        position: absolute;
+                        content: "";
+                        color: #e8e8e1;
+                        background: none !important;
+                        font-size: 16px;
+                        text-rendering: auto;
+                        text-transform: none;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        width: 15px;
+                        height: 15px;
+                        border-right: 1px solid #84847b;
+                        border-bottom: 1px solid #84847b;
+                        display: inline-block;
+                        -moz-transition: all 100ms ease-in-out;
+                        -ms-transition: all 100ms ease-in-out;
+                        -o-transition: all 100ms ease-in-out;
+                        -webkit-transition: all 100ms ease-in-out;
+                        transition: all 100ms ease-in-out;
+                        -ms-transform: translateY(-75%) rotate(45deg);
+                        -webkit-transform: translateY(-75%) rotate(45deg);
+                        transform: translateY(-75%) rotate(45deg);
+                        vertical-align: middle;
+                        top: 50%;
+                        border-width: 2px;
+                        right: 20px;
+                    }
+                }
+            }
+        }
+        .chart-body {
+            display: flex;
+            align-items: center;
+            & > div {
+                min-width: 50%;
+                max-width: 50%;
+                li {
+                    list-style: none;
+                    border-bottom: 1px solid lightgrey;
+                    min-height: 30px;
+                }
+                &:last-child {
+                    border-bottom: 0px;
+                }
+            }
+        }
+    }
+}
+
+// Footer
 footer#section-footer {
     padding-bottom: 0px;
     .Container {
