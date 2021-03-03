@@ -62,12 +62,13 @@ if(template == 'product') {
     event.preventDefault();
     $(".chart-wrapper").attr("aria-hidden", false);
     $(".PageOverlay").toggleClass("is-visible");
+    var newSizeChart = [["GENERIC", "S", "M", "L", "XL/1X", "1X/2X", "2X", "3X", "4X"],["USA",2,6,10,14,16,18,20,24],["UK/AU/NZ",6,10,14,18,20,22,24,28],["Italy",38,42,46,50,52,54,56,60], ["France",34,38,42,46,48,50,52,56], ["Germany",32,36,40,44,46,48,50,54],["Japan",7,11,15,19,21,23,25,29],["Russia",40,44,48,52,54,56,58,62]];
     var sizeChart = [["GENERIC","XXS","XS","S","M","L","XL","XXL","XXXL"],["US",0,0,"2 ,4","6,8",10,12,14,""],["UK",4,6,8,10,12,14,16,18],["EU/ITALY",36,38,40,42,44,46,48,50],["FRANCE",32,34,36,38,40,42,44,46],["DENMARK",30,32,34,36,38,40,42,44],["RUSSIA",38,40,42,44,46,48,50,52],["GERMANY",30,32,34,36,38,40,42,44],["AUSTRALIA",4,6,8,10,12,14,16,18],["JAPAN",3,5,7,9,11,13,15,17],["JEANS",23,24,26,27,29,31,32,""],["XXS-XXXL","XXS - XS","XS - S","S","M","L","XL","XXL","XXXL"],["CH TOP","155/76A","160/80A","165/84A","170/88A","175/92A","180/96A","180/100A",""],["CH BOTTOM","155/64A","160/66A","165/68A","170/70A","175/72A","180/74A","185/76A",""],["KOREA",44,55,66,77,88,99,"",""],["NUMERICAL",0,1,2,3,4,5,6,""]];
-    var product_size_name = sizeChart[0];
-    var product_size_value = sizeChart[1];
+    var product_size_name = newSizeChart[0];
+    var product_size_value = newSizeChart[1];
     $(".main__title").text(product_size_name[0]);
     $(".sizeChart__title").text(product_size_value[0]);
-    for(var i = 1; i < sizeChart.length; i++) $(".sizeChart__title_group").append("<li>" + sizeChart[i][0] + "</li>");
+    for(var i = 1; i < newSizeChart.length; i++) $(".sizeChart__title_group").append("<li>" + newSizeChart[i][0] + "</li>");
     for(var i = 1; i < product_size_name.length; i++) $(".size__name").append("<li>" + product_size_name[i] + "</li>");
     for(var i = 1; i < product_size_value.length; i++) $(".size__value").append("<li>" + product_size_value[i] + "</li>");
   })
@@ -76,14 +77,14 @@ if(template == 'product') {
   })
   $(document).on("click", ".sizeChart__title_group li", function(){
     var _select_value = $.trim($(this).text());
+    var newSizeChart = [["GENERIC", "S", "M", "L", "XL/1X", "1X/2X", "2X", "3X", "4X"],["USA",2,6,10,14,16,18,20,24],["UK/AU/NZ",6,10,14,18,20,22,24,28],["Italy",38,42,46,50,52,54,56,60], ["France",34,38,42,46,48,50,52,56], ["Germany",32,36,40,44,46,48,50,54],["Japan",7,11,15,19,21,23,25,29],["Russia",40,44,48,52,54,56,58,62]];
     var sizeChart = [["GENERIC","XXS","XS","S","M","L","XL","XXL","XXXL"],["US",0,0,"2 ,4","6,8",10,12,14,""],["UK",4,6,8,10,12,14,16,18],["EU/ITALY",36,38,40,42,44,46,48,50],["FRANCE",32,34,36,38,40,42,44,46],["DENMARK",30,32,34,36,38,40,42,44],["RUSSIA",38,40,42,44,46,48,50,52],["GERMANY",30,32,34,36,38,40,42,44],["AUSTRALIA",4,6,8,10,12,14,16,18],["JAPAN",3,5,7,9,11,13,15,17],["JEANS",23,24,26,27,29,31,32,""],["XXS-XXXL","XXS - XS","XS - S","S","M","L","XL","XXL","XXXL"],["CH TOP","155/76A","160/80A","165/84A","170/88A","175/92A","180/96A","180/100A",""],["CH BOTTOM","155/64A","160/66A","165/68A","170/70A","175/72A","180/74A","185/76A",""],["KOREA",44,55,66,77,88,99,"",""],["NUMERICAL",0,1,2,3,4,5,6,""]];
     $(this).closest(".sizeChart-header").find(".sizeChart__title").text(_select_value);
     $(this).closest(".container").find(".chart-body").find(".size__value").html("");
-    var size_value = "";
-    for(i = 0; i < sizeChart.length; i++) {
-      if(sizeChart[i][0] == _select_value) {
-        for(j = 1; j < sizeChart[i].length; j++) {
-          $(this).closest(".container").find(".chart-body").find(".size__value").append("<li>" + sizeChart[i][j] + "</li>");
+    for(i = 0; i < newSizeChart.length; i++) {
+      if(newSizeChart[i][0] == _select_value) {
+        for(j = 1; j < newSizeChart[i].length; j++) {
+          $(this).closest(".container").find(".chart-body").find(".size__value").append("<li>" + newSizeChart[i][j] + "</li>");
         }
       }
     }

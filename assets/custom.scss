@@ -124,6 +124,7 @@ html {
                 top: 50%;
                 transform: translateY(-50%);
                 z-index: 1;
+                cursor: pointer;
                 &.slick-prev {
                     left: 30px;
                     @media (max-width: 640px) {
