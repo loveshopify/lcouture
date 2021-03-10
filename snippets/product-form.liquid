@@ -51,8 +51,16 @@ for size, we use it to display a size chart (if applicable)
 
           {%- if color_label contains downcase_option and section.settings.show_color_swatch -%}
             <ul class="ColorSwatchList HorizontalList HorizontalList--spacingTight">
-             
-              {%- for value in option.values -%}
+              {% assign key = product.metafields.global.option_group %}
+              {% comment %} {{ key }} {% endcomment %}
+              {% for _product in collections.all.products %}
+                {% if _product.metafields.global.option_group == key %}
+                  <li class="HorizontalList__Item {% if product.handle == _product.handle %} active {% endif %}" href="{{ _product.url }}" style="background: {{ _product.metafields.global.option_color }};">
+                    
+                  </li>
+                {% endif %}
+              {% endfor %}
+              {% comment %} {%- for value in option.values -%}
                 {%- assign downcase_value = value | downcase -%}
 
                 <li class="HorizontalList__Item">
@@ -64,7 +72,7 @@ for size, we use it to display a size chart (if applicable)
                     <span class="u-visually-hidden">{{ value }}</span>
                   </label>
                 </li>
-              {%- endfor -%}
+              {%- endfor -%} {% endcomment %}
             </ul>
           {%- elsif section.settings.selector_mode == 'block' -%}
             <ul class="SizeSwatchList HorizontalList HorizontalList--spacingTight">

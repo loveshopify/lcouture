@@ -47,6 +47,13 @@ html {
         padding-bottom: 42px !important;
     }
     .Header__FlexItem {
+        &.Header__FlexItem--logo {
+            .Header__Logo {
+                .Header__LogoImage {
+                    filter: blur(0);
+                }
+            }
+        }
         button {
             svg {
                 path {
@@ -98,6 +105,7 @@ html {
                     // color: black;
                     letter-spacing: 0px;
                     font-weight: 600;
+                    font-size: 14px;
                 }
                 &.is-active {
                     a {
@@ -356,6 +364,7 @@ body.template-index {
                                                         font-size: 16px;
                                                         font-weight: 600;
                                                         letter-spacing: 0px;
+                                                        background-color: white;
                                                         &::before {
                                                             display: none !important;
                                                         }
@@ -639,7 +648,7 @@ body.template-index {
                 .ProductItem__Price {
                     font-size: 16px;
                     letter-spacing: 0px;
-                    color: $font-color;
+                    color: black;
                 }
             }
         }
@@ -735,6 +744,10 @@ body.template-index {
                     border: 1px solid;
                     color: white;
                     padding: 15px 30px;
+                    &:hover {
+                        color: #cf2f63;
+                        background-color: white;
+                    }
                     @media (max-width: 640px) {
                         padding: 10px 15px;
                         width: max-content;
@@ -939,7 +952,9 @@ body.template-product {
                 @media (max-width: 1007px) {
                     flex: 1;
                 }
-                
+                .Product__OffScreen {
+                    display: none;
+                }
                 .Product__Info {
                     margin: 0px !important;
                     z-index: 1;
@@ -1026,17 +1041,33 @@ body.template-product {
                                     }
                                     ul.ColorSwatchList {
                                        .HorizontalList__Item {
-                                           label {
-                                               &.ColorSwatch--white {
-                                                    outline: unset;
-                                                    outline-offset: unset;
-                                                    border: 1px solid #e6e6e6;
-                                               }
-                                               border-radius: 50%;
-                                               &::after {
-                                                   border-radius: 50%;
-                                               }
+                                           width: 30px;
+                                           height: 30px;
+                                           border: 1px solid;
+                                           border-radius: 50%;
+                                           position: relative;
+                                           &.active::after {
+                                                position: absolute;
+                                                width: calc(100% + 4px);
+                                                height: calc(100% + 4px);
+                                                content: "";
+                                                background: #0a1b18;
+                                                z-index: -1;
+                                                border-radius: 50%;
+                                                top: -2px;
+                                                left: -2px;
                                            }
+                                        //    label {
+                                        //        &.ColorSwatch--white {
+                                        //             outline: unset;
+                                        //             outline-offset: unset;
+                                        //             border: 1px solid #e6e6e6;
+                                        //        }
+                                        //        border-radius: 50%;
+                                        //        &::after {
+                                        //            border-radius: 50%;
+                                        //        }
+                                        //    }
                                        }
                                     }
                                     button.size-swatch {
@@ -1084,29 +1115,37 @@ body.template-product {
                                         position: absolute;
                                         width: 100%;
                                         background: white;
-                                        padding-bottom: 5px;
+                                        margin-bottom: 5px;
+                                        border-bottom: 1px solid;
                                         z-index: 99999;
                                         .size-item {
                                             position: relative;
+                                            border-left: 1px solid;
+                                            border-right: 1px solid;
+                                            // border-bottom: 1px solid;
                                             label {
                                                 border: 0px !important;
                                                 padding: 5px 20px;
                                                 width: 100%;
                                                 text-align: left;
+                                                &:hover {
+                                                    color: white;
+                                                    background: rgb(62, 170, 165);
+                                                }
                                             }
                                             &:hover::after {
                                                 background: #ceb18f;
                                                 height: 4px;
                                             }
-                                            &::after {
-                                                content: "";
-                                                width: calc(100% - 10px);
-                                                height: 2px;
-                                                background: grey;
-                                                position: absolute;
-                                                bottom: 0;
-                                                left: 5px;
-                                            }
+                                            // &::after {
+                                            //     content: "";
+                                            //     width: 100%;
+                                            //     height: 2px;
+                                            //     background: lightgrey;
+                                            //     position: absolute;
+                                            //     bottom: 0;
+                                            //     left: 0;
+                                            // }
                                         }
                                     }
                                     .open_sizeChart {
@@ -1263,6 +1302,9 @@ body.template-product {
                 font-weight: 600 !important;
             }
             .cbb-also-bought-product-price-container {
+                span {
+                    color: black !important;
+                }
                 @media (max-width: 640px) {
                     .cbb-also-bought-product-regular-price {
                         font-size: 14px;
@@ -1334,6 +1376,10 @@ body.template-product {
                                     }
                                     .ProductItem__PriceList {
                                         text-align: center;
+                                        span {
+                                            color: black;
+                                            letter-spacing: 0px;
+                                        }
                                     }
                                 }
                             }
@@ -1490,11 +1536,11 @@ body.template-collection {
                 border-right: 1px solid #767676;
                 border-bottom: 1px solid #767676;
                 display: inline-block;
-                -moz-transition: all 100ms ease-in-out;
-                -ms-transition: all 100ms ease-in-out;
-                -o-transition: all 100ms ease-in-out;
-                -webkit-transition: all 100ms ease-in-out;
-                transition: all 100ms ease-in-out;
+                -moz-transition: all 500ms ease-in-out;
+                -ms-transition: all 500ms ease-in-out;
+                -o-transition: all 500ms ease-in-out;
+                -webkit-transition: all 500ms ease-in-out;
+                transition: all 500ms ease-in-out;
                 -ms-transform: rotate(-45deg);
                 -webkit-transform: rotate(-45deg);
                 transform: rotate(-45deg);
@@ -1820,7 +1866,7 @@ body.template-collection {
                                 }
                                 .ProductItem__PriceList {
                                     span {
-                                        color: $font-color;
+                                        color: black;
                                         letter-spacing: 0px;
                                     }
                                 }
@@ -1916,6 +1962,7 @@ body.template-collection {
                 &.sizeChart-header {
                     position: relative;
                     border: 1px solid #e8e8e1;
+                    cursor: pointer;
                     .sizeChart__title {
                         color: black;
                     }
@@ -1934,6 +1981,7 @@ body.template-collection {
                         border-left: 1px solid #f1f1f1;
                         li {
                             list-style: none;
+                            cursor: pointer;
                             &:hover {
                                 background: #f1f1f1;
                             }
@@ -1998,6 +2046,7 @@ body.template-collection {
 // Footer
 footer#section-footer {
     padding-bottom: 0px;
+    background: #e4babe;
     .Container {
         .Footer__Inner {
             flex-wrap: nowrap;
@@ -2011,15 +2060,26 @@ footer#section-footer {
                 padding-right: 15px;
                 flex: 1;
                 font-size: 18px;
-                color: black;
+                color: #fafafa;
                 @media (max-width: 640px) {
                     margin-top: 0px;
                     margin-bottom: 20px;
                 }
+                &.Footer__Block--text {
+                    .Footer__Content {
+                        p {
+                            width: max-content;
+                            @media (max-width: 640px) {
+                                margin-left: auto;
+                                margin-right: auto;
+                            }
+                        }
+                    }
+                }
                 h2 {
                     font-size: 20px;
                     letter-spacing: 0px;
-                    color: $font-color;
+                    color: #fafafa;
                     font-weight: 900;
                     & span:first-child {
                         display: block;
@@ -2083,11 +2143,13 @@ footer#section-footer {
                             text-align: center;
                         }
                         margin-bottom: 0.3rem;
+                        // width: max-content;
                     }
                 }
             }
             .Footer__Block--newsletter {
                 text-align: right;
+                flex: unset;
                 @media (max-width: 640px) {
                     order: -1;
                     text-align: left;
@@ -2109,7 +2171,7 @@ footer#section-footer {
                         a {
                             span {
                                 svg {
-                                    fill: $font-color;
+                                    fill: #fafafa;
                                 }
                             }
                         }
@@ -2118,7 +2180,8 @@ footer#section-footer {
                 .Footer__Content {
                     p {
                         padding-top: 15px;
-                        color: gray;
+                        // color: gray;
+                        color: white;
                         @media (max-width: 640px) {
                             font-size: 9px;
                             letter-spacing: 0px;
@@ -2131,6 +2194,7 @@ footer#section-footer {
                     .Form__Submit {
                         margin: 0;
                         letter-spacing: 1px;
+                        color: #fafafa;
                         @media (max-width: 640px) {
                             letter-spacing: 1px;
                             padding: 5px 10px;
@@ -2138,6 +2202,8 @@ footer#section-footer {
                     }
                     input.Form__Input {
                         background-color: white;
+                        color: black;
+                        font-size: 16px;
                         @media (max-width: 640px) {
                             font-size: 12px;
                         }
@@ -2162,7 +2228,7 @@ footer#section-footer {
             .Footer__Copyright {
                 padding-bottom: 60px;
                 a {
-                    color: black;
+                    color: #fafafa;
                     letter-spacing: 1px;
                      font-size: 16px;
                      @media (max-width: 640px) {

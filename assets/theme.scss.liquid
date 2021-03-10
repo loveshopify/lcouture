@@ -8517,6 +8517,51 @@ $vertical-spacing-two-products-per-row  : 0px;
  * Dropdown menu
  * ----------------------------------------------------------------------------
  */
+.HorizontalList__Item {
+  .DropdownMenu[aria-hidden="false"] {
+    .DropdownMenu {
+      & ul.Linklist:first-child {
+        display: unset;
+      }
+    }
+    & ul.Linklist:first-child {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      width: 1200px;
+      padding-left: 15px;
+      padding-right: 30px;
+      & li[aria-haspopup="true"] {
+        grid-row-start: 1;
+        grid-row-end: 4;
+        width: 100%;
+        
+      }
+       li {
+         li:hover {
+           a {
+            color: grey;
+          }
+          
+         }
+          
+        }
+      li:hover {
+        a {
+          color: #da4276;
+        }
+        ul {
+          li {
+            a {
+              color: grey;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+}
+
 
 .DropdownMenu {
   position: absolute;
@@ -8533,7 +8578,7 @@ $vertical-spacing-two-products-per-row  : 0px;
   background: $header-background;
   border: 1px solid $header-border-color;
   border-top: none;
-  transition: all 0.3s ease-in-out;
+  {% comment %} transition: all 0.3s ease-in-out; {% endcomment %}
 
   &::before {
     content: '';
@@ -8552,14 +8597,46 @@ $vertical-spacing-two-products-per-row  : 0px;
 .DropdownMenu[aria-hidden="false"] {
   opacity: 1;
   visibility: visible;
-
+  max-width: calc(100% - 200px);
+  left: 100px;
+  svg {
+    display: none !important;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    li {
+      width: 30%;
+      a {
+        padding-left: 10px;
+        padding-right: 10px;
+        width: max-content;
+      }
+      .DropdownMenu[aria-hidden="true"] {
+        display: contents !important;
+        opacity: 1;
+        visibility: visible;
+      }
+      ul {
+        flex-direction: column;
+        padding-top: 15px;
+        margin-bottom: 5px;
+        li {
+          a {
+            font-size: 14px;
+            color: grey;
+          }
+        }
+      }
+    }
+  }
   &::before {
     transform: scale(1, 1);
   }
 }
 
 .DropdownMenu[aria-hidden="false"] .DropdownMenu {
-  display: block;
+  display: contents;
 }
 
 .DropdownMenu [aria-haspopup] {
