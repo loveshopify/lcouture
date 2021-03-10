@@ -178,7 +178,7 @@
           "show_payment_methods": true,
           "show_currency_selector": true,
           "show_locale_selector": true,
-          "copyright_text": "Copyright 2021 L'couture Collections All Right Reserved"
+          "copyright_text": "Copyright 2021 L'couture All Right Reserved"
         }
       },
       "featured-collections": {
@@ -533,13 +533,31 @@
       },
       "announcement": {
         "type": "announcement",
+        "blocks": {
+          "092d45a3-7ec6-4186-8db0-f68bc5372768": {
+            "type": "announcement",
+            "settings": {
+              "content": "CUSTOMS + DETIES COBERED BY US. GREE GLOBAL SHIPPING IF YOU SPEND OVER AED295",
+              "link": "#"
+            }
+          },
+          "03a6bb09-5587-4321-adec-205420834eb0": {
+            "type": "announcement",
+            "settings": {
+              "content": "CUSTOMS + DETIES COBERED BY US. GREE GLOBAL SHIPPING IF YOU SPEND OVER AED296",
+              "link": "#"
+            }
+          }
+        },
+        "block_order": [
+          "092d45a3-7ec6-4186-8db0-f68bc5372768",
+          "03a6bb09-5587-4321-adec-205420834eb0"
+        ],
         "settings": {
           "enable_bar": true,
           "home_page_only": false,
           "background": "#e4babe",
-          "text_color": "#d0366a",
-          "content": "CUSTOMS + DETIES COBERED BY US. GREE GLOBAL SHIPPING IF YOU SPEND OVER AED295",
-          "link": "#"
+          "text_color": "#fafafa"
         }
       },
       "16058836871352bf69": {
@@ -753,13 +771,30 @@
       },
       "header": {
         "type": "header",
+        "blocks": {
+          "f7c55f91-e98c-4249-8ee0-aa520006bd58": {
+            "type": "mega_menu",
+            "settings": {
+              "navigation_mega_menu": "Shop",
+              "push_1_image": "shopify:\/\/shop_images\/IMG_1281.jpg",
+              "push_1_heading": "Just Dropped",
+              "push_1_subheading": "",
+              "push_1_url": "shopify:\/\/collections\/crop-tops",
+              "push_2_heading": "Example heading",
+              "push_2_subheading": "Example sub-heading"
+            }
+          }
+        },
+        "block_order": [
+          "f7c55f91-e98c-4249-8ee0-aa520006bd58"
+        ],
         "settings": {
           "use_sticky_header": true,
           "logo": "shopify:\/\/shop_images\/logo_2.png",
           "logo_max_width": 320,
-          "mobile_logo_max_width": 185,
+          "mobile_logo_max_width": 130,
           "show_currency_selector": true,
-          "show_locale_selector": true,
+          "show_locale_selector": false,
           "navigation_menu": "main-menu-1",
           "navigation_style": "center",
           "show_icons": true,

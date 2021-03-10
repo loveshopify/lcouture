@@ -25,16 +25,36 @@
 // Announcement Bar
 var backButton = '<span class="slick-prev">&#8592;</span>';
 var nextButton = '<span class="slick-next">&#8594;</span>';
+var delay_time = parseInt($("[data-announcement-slider]").data("delay"));
 $("[data-announcement-slider]").slick({
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
   dots: false,
   infinite: true,
+  autoplay: true,
+  autoplaySpeed: delay_time,
   prevArrow: backButton,
   nextArrow: nextButton
 })
 
+
+$(document).ready(function(){
+  
+  if($("#section-header").offset().top > 38) {
+    $("#section-header").addClass("scroll");
+  }
+  $(window).scroll(function(){
+    console.log($("#section-header").offset().top);
+    if($("#section-header").offset().top > 38) {
+      if($("#section-header").attr("class").indexOf("scroll") == -1) {
+        $("#section-header").addClass("scroll");
+      }
+    }else {
+      $("#section-header").removeClass("scroll");
+    }
+  })
+})
 
 if(template == 'collection') {
   $(document).on("click", '.Popover__ValueList .Popover__Value', function(){

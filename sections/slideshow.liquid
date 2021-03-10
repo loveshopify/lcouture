@@ -25,25 +25,28 @@
             as the mobile and desktop image could have different aspect ratio, the image allocation space would not have work properly without explicitly
             distinguishing the two images, hence the two containers.
           {%- endcomment -%}
+          {% if block.settings.video_url != blank %}
+              {% if block.settings.video_url.type == 'youtube' %}
+                <iframe class="Image--lazyLoad" data-src="//www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay=1&showinfo=0&controls=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
+              {% elsif block.settings.video_url.type == 'vimeo' %}
+                <iframe class="Image--lazyLoad" data-src="//player.vimeo.com/video/{{ block.settings.video_url.id }}?autoplay=1&portrait=0&byline=0&color={{ settings.accent_color | remove_first: '#' }}" frameborder="0"></iframe>
+              {% endif %}
+          {% elsif block.settings.image %}
+              {%- assign mobile_image = block.settings.mobile_image | default: block.settings.image -%}
+              {%- if mobile_image -%}
+                <div class="Slideshow__ImageContainer {% if block.settings.apply_overlay %}Image--contrast{% endif %} {% unless section.settings.show_fullscreen %}AspectRatio{% endunless %} hidden-tablet-and-up"
+                    style="{% unless section.settings.show_fullscreen %}--aspect-ratio: {{ mobile_image.aspect_ratio }};{% endunless %} background-image: url({{ mobile_image | img_url: '1x1', format: 'jpg' }})">
+                    <img class="Slideshow__Image Image--lazyLoad"
+                        src="{{ mobile_image | img_url: '1x1' }}"
+                        data-src="{{ mobile_image | img_url: 'x800' }}"
+                        alt="{{ mobile_image.alt | escape }}">
 
-          {%- assign mobile_image = block.settings.mobile_image | default: block.settings.image -%}
-
-          {%- if mobile_image -%}
-            <div class="Slideshow__ImageContainer {% if block.settings.apply_overlay %}Image--contrast{% endif %} {% unless section.settings.show_fullscreen %}AspectRatio{% endunless %} hidden-tablet-and-up"
-                 style="{% unless section.settings.show_fullscreen %}--aspect-ratio: {{ mobile_image.aspect_ratio }};{% endunless %} background-image: url({{ mobile_image | img_url: '1x1', format: 'jpg' }})">
-                <img class="Slideshow__Image Image--lazyLoad"
-                     src="{{ mobile_image | img_url: '1x1' }}"
-                     data-src="{{ mobile_image | img_url: 'x800' }}"
-                     alt="{{ mobile_image.alt | escape }}">
-
-                <noscript>
-                  <img class="Slideshow__Image" src="{{ mobile_image | img_url: 'x800' }}" alt="{{ mobile_image.alt | escape }}">
-                </noscript>
-            </div>
-          {%- endif -%}
-
-          {%- if block.settings.image -%}
-            <div class="Slideshow__ImageContainer {% if block.settings.apply_overlay %}Image--contrast{% endif %} {% unless section.settings.show_fullscreen %}AspectRatio AspectRatio--withFallback{% endunless %} hidden-phone"
+                    <noscript>
+                      <img class="Slideshow__Image" src="{{ mobile_image | img_url: 'x800' }}" alt="{{ mobile_image.alt | escape }}">
+                    </noscript>
+                </div>
+              {%- endif -%}
+              <div class="Slideshow__ImageContainer {% if block.settings.apply_overlay %}Image--contrast{% endif %} {% unless section.settings.show_fullscreen %}AspectRatio AspectRatio--withFallback{% endunless %} hidden-phone"
                  style="{% unless section.settings.show_fullscreen %}padding-bottom: {{ 100.0 | divided_by: block.settings.image.aspect_ratio }}%; --aspect-ratio: {{ block.settings.image.aspect_ratio }};{% endunless %} background-image: url({{ block.settings.image | img_url: '1x1', format: 'jpg' }})">
               {% assign image_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
 
@@ -58,12 +61,32 @@
                 <img class="Slideshow__Image" src="{{ block.settings.image | img_url: '1000x' }}" alt="{{ block.settings.image.alt | escape }}">
               </noscript>
             </div>
+          {% else %}
+          {%- assign mobile_image = block.settings.mobile_image | default: block.settings.image -%}
+              {%- if mobile_image -%}
+                <div class="Slideshow__ImageContainer {% if block.settings.apply_overlay %}Image--contrast{% endif %} {% unless section.settings.show_fullscreen %}AspectRatio{% endunless %} hidden-tablet-and-up"
+                    style="{% unless section.settings.show_fullscreen %}--aspect-ratio: {{ mobile_image.aspect_ratio }};{% endunless %} background-image: url({{ mobile_image | img_url: '1x1', format: 'jpg' }})">
+                    <img class="Slideshow__Image Image--lazyLoad"
+                        src="{{ mobile_image | img_url: '1x1' }}"
+                        data-src="{{ mobile_image | img_url: 'x800' }}"
+                        alt="{{ mobile_image.alt | escape }}">
+
+                    <noscript>
+                      <img class="Slideshow__Image" src="{{ mobile_image | img_url: 'x800' }}" alt="{{ mobile_image.alt | escape }}">
+                    </noscript>
+                </div>
+              {%- endif -%}
+               <div class="Slideshow__ImageContainer {% if block.settings.apply_overlay %}Image--contrast{% endif %} {% if section.settings.show_fullscreen %}PlaceholderBackground{% endif %} PlaceholderSvg--dark">
+                  {%- capture placeholder -%}{% cycle 'lifestyle-1', 'lifestyle-2' %}{%- endcapture -%}
+                  {{ placeholder | placeholder_svg_tag: 'Slideshow__Image PlaceholderBackground__Svg' }}
+                </div>
+          {% endif %}
+          
+          {% comment %} {%- if block.settings.image -%}
+            
           {%- else -%}
-            <div class="Slideshow__ImageContainer {% if block.settings.apply_overlay %}Image--contrast{% endif %} {% if section.settings.show_fullscreen %}PlaceholderBackground{% endif %} PlaceholderSvg--dark">
-              {%- capture placeholder -%}{% cycle 'lifestyle-1', 'lifestyle-2' %}{%- endcapture -%}
-              {{ placeholder | placeholder_svg_tag: 'Slideshow__Image PlaceholderBackground__Svg' }}
-            </div>
-          {%- endif -%}
+           
+          {%- endif -%} {% endcomment %}
 
           {%- capture slideshow_content -%}
             {%- if block.settings.subheading != blank -%}
@@ -154,7 +177,7 @@
            {%- if block.settings.subheading != blank -%}
               <h3 class="SectionHeader__SubHeading Heading u-h6">{{ block.settings.subheading | escape}}</h3>
             {%- endif -%}
-          {%- assign mobile_image = block.settings.mobile_image | default: block.settings.image -%}
+          {% comment %} {%- assign mobile_image = block.settings.mobile_image | default: block.settings.image -%}
 
           {%- if mobile_image -%}
             <div class="Slideshow__ImageContainer {% if block.settings.apply_overlay %}Image--contrast{% endif %} {% unless section.settings.show_fullscreen %}AspectRatio{% endunless %} hidden-tablet-and-up"
@@ -168,7 +191,7 @@
                   <img class="Slideshow__Image" src="{{ mobile_image | img_url: 'x800' }}" alt="{{ mobile_image.alt | escape }}">
                 </noscript>
             </div>
-          {%- endif -%}
+          {%- endif -%} {% endcomment %}
 
           {%- if block.settings.image -%}
             <div class="Slideshow__ImageContainer {% if block.settings.apply_overlay %}Image--contrast{% endif %} {% unless section.settings.show_fullscreen %}AspectRatio AspectRatio--withFallback{% endunless %} hidden-phone"
@@ -370,6 +393,12 @@
           "id": "mobile_image",
           "label": "Mobile image",
           "info": "750 x 1100px .jpg recommended. If none is set, desktop image will be cropped."
+        },
+        {
+          "type": "video_url",
+          "accept": ["youtube", "vimeo"],
+          "id": "video_url",
+          "label": "Video URL"
         },
         {
           "type": "checkbox",

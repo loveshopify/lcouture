@@ -2,7 +2,7 @@
   {%- unless section.settings.home_page_only and template != 'index' -%}
     <section id="section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="announcement-bar">
       <div class="AnnouncementBar">
-        <div class="AnnouncementBar__Wrapper" data-announcement-slider>
+        <div class="AnnouncementBar__Wrapper" data-delay="{{ section.settings.apparition_delay | times: 1000 }}" data-announcement-slider>
          {% for block in section.blocks %}
           <div class="" >
             {%- if block.settings.link -%}
@@ -57,6 +57,16 @@
       "id": "text_color",
       "label": "Text",
       "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "apparition_delay",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "sec",
+      "label": "Delay until the next announcement appears",
+      "default": 3
     }],
     "blocks": [{
       "name": "announcement content",

@@ -8,6 +8,12 @@ $font-color: #da4276;
 
 $arrow_size: 30px;
 
+// html {
+//     img {
+//         filter: blur(30px);
+//     }
+// }
+
 .hide--desktop {
     @media (min-width: 641px) {
         display: none !important;
@@ -32,15 +38,109 @@ $arrow_size: 30px;
     display: none;
 }
 
-html {
-    img {
-        filter: blur(30px);
-    }
-}
 
 
 #section-header {
     box-shadow: none !important;
+    .scroll__logo {
+        display: none;
+    }
+    .header-icons {
+        display: none;
+    }
+    .HorizontalList__Item {
+        .MegaMenu {
+            // max-width: calc(100% - 160px);
+            // left: 80px;
+            max-width: 600px;
+            left: calc(50% - 300px);
+            display: none;
+        }
+        .MegaMenu__Inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            & > div {
+                &.MegaMenu__Item {
+                    margin: 0px;
+                }
+                &.MegaMenu__Item + .MegaMenu__Item {
+                    margin-left: 10px;
+                }
+                a {
+                    font-size: 14px;
+                    font-weight: 600;
+                    width: max-content;
+                    color: black;
+                }
+                ul {
+                    li {
+                        a {
+                            font-size: 13px;
+                            font-weight: 400;
+                            text-indent: 10px;
+                            width: max-content;
+                        }
+                    }
+                }
+                p {
+                    font-size: 13px;
+                    font-weight: 400;
+                    letter-spacing: 0px;
+                }
+            }
+            & > div:first-child {
+                grid-row-start: 1;
+                grid-row-end: 6;
+            }
+            & > div:last-child {
+                grid-column-start: 4;
+                grid-row-start: 1;
+                grid-row-end: 6;
+                max-width: 200px !important;
+                min-width: unset !important;
+                .MegaMenu__PushImageWrapper {
+                    max-width: 180px !important;
+                }
+            }
+        }
+    }
+    &.scroll {
+        .Header__Wrapper {
+            .Header__FlexItem--logo {
+                display: none;
+            }
+            .Header__FlexItem.mlvedadesk {
+                display: none;
+            }
+            .Header__FlexItem {
+                margin-bottom: 0px;
+            }
+            .scroll__logo {
+                position: absolute;
+                left: 20px;
+                top: 11px;
+                height: 50px;
+                width: 50px;
+                display: flex;
+            }
+            .header-icons {
+                display: flex;
+                width: max-content;
+                position: absolute;
+                right: 20px;
+                top: 22px;
+                svg {
+                    width: 21px;
+                    height: 21px;
+                    g {
+                        stroke: #e9c8cc;
+                    }
+                }
+            }
+        }
+        
+
+    }
 }
 .Header__Wrapper {
     @media screen and (min-width: 1140px){
@@ -171,11 +271,18 @@ body.template-index {
     .shopify-section--slideshow {
         section {
             &.image_overlay {
+                .SectionHeader {
+                    opacity: 1 !important;
+                }
                 .Slideshow__Carousel {
                     min-height: 500px;
                 }
                 .flickity-viewport {
                     min-height: 500px;
+                    iframe {
+                        width: 100%;
+                        height: 100%;
+                    }
                 }
                 min-height: 500px;
                 .Slideshow__Content {
@@ -416,7 +523,8 @@ body.template-index {
         
     }
     .leaset.collection-list {
-        max-width: $container;
+        // max-width: $container;
+        max-width: calc(100% - 100px);
         margin: auto;
         @media (max-width: $container) {
             padding-left: 15px;
@@ -471,7 +579,7 @@ body.template-index {
                 cursor: pointer;
                 font-size: 30px;
                 color: $font-color;
-                z-index: 10;
+                z-index: 4;
                 &.slick-prev {
                     left: 20px;
                     right: unset;
@@ -561,7 +669,8 @@ body.template-index {
         }
     }
     #shopify-section-featured-collections {
-        max-width: $container;
+        // max-width: $container;
+        max-width: calc(100% - 100px);
         padding-top: 50px;
         margin-left: auto;
         margin-right: auto;
@@ -655,7 +764,8 @@ body.template-index {
     }
     #insta-feed {
         text-align: left;
-        max-width: $container;
+        // max-width: $container;
+        max-width: calc(100% - 100px);
         padding-left: 15px;
         padding-right: 15px;
         margin: auto;
@@ -698,6 +808,7 @@ body.template-index {
         }
         &.shopify-section--upto {
             max-width: $container;
+            // max-width: calc(100%);
             @media (max-width: 640px) {
                 padding: 60px 16px !important;
             }
@@ -758,7 +869,8 @@ body.template-index {
             }
         }
         &.article-list {
-            max-width: $container;
+            // max-width: $container;
+            max-width: calc(100% - 100px);
             margin-left: auto;
             margin-right: auto;
             @media (max-width: $container) {
@@ -873,12 +985,11 @@ body.template-index {
 
 body.template-product {
     .cbb-also-bought-product-image {
-        filter: blur(30px);
     }
     #shopify-section-product-template {
         .Product {
             @media (min-width: 1140px) {
-                max-width: calc(100% - 100px);
+                max-width: calc(100%);
             }
            
         }
@@ -1400,7 +1511,7 @@ body.template-product {
                 margin-bottom: 80px;
             }
             @media (min-width: 1140px) {
-                max-width: calc(100% - 100px);
+                max-width: calc(100%);
                 margin-left: auto;
                 margin-right: auto;
                 margin-bottom: 80px;

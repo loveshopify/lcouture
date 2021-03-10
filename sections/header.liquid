@@ -190,6 +190,9 @@ HEADER CONTENT
         {%- assign mega_menu_names = mega_menu_names | downcase | split: ',' | compact -%}
 
         <nav class="Header__MainNav hidden-pocket hidden-lap" aria-label="{{ 'header.navigation.title' | t }}">
+          <div class="scroll__logo">
+            <img src="{{ section.settings.scroll_logo | img_url: '200x'}}" alt="image" />
+          </div>
           <ul class="HorizontalList HorizontalList--spacingExtraLoose">
             {%- for link in main_menu.links -%}
               {%- assign downcased_link_title = link.title | downcase | strip -%}
@@ -351,6 +354,25 @@ HEADER CONTENT
               </li>
             {%- endfor -%}
           </ul>
+          <div class="header-icons">
+            <a href="{{ routes.search_url }}" class="Header__Icon Icon-Wrapper Icon-Wrapper--clickable {% unless section.settings.show_icons or use_sidebar_menu %}hidden-desk{% endunless %}" data-action="toggle-search" aria-label="{{ 'header.navigation.search' | t }}">
+              <span class="hidden-tablet-and-up">{%- render 'icon' with 'search' -%}</span>
+              <span class="hidden-phone">{%- render 'icon' with 'search-desktop' -%}</span>
+            </a>
+
+            {%- if shop.customer_accounts_enabled and section.settings.show_icons or use_sidebar_menu -%}
+              <a href="{{ routes.account_url }}" class="Header__Icon Icon-Wrapper Icon-Wrapper--clickable">
+                {%- render 'icon' with 'account' -%}
+              </a>
+            {%- endif -%}
+
+
+            <a href="{{ routes.cart_url }}" class="Header__Icon Icon-Wrapper Icon-Wrapper--clickable {% unless section.settings.show_icons or use_sidebar_menu %}hidden-desk{% endunless %}" {% if settings.cart_type == 'drawer' %}data-action="open-drawer" data-drawer-id="sidebar-cart" aria-expanded="false" aria-label="{{ 'header.navigation.open_cart' | t }}"{% endif %}>
+              <span class="hidden-tablet-and-up">{%- render 'icon' with 'cart' -%}</span>
+              <span class="hidden-phone">{%- render 'icon' with 'cart-desktop' -%}</span>
+              <span class="Header__CartDot {% if cart.item_count > 0 %}is-visible{% endif %}"></span>
+            </a>
+          </div>
         </nav>
 
         {{- localization_form -}}
@@ -549,6 +571,11 @@ HEADER CONTENT
       "default": 90
     },
     {
+      "type": "image_picker",
+      "id": "scroll_logo",
+      "label": "Scroll Logo Image"
+    },
+    {
       "type": "header",
       "content": "Currency selector",
       "info": "To add a currency, go to your [payment settings.](/admin/settings/payments)"
@@ -557,7 +584,7 @@ HEADER CONTENT
       "type": "checkbox",
       "id": "show_currency_selector",
       "label": "Show currency selector",
-      "default": true
+      "default": false
     },
     {
       "type": "header",
