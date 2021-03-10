@@ -1732,6 +1732,29 @@ body.template-collection {
                     .boost-pfs-filter-tree {
                         .boost-pfs-filter-tree-content {
                             .boost-pfs-filter-options-wrapper {
+                                .boost-pfs-filter-option-color {
+                                    .boost-pfs-filter-option-content {
+                                        .boost-pfs-filter-option-item-list {
+                                            display: flex;
+                                            flex-direction: column;
+                                            .boost-pfs-filter-option-item {
+                                                display: flex;
+                                                .boost-pfs-filter-option-swatch-image[title="Lilac"] {
+                                                    background-color: #C8a2c8;
+                                                }
+                                                .boost-pfs-filter-option-swatch-image[title="Mint"] {
+                                                    background-color: #AAF0d1;
+                                                }
+                                                .boost-pfs-filter-button {
+                                                    display: block;
+                                                    width: auto;
+                                                    text-transform: uppercase;
+                                                    margin-left: 20px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                                 .boost-pfs-filter-option {
                                     .boost-pfs-filter-option-title {
                                         .boost-pfs-filter-button {
