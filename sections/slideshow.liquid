@@ -25,12 +25,21 @@
             as the mobile and desktop image could have different aspect ratio, the image allocation space would not have work properly without explicitly
             distinguishing the two images, hence the two containers.
           {%- endcomment -%}
+          
           {% if block.settings.video_url != blank %}
+              <div class="section-video">
               {% if block.settings.video_url.type == 'youtube' %}
                 <iframe class="Image--lazyLoad" data-src="//www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay=1&showinfo=0&controls=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
               {% elsif block.settings.video_url.type == 'vimeo' %}
                 <iframe class="Image--lazyLoad" data-src="//player.vimeo.com/video/{{ block.settings.video_url.id }}?autoplay=1&portrait=0&byline=0&color={{ settings.accent_color | remove_first: '#' }}" frameborder="0"></iframe>
               {% endif %}
+              </div>
+          {% elsif block.settings.video_url_m != blank %}
+              <div class="section-video">
+                  <video autoplay loop muted playsinline>
+                    <source src="{{ block.settings.video_url_m }}" />
+                  </video>
+              </div>
           {% elsif block.settings.image %}
               {%- assign mobile_image = block.settings.mobile_image | default: block.settings.image -%}
               {%- if mobile_image -%}
@@ -109,11 +118,13 @@
               <div class="SectionHeader__ButtonWrapper">
                 <div class="ButtonGroup ButtonGroup--spacingSmall {% if has_two_buttons %}ButtonGroup--sameSize{% endif %}">
                   {%- if block.settings.button_1_text != blank -%}
-                    <a href="{{ block.settings.button_1_link }}" class="ButtonGroup__Item Button">{{ block.settings.button_1_text | escape }}</a>
+                    {% assign btn_link1 = block.settings.button_1_link | default: "#" %}
+                    <a href="{{ btn_link1 }}" class="ButtonGroup__Item Button--primary Button">{{ block.settings.button_1_text | escape }}</a>
                   {%- endif -%}
 
                   {%- if block.settings.button_2_text != blank -%}
-                    <a href="{{ block.settings.button_2_link }}" class="ButtonGroup__Item Button">{{ block.settings.button_2_text | escape }}</a>
+                   {% assign btn_link2 = block.settings.button_2_link | default: "#" %}
+                    <a href="{{ btn_link2 }}" class="ButtonGroup__Item Button--primary Button">{{ block.settings.button_2_text | escape }}</a>
                   {%- endif -%}
                 </div>
               </div>
@@ -132,6 +143,7 @@
         {%- comment -%}This code allows to cover a common use case where merchant would like to have a clickable image{%- endcomment -%}
 
         {%- if block.settings.button_1_text == blank and block.settings.button_1_link != blank -%}
+          
           <a href="{{ block.settings.button_1_link }}" id="Slide{{ block.id }}" class="Slideshow__Slide Carousel__Cell {% if forloop.first %}is-selected{% endif %}" {% if forloop.first %}style="visibility: visible"{% endif %} data-slide-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
             {{- slide_content -}}
           </a>
@@ -177,7 +189,7 @@
            {%- if block.settings.subheading != blank -%}
               <h3 class="SectionHeader__SubHeading Heading u-h6">{{ block.settings.subheading | escape}}</h3>
             {%- endif -%}
-          {% comment %} {%- assign mobile_image = block.settings.mobile_image | default: block.settings.image -%}
+          {%- assign mobile_image = block.settings.mobile_image | default: block.settings.image -%}
 
           {%- if mobile_image -%}
             <div class="Slideshow__ImageContainer {% if block.settings.apply_overlay %}Image--contrast{% endif %} {% unless section.settings.show_fullscreen %}AspectRatio{% endunless %} hidden-tablet-and-up"
@@ -191,7 +203,7 @@
                   <img class="Slideshow__Image" src="{{ mobile_image | img_url: 'x800' }}" alt="{{ mobile_image.alt | escape }}">
                 </noscript>
             </div>
-          {%- endif -%} {% endcomment %}
+          {%- endif -%} 
 
           {%- if block.settings.image -%}
             <div class="Slideshow__ImageContainer {% if block.settings.apply_overlay %}Image--contrast{% endif %} {% unless section.settings.show_fullscreen %}AspectRatio AspectRatio--withFallback{% endunless %} hidden-phone"
@@ -235,11 +247,11 @@
               <div class="SectionHeader__ButtonWrapper">
                 <div class="ButtonGroup ButtonGroup--spacingSmall {% if has_two_buttons %}ButtonGroup--sameSize{% endif %}">
                   {%- if block.settings.button_1_text != blank -%}
-                    <a href="{{ block.settings.button_1_link }}" class="ButtonGroup__Item Button">{{ block.settings.button_1_text | escape }}</a>
+                    <a href="{{ block.settings.button_1_link }}" class="ButtonGroup__Item Button--primary Button">{{ block.settings.button_1_text | escape }}</a>
                   {%- endif -%}
 
                   {%- if block.settings.button_2_text != blank -%}
-                    <a href="{{ block.settings.button_2_link }}" class="ButtonGroup__Item Button">{{ block.settings.button_2_text | escape }}</a>
+                    <a href="{{ block.settings.button_2_link }}" class="ButtonGroup__Item Button--primary Button">{{ block.settings.button_2_text | escape }}</a>
                   {%- endif -%}
                 </div>
               </div>
@@ -395,10 +407,23 @@
           "info": "750 x 1100px .jpg recommended. If none is set, desktop image will be cropped."
         },
         {
+          "type": "paragraph",
+          "content": "youtube or vimeo Video"
+        },
+        {
           "type": "video_url",
           "accept": ["youtube", "vimeo"],
           "id": "video_url",
           "label": "Video URL"
+        },
+        {
+          "type": "paragraph",
+          "content": "mp4 or webm Video"
+        },
+        {
+          "type": "url",
+          "id": "video_url_m",
+          "label": "Video Url"
         },
         {
           "type": "checkbox",

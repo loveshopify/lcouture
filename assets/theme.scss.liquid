@@ -8525,15 +8525,15 @@ $vertical-spacing-two-products-per-row  : 0px;
       }
     }
     & ul.Linklist:first-child {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      {% comment %} display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr; {% endcomment %}
       width: 1200px;
       padding-left: 15px;
       padding-right: 30px;
       & li[aria-haspopup="true"] {
-        grid-row-start: 1;
+        {% comment %} grid-row-start: 1;
         grid-row-end: 4;
-        width: 100%;
+        width: 100%; {% endcomment %}
         
       }
        li {

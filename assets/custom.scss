@@ -54,11 +54,12 @@ $arrow_size: 30px;
             // left: 80px;
             max-width: 600px;
             left: calc(50% - 300px);
-            display: none;
+            // display: none;
         }
         .MegaMenu__Inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            flex-direction: column;
+            // display: grid;
+            // grid-template-columns: 1fr 1fr 1fr 1fr;
             & > div {
                 &.MegaMenu__Item {
                     margin: 0px;
@@ -89,28 +90,33 @@ $arrow_size: 30px;
                 }
             }
             & > div:first-child {
-                grid-row-start: 1;
-                grid-row-end: 6;
+                // grid-row-start: 1;
+                // grid-row-end: 6;
             }
             & > div:last-child {
-                grid-column-start: 4;
-                grid-row-start: 1;
-                grid-row-end: 6;
-                max-width: 200px !important;
-                min-width: unset !important;
-                .MegaMenu__PushImageWrapper {
-                    max-width: 180px !important;
-                }
+                // grid-column-start: 4;
+                // grid-row-start: 1;
+                // grid-row-end: 6;
+                // max-width: 200px !important;
+                // min-width: unset !important;
+                // .MegaMenu__PushImageWrapper {
+                //     max-width: 180px !important;
+                // }
             }
         }
     }
     &.scroll {
         .Header__Wrapper {
             .Header__FlexItem--logo {
-                display: none;
+                @media (min-width: 1140px) {
+                    display: none;
+                }
+                
             }
             .Header__FlexItem.mlvedadesk {
-                display: none;
+                @media (min-width: 1140px) {
+                    display: none;
+                }
             }
             .Header__FlexItem {
                 margin-bottom: 0px;
@@ -118,10 +124,13 @@ $arrow_size: 30px;
             .scroll__logo {
                 position: absolute;
                 left: 20px;
-                top: 11px;
-                height: 50px;
-                width: 50px;
+                top: 17px;
+                height: 30px;
+                width: max-content;
                 display: flex;
+                img {
+                    filter: blur(0);
+                }
             }
             .header-icons {
                 display: flex;
@@ -225,6 +234,11 @@ $arrow_size: 30px;
         .AnnouncementBar__Wrapper {
             position: relative;
             overflow: hidden;
+            .announcementbar_item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
             .slick-arrow {
                 position: absolute;
                 font-size: 24px;
@@ -276,6 +290,30 @@ body.template-index {
                 }
                 .Slideshow__Carousel {
                     min-height: 500px;
+                    @media (max-width: 640px) {
+                        .section-video {
+                            min-height: 600px !important;
+                            height: 55vw;
+                            position: relative;
+                            overflow: hidden;
+                            width: 100%;
+                        }
+                        video {
+                            background-size: cover;
+                            background-position: 50% 50%;
+                            position: absolute;
+                            margin: auto;
+                            width: 100%;
+                            height: 100%;
+                            right: -100%;
+                            bottom: -100%;
+                            top: -100%;
+                            left: -100%;
+                            object-fit: cover;
+                            pointer-events: none;
+                        }
+                    }
+                   
                 }
                 .flickity-viewport {
                     min-height: 500px;
@@ -407,6 +445,13 @@ body.template-index {
                                     @media (max-width: 640px) {
                                         grid-template-columns: 10% 45% 45%;
                                     }
+
+                                    .SectionHeader {
+                                        @media (max-width: 640px) {
+                                            opacity: 1 !important;
+                                        }
+
+                                    }
                                     .SectionHeader__SubHeading {
                                         margin: 0;
                                         padding: 0;
@@ -424,6 +469,9 @@ body.template-index {
                                         font-weight: 600;
                                         letter-spacing: 7px;
                                         height: calc(100% - 60px);
+                                        @media (max-width: 640px) {
+                                            padding-left: 10px;
+                                        }
                                     }
                                     .Slideshow__Content {
                                         position: initial;
@@ -479,6 +527,11 @@ body.template-index {
                                                             font-size: 12px;
                                                             padding: 10px 25px;
                                                         }
+                                                        &:hover {
+                                                            color: white !important;
+                                                            background-color: $font-color !important;
+                                                            transition: color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86), border 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                                                        }
                                                     }
                                                 }
                                             }
@@ -529,6 +582,11 @@ body.template-index {
         @media (max-width: $container) {
             padding-left: 15px;
             padding-right: 15px;
+        }
+        @media (max-width: 640px) {
+            max-width: 100%;
+            padding-left: 0px;
+            padding-right: 0px;
         }
         overflow: hidden;
         section {
@@ -678,7 +736,11 @@ body.template-index {
             padding-left: 15px;
             padding-right: 15px;
         }
-       
+        @media (max-width: 640px) {
+            max-width: 100%;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
         .SectionHeader {
             text-align: left;
             .Container {
@@ -772,6 +834,9 @@ body.template-index {
         h2 {
             font-weight: 600;
             color: $font-color;
+        }
+        @media (max-width: 640px) {
+            max-width: 100%;
         }
     }
     .shopify-section {
@@ -876,6 +941,9 @@ body.template-index {
             @media (max-width: $container) {
                 padding-left: 15px;
                 padding-right: 15px;
+            }
+            @media (max-width: 640px) {
+                max-width: 100%;
             }
             .slick-list {
                 overflow: hidden;
@@ -1003,7 +1071,9 @@ body.template-product {
                 // max-width: calc(100% - 500px);
                 @media (min-width: 1008px) {
                     margin-left: 15px;
-                    margin-right: 50px;
+                    padding-left: 30px;
+                    max-width: 60%;
+                    margin-right: 15px;
                 }
                 @media (max-width: 1007px) {
                     padding-left: 15px;
@@ -1017,6 +1087,7 @@ body.template-product {
                 @media (max-width: 640px) {
                     margin-left: auto;
                     margin-right: auto;
+                    max-width: 100%;
                 }
                 .product__media {
                     .variant-item {
@@ -1026,12 +1097,16 @@ body.template-product {
                             max-width: 30%;
                             @media (max-width: 640px) {
                                 max-width: 100%;
+                                display: none;
+                            }
+                            .variant-image {
+                                display: flex;
                             }
                         }
                         @media (max-width: 640px) {
                             grid-template-columns: 1fr;
                         }
-                        & div:first-child {
+                        & div:last-child {
                             @media (max-width: 640px) {
                                 display: grid;
                                 grid-template-columns: 1fr;
@@ -1069,6 +1144,11 @@ body.template-product {
                 .Product__Info {
                     margin: 0px !important;
                     z-index: 1;
+                    padding-right: 15px;
+                    @media (min-width: 1140px) {
+                        padding-right: 30px;
+                        width: 100% !important;
+                    }
                     @media (max-width: 1140px) and (min-width: 641px) {
                         margin: 0px 15px 0px 0px !important;
                     }
@@ -1095,6 +1175,7 @@ body.template-product {
                                 color: black;
                                 font-weight: bold;
                                 line-height: 1;
+                                word-break: break-all;
                                 @media (max-width: 640px) {
                                     font-size: 24px;
                                     line-height: 1;
@@ -1621,6 +1702,9 @@ body.template-product {
 }
 
 body.template-collection {
+    .boost-pfs-filter-option-item-list {
+        margin-left: 0px !important;
+    }
     .breadcrumb {
         margin-left: 24px;
         & a:first-child {

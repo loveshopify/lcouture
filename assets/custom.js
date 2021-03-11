@@ -40,20 +40,23 @@ $("[data-announcement-slider]").slick({
 
 
 $(document).ready(function(){
-  
+  $(".announcementbar_item").show();
   if($("#section-header").offset().top > 38) {
     $("#section-header").addClass("scroll");
   }
+  var key = 38, direction = 100;
   $(window).scroll(function(){
-    console.log($("#section-header").offset().top);
-    if($("#section-header").offset().top > 38) {
+    if($("#section-header").offset().top > 50) key = 38;
+    if($("#section-header").offset().top > key) {
       if($("#section-header").attr("class").indexOf("scroll") == -1) {
         $("#section-header").addClass("scroll");
+        key = 0;
       }
     }else {
       $("#section-header").removeClass("scroll");
     }
   })
+  $('[data-collection-leaset-slider]').slick("next");
 })
 
 if(template == 'collection') {

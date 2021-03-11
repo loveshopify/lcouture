@@ -104,7 +104,7 @@
   
 	{% assign full_video_url = section.settings.full_video_url | downcase %}
   
-    <a data-fancybox href="{{full_video_url}}" class="cust__bg-video-link w-inline-block" data-ix="scale-hover">
+    <a href="{{full_video_url}}" class="cust__bg-video-link w-inline-block" data-ix="scale-hover">
       <img src="{{ '../assets/play-arrow.svg' | asset_url }}" alt="" class="cust__play-vid-icon" />
     </a>
      <h2 class="SectionHeader__Heading SectionHeader__Heading--emphasize Heading u-h1" style="color: white">{{section.settings.video_title}}</h2>

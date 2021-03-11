@@ -4,7 +4,7 @@
       <div class="AnnouncementBar">
         <div class="AnnouncementBar__Wrapper" data-delay="{{ section.settings.apparition_delay | times: 1000 }}" data-announcement-slider>
          {% for block in section.blocks %}
-          <div class="" >
+          <div class="announcementbar_item" {% unless forloop.first %}style="display: none"{% endunless %}>
             {%- if block.settings.link -%}
               <a href="{{ block.settings.link }}">{{ block.settings.content | escape }}</a>
             {%- else -%}
