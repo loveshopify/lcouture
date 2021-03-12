@@ -291,6 +291,55 @@ $arrow_size: 30px;
     }
 }
 
+#sidebar-cart {
+    .Drawer__Header {
+        .Drawer__Title {
+            color: black;
+            letter-spacing: 1px;
+        }
+    }
+    form {
+        .Drawer__Main {
+            .Drawer__Container {
+                .Cart__ItemList {
+                    .CartItemWrapper {
+                        .CartItem {
+                            .CartItem__Info {
+                                .CartItem__Title {
+                                    a {
+                                        color: black;
+                                        letter-spacing: 1px;
+                                    }
+                                }
+                                .CartItem__Meta {
+                                    color: black;
+                                    letter-spacing: 1px;
+                                }
+                            }
+                            .QuantitySelector {
+                                color: black;
+                            }
+                            .CartItem__Remove {
+                                color: black;
+                                letter-spacing: 1px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .Drawer__Footer {
+            button.Cart__NoteButton, p {
+                color: black;
+                letter-spacing: 1px;
+            }
+            button {
+                letter-spacing: 1px;
+            }
+        }
+    }
+}
+
 body.template-index {
     .shopify-section--slideshow {
         section {
