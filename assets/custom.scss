@@ -57,12 +57,22 @@ $arrow_size: 30px;
             // display: none;
         }
         .MegaMenu__Inner {
-            flex-direction: column;
+            // flex-direction: column;
             // display: grid;
             // grid-template-columns: 1fr 1fr 1fr 1fr;
+            max-width: 600px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
             & > div {
                 &.MegaMenu__Item {
                     margin: 0px;
+                }
+                &.MegaMenu__Item:last-child {
+                    width: 170px !important;
+                    min-width: 170px !important;
+                    grid-row-start: 1;
+                    grid-column-start: 3;
+                    grid-row-end: 5;
                 }
                 &.MegaMenu__Item + .MegaMenu__Item {
                     margin-left: 10px;
