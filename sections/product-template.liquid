@@ -193,42 +193,30 @@
           "arrowShape": {"x0": 20, "x1": 60, "y1": 40, "x2": 60, "y2": 35, "x3": 25}
         }
         {%- endcapture -%}
-          {% assign key = 0 %}
-          {% for option in product.options %}
-            {% assign _option = option | downcase %}
-            {% if _option == "color" or _option == "bright" %}
-                {% for option_value in product.options_by_name[option].values limit:1 %}
-                  {% for variant in product.variants %}
-                    {% if variant.title contains option_value %}
-                        {% assign key = key | plus: 1 %}
-                    {% endif %}
-                  {% endfor %}
-                {% endfor %}
-            {% endif %}
-          {% endfor %} 
-          <div class="product__media {{ key }}">
-              {% for image in product.images %}
-                {% assign img_length = forloop.length | minus: 2 %}
+        
+          <div class="product__media">
+              {% for media in product.media %}
                 {% if forloop.first %}
-                  <div class="{{ variant.title | split: '/' | first }} variant-item ">
-                  <div class="normal-vaiant-image">
+                  <div class="main__image">
                 {% endif %}
                
-                {% if forloop.index0 == img_length %}
-                  <div class="main-variant-image">
+                {% if forloop.index0 == 2 %}
+                  <div class="item__image" data-thumbnails-slider>
                 {% endif %}
-                    <div class="variant-image">
-                    <img src="{{ image | img_url: '400x' }}" alt="image" />
-                  </div>
-                 {% if forloop.index == img_length %}
+                  {% if media.media_type == "image" %}
+                    <div class="image">
+                      <img src="{{ media | img_url: '400x' }}" alt="image" />
+                    </div>
+                    {% endif %}
+                 {% if forloop.index0 == 1 %}
                   </div>
                 {% endif %}
                  {% if forloop.last %}
-                  </div></div>
+                  </div>
                 {% endif %}
               {% endfor %}
               
-            {% for option in product.options %}
+            {% comment %} {% for option in product.options %}
              
               {% assign _option = option | downcase %}
               {% if _option == "color" or _option == "bright" %}
@@ -254,12 +242,11 @@
                           {% if item == key %}
                             </div></div>
                           {% endif %}
-                        {% comment %} {% assign item = item | plus: 1 %} {% endcomment %}
                       {% endif %}
                     {% endfor %}
                   {% endfor %}
               {% endif %}
-            {% endfor %} 
+            {% endfor %}  {% endcomment %}
 
               {% comment %} {% for variant in product.variants %}
                 {% assign mode = forloop.index0 | modulo: key %}

@@ -1,4 +1,5 @@
 {% assign _set = section.settings %}
+
 <div class="chart-wrapper" aria-hidden="true">
     <div class="container">
         <div class="section-title">{{ _set.section_title }}</div>
@@ -7,20 +8,61 @@
         </div>
         <div class="chart-header">
             <div class="main-header">
-                <div class="main__title">{{ _set.main_title }}</div>
+                <div class="main__title">
+                  {% for block in section.blocks %}
+                    {% if forloop.first %}
+                      {% assign main__title = block.settings.size_chart_content | split: "," | first %}
+                      {% if main_title == blank %} {{ _set.main_title }}
+                      {% else %} {{ main__title }} {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
                 <div class="main__subtitle">{{ _set.main_subtitle }}</div>
             </div>
             <div class="sizeChart-header">
-                <div class="sizeChart__title"></div>
+                <div class="sizeChart__title">
+                   {% for block in section.blocks %}
+                    {% if forloop.index0 == 1 %}
+                      {{ block.settings.size_chart_content | split: "," | first }}
+                    {% endif %}
+                  {% endfor %}
+                </div>
                 <div class="sizeChart__subtitle">{{ _set.sizeChart_subtitle }}</div>
                 <div class="sizeChart__title_group">
-                    
+                    {% for block in section.blocks %}
+                      {% unless forloop.first %}
+                        {% assign main__title_group = block.settings.size_chart_content | split: "," %}
+                        {% for main__title in main__title_group %}
+                           {% if forloop.first %} <li> {{ main__title }} </li>{% endif %}
+                        {% endfor %}
+                      {% endunless %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
         <div class="chart-body">
-            <div class="size__name"></div>
-            <div class="size__value"></div>
+            <div class="size__name">
+                 {% for block in section.blocks %}
+                  {% if forloop.first %}
+                    {% assign main__title_group = block.settings.size_chart_content | split: "," %}
+                    {% for main__title in main__title_group %}
+                        {% unless forloop.first %} <li> {{ main__title | strip }} </li>{% endunless %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+            </div>
+            <div class="size__value">
+               {% for block in section.blocks %}
+                    {% unless forloop.first %}
+                      {% assign sizeValueGroup = block.settings.size_chart_content | split: "," %}
+                      {% for size_value in sizeValueGroup %}
+                        {% unless forloop.first %}
+                          <li class="size-item{{forloop.parentloop.index0}} {%if forloop.parentloop.index0 == 1 %}active{% endif %}">{{ size_value }}</li>
+                        {% endunless %}
+                      {% endfor %}
+                    {% endunless %}
+                  {% endfor %}
+            </div>
         </div>
     </div>
 </div>
@@ -54,6 +96,16 @@
         "default": "Tap to compare size"
     }
   ],
+  "blocks":[{
+    "type": "size_chart",
+    "name": "size_chart",
+    "settings":[{
+      "type": "richtext",
+      "id": "size_chart_content",
+      "label": "Size Chart Content",
+      "info": "separate them comma"
+    }]
+  }],
   "presets": [
     {
       "category": "table",

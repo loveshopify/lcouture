@@ -6,8 +6,14 @@
     <img src="{{ collection_image | img_url: '500x' }}" alt="Image" />
   </div>
   <div class="text-container CollectionItem__Content--{{ block.settings.content_position | default: 'bottomLeft' }}">
-    <div class="collection_title"  style="color: {{ block.settings.title_color }} !important;">{{ collection_title }}</div>
-    <div class="collection_description">{{ collection_description }}</div>
+    <div class="collection_title">{{ collection_title }}</div>
+    <div class="collection_description">
+      {% comment %} {{ collection_description }} {% endcomment %}
+      {% if block.settings.button_url != blank and block.settings.button_text != blank %}
+        <a href="{{ block.settings.button_url }}" class="Button--primary Button">{{ block.settings.button_text }}</a>  
+      {% endif %}
+    </div>
+    
   </div>
 </div>
 

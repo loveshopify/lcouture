@@ -299,7 +299,9 @@ for size, we use it to display a size chart (if applicable)
       {{- 'product.form.sold_out' | t -}}
     {%- endif -%}
   </button>
-
+  <div class="Product__OffScreen {% if product.description != blank %}border{% endif %}">
+    {{ product.description | replace: 'data-section-type', 'data-section-type-placeholder' | replace: '<h6>', '</div><div class="text-group"><h6>' | replace_first: '</div>', '' | append: '</div>'}}
+  </div>
   {%- if section.settings.show_payment_button and product.template_suffix != 'pre-order' -%}
     {{ form | payment_button }}
   {%- endif -%}
@@ -344,36 +346,7 @@ in the DOM tree, and do not show below the content
 --------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}
 
-<div class="Product__OffScreen" >
-  {{- product_popovers -}}
-  {{- product_modals -}}
-   {% comment %} {{ product.description | replace: 'data-section-type', 'data-section-type-placeholder' | replace: '<h4>', '</div><div class="text-group"><h4>' | replace_first: '</div>', '' | append: '</div>'}} {% endcomment %}
-  {% if product.metafields.global_product.title != blank %}
-    {% for title in product.metafields.global_product.title %}
-        <div class="text-group">
-          <h4> {{ title | upcase }} </h4>
-          {% if product.metafields.global_product.descption_subtitle[forloop.index0] != blank %}
-            <span> {{ product.metafields.global_product.descption_subtitle[forloop.index0] }} </span>
-          {% endif %}
-          {% assign parent_index = forloop.index0 %}
-         {% for i in (1..5) %}
-            {% assign key = 'content' | append: forloop.index %}
-            {% if product.metafields.global_product[key][parent_index] != blank %}
-                <p> {{ product.metafields.global_product[key][parent_index] }} </p>
-            {% endif %}
-         {% endfor %}
-        </div>
-    {% endfor %}
-  {% endif %}
-   {% comment %} {% for block in section.blocks %}
-    {% assign bs = block.settings %}
-    <div class="text-group">
-      <h4>{{ bs.instroduction-title | upcase }}</h4>
-      {{ bs.instroduction-subtitle }}
-      {{ bs.instroduction-content }}
-    </div>
-   {% endfor %} {% endcomment %}
-</div>
+
 
 {% comment %}
 ------------------------------------------------------------------------------

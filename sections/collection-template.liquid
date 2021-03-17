@@ -51,7 +51,7 @@ COLLECTION INFO
 
 <div class="breadcrumb hide--mobile">
 	<a href="{{shop.url}}">Home</a>
-	<a href="{{collection.url}}">{{collection.handle | upcase}}</a>
+	<a href="{{collection.url}}">{{collection.title | upcase}}</a>
 </div>
 
 {%- if section.settings.show_collection_info and collection.all_products_count > 0 -%}
@@ -85,7 +85,7 @@ COLLECTION INFO
 		{% comment %} <div class="Container"></div> {% endcomment %}
 		<div class="collection-header hide--mobile">
 			<div class="filter-title">Filter By</div>
-			<div class="collection-title">{{ collection.handle | upcase }}</div>
+			<div class="collection-title">{{ collection.title | upcase }}</div>
 		</div>
 		<div class="collection-draw-header hide--desktop">
 			<div class="filter-title"><span>Filter By</span></div>
@@ -199,7 +199,7 @@ COLLECTION TOOLBAR
 		<header class="Drawer__Header Drawer__Header--bordered Drawer__Header--center Drawer__Container">
 			<div class="breadcrumb hide--desktop">
 				<a href="{{shop.url}}">Home</a>
-				<a href="{{collection.url}}">{{collection.handle | upcase}}</a>
+				<a href="{{collection.url}}">{{collection.title | upcase}}</a>
 			</div>
 			{% comment %} <span class="Drawer__Title Heading u-h4">{{ 'collection.filter.all' | t }}</span>
 			<button class="Drawer__Close Icon-Wrapper--clickable" data-action="close-drawer" data-drawer-id="collection-filter-drawer" aria-label="{{ 'header.navigation.close_sidebar' | t }}">
@@ -256,7 +256,7 @@ COLLECTION TOOLBAR
 
 		<div class="CollectionInner__Products" >
 			<div class="collectionInner-header hide--desktop">
-				<a href="{{collection.url}}">{{collection.handle | upcase}}</a>
+				<a href="{{collection.url}}">{{collection.title | upcase}}</a>
 				<div class="product-num">{{ collection.all_products_count | append: ' products' }} </div>
 			</div>
 			<div class="collectionInner-header hide--mobile">

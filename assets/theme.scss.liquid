@@ -8527,7 +8527,7 @@ $vertical-spacing-two-products-per-row  : 0px;
     & ul.Linklist:first-child {
       {% comment %} display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr; {% endcomment %}
-      width: 1200px;
+      width: unset;
       padding-left: 15px;
       padding-right: 30px;
       & li[aria-haspopup="true"] {
@@ -8597,16 +8597,18 @@ $vertical-spacing-two-products-per-row  : 0px;
 .DropdownMenu[aria-hidden="false"] {
   opacity: 1;
   visibility: visible;
-  max-width: calc(100% - 200px);
-  left: 100px;
+  max-width: 30%;
+  {% comment %} left: 100px; {% endcomment %}
   svg {
     display: none !important;
   }
   ul {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
+
     li {
-      width: 30%;
+      width: max-content;
       a {
         padding-left: 10px;
         padding-right: 10px;
