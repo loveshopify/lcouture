@@ -1445,9 +1445,12 @@ body.template-product {
                             padding-top: 15px;
                             border-top: 1px solid;
                             display: inline-block;
+                            width: 100%;
                             .ProductForm__Variants {
-                                .ProductForm__Option {
+                                & .ProductForm__Option:first-child {
                                     float: left;
+                                }
+                                .ProductForm__Option {
                                     .ProductForm__Label {
                                         color: #4d5356;
                                         .ProductForm__SelectedValue {
