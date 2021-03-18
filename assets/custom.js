@@ -110,9 +110,10 @@ if(template == 'product') {
   $(document).on("click", ".sizeChart-header", function(){
       $(".sizeChart__title_group").slideToggle();
   })
-  $(".product__media .item__image").on("click", ".image", function(){
+  $(document).on("click", ".item__image .image", function(){
     var index = $(".product__media .item__image .image").index($(this)) + 1;
     var length = $(".product__media .item__image .image").length;
+    console.log(index);
     if($(window).width > 640) {
         $(".product__media .item__image").append($(".main__image").html());
         $(".main__image").html("");

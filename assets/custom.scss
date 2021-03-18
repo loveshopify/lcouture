@@ -8,11 +8,11 @@ $font-color: #da4276;
 
 $arrow_size: 30px;
 
-html {
-    img {
-        filter: blur(30px);
-    }
-}
+// html {
+//     img {
+//         filter: blur(30px);
+//     }
+// }
 
 
 #vncvtw {
@@ -584,6 +584,7 @@ body.template-index {
                                         @media (max-width: 640px) {
                                             padding-left: 10px;
                                             height: 70%;
+                                            background: unset;
                                         }
                                     }
                                     .Slideshow__Content {
@@ -667,13 +668,13 @@ body.template-index {
                             &.previous {
                                 right: calc(55% + 75px);
                                 @media (max-width: 640px) {
-                                    left: calc(55% + 5px);
+                                    left: calc(50% - 50px);
                                 }
                             }
                             &.next {
                                 right: calc(55% + 25px);
                                 @media (max-width: 640px) {
-                                    left: calc(55% + 75px);
+                                    left: calc(50% + 30px);
                                 }
                             }
                             &[disabled] {

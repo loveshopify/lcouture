@@ -32,8 +32,9 @@ for size, we use it to display a size chart (if applicable)
             {%- assign size_chart_page = pages['size-chart'] -%}
              {%  unless downcase_option == 'size' %}
                 <span class="ProductForm__Label">
+                 {% unless color_label contains downcase_option %}
                   {{ option.name | upcase }}
-
+                  {% endunless %}
                   {% if color_label contains downcase_option and section.settings.show_color_swatch %}
                     <span class="ProductForm__SelectedValue">{{ option.selected_value }}</span>
                   {% endif %}
