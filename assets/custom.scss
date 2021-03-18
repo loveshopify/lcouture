@@ -8,12 +8,17 @@ $font-color: #da4276;
 
 $arrow_size: 30px;
 
-// html {
-//     img {
-//         filter: blur(30px);
-//     }
-// }
-
+html {
+    img {
+        filter: blur(30px);
+    }
+}
+* {
+    letter-spacing: 1px !important;
+}
+.breadcrumb__link {
+    color: #545454 !important;
+}
 
 #vncvtw {
     color: white !important;
@@ -247,7 +252,7 @@ $arrow_size: 30px;
             // display: none !important;
         }
     }
-    .Header__MainNav {
+    // .Header__MainNav {
         ul.HorizontalList--spacingExtraLoose {
             border-top: 1px solid #ededeb;
             padding-top: 18px;
@@ -268,7 +273,7 @@ $arrow_size: 30px;
                 }
             }
         }
-    }
+    // }
 }
 
 #section-announcement {
@@ -1236,6 +1241,7 @@ body.template-product {
                     padding-left: 30px;
                     max-width: 60%;
                     margin-right: 15px;
+                    margin-top: 20px;
                     flex: 1;
                 }
                 @media (max-width: 1007px) {
@@ -1339,8 +1345,9 @@ body.template-product {
             .Product__InfoWrapper {
                 position: relative !important;
                 @media (min-width: 1008px) {
-                    min-width: 600px;
+                    min-width: 500px;
                     padding-right: 40px;
+                    margin-top: 20px;
                 }
                 @media (max-width: 1007px) {
                     flex: 1;
@@ -1383,7 +1390,7 @@ body.template-product {
                                 color: #4d5356;
                                 font-weight: bold;
                                 line-height: 1;
-                                width: max-content;
+                                // width: max-content;
                                 @media (max-width: 640px) {
                                     font-size: 24px;
                                     line-height: 1;
@@ -1437,8 +1444,10 @@ body.template-product {
                         form.ProductForm {
                             padding-top: 15px;
                             border-top: 1px solid;
+                            display: inline-block;
                             .ProductForm__Variants {
                                 .ProductForm__Option {
+                                    float: left;
                                     .ProductForm__Label {
                                         color: #4d5356;
                                         .ProductForm__SelectedValue {

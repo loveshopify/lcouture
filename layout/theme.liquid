@@ -10,6 +10,7 @@
                 {% capture sb %}{% include "Secomapp-Title" %}{% endcapture %}{% unless sb contains "Liquid error" %}{% include "Secomapp-Title" %}{% endunless %} 
                 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ 'theme.scss.css' | asset_url }}">
 {% assign mlveda_code_flag = false %}
   
   {% if mlveda_code_flag == true %}
@@ -46,12 +47,13 @@
 <!-- Please contact support@starapps.studio for any help -->
 {% include "starapps-language-meta" %}
 {% include "starapps-pg-meta" %}
+
 <script type="text/javascript" src="https://cdn.starapps.studio/apps/vsk/lcoutureuae/script-1592397604.js?shop={{shop.permanent_domain}}" async></script>
 <!-- starapps_scripts_end -->
 {{ content_for_header }}
 {%- render 'bold-common' -%}
 
-    <link rel="stylesheet" href="{{ 'theme.scss.css' | asset_url }}">
+    
     
     <link rel="stylesheet" href="{{ 'custom.scss.css' | asset_url }}">
 

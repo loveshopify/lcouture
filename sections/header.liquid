@@ -161,7 +161,7 @@ HEADER CONTENT
         data-section-type="header"
         data-section-settings='{{ section_settings }}'
         role="banner">
-  <div class="Header__Wrapper">
+  <div class="Header__Wrapper" style="padding-bottom: 42px !important;">
     <div class="Header__FlexItem Header__FlexItem--fill">
       <button class="Header__Icon Icon-Wrapper Icon-Wrapper--clickable {% unless use_sidebar_menu %}hidden-desk{% endunless %}" aria-expanded="false" data-action="open-drawer" data-drawer-id="sidebar-menu" aria-label="{{ 'header.navigation.open_sidebar' | t }}">
         <span class="hidden-tablet-and-up">{%- render 'icon' with 'nav' -%}</span>
@@ -189,7 +189,12 @@ HEADER CONTENT
 
         {%- assign mega_menu_names = mega_menu_names | downcase | split: ',' | compact -%}
 
-        <nav class="Header__MainNav hidden-pocket hidden-lap" aria-label="{{ 'header.navigation.title' | t }}">
+        <nav class="Header__MainNav hidden-pocket hidden-lap" aria-label="{{ 'header.navigation.title' | t }}" style="position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-bottom: 18px;
+    width: 100%;
+    text-align: center;">
           <div class="scroll__logo">
             <img src="{{ section.settings.scroll_logo | img_url: '200x'}}" alt="image" />
           </div>

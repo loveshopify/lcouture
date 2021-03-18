@@ -51,16 +51,23 @@ for size, we use it to display a size chart (if applicable)
           {%- endif -%}
 
           {%- if color_label contains downcase_option and section.settings.show_color_swatch -%}
-            <ul class="ColorSwatchList HorizontalList HorizontalList--spacingTight">
+            <ul class="{{ product.metafields.global.option_group }} ColorSwatchList HorizontalList HorizontalList--spacingTight">
               {% assign key = product.metafields.global.option_group %}
               {% if key != blank %}
-                {% for _product in collections.all.products %}
-                  {% if _product.metafields.global.option_group == key %}
-                    <li class=" HorizontalList__Item {% if product.handle == _product.handle %} active {% endif %}" href="{{ _product.url }}" style="background: {{ _product.metafields.global.option_color }};">
-                      
-                    </li>
-                  {% endif %}
+              {% assign handle_group = "" %}
+                {% for _collection in collections %}
+                  {{  }}
+                  
+                  {% for _product in _collection.products %}
+                    {% if _product.metafields.global.option_group == key %}
+                      {% unless handle_group contains _product.handle %}
+                        {% assign handle_group = handle_group | append: _product.handle %}
+                        <li class=" HorizontalList__Item {% if product.handle == _product.handle %} active {% endif %}" href="{{ _product.url }}" style="background: {{ _product.metafields.global.option_color }};"></li>
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
                 {% endfor %}
+               
               {% else %}
                    <li class=" HorizontalList__Item active" href="{{ product.url }}" style="background: {{ product.metafields.global.option_color }};">
                     </li>

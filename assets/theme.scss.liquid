@@ -8406,8 +8406,8 @@ $vertical-spacing-two-products-per-row  : 0px;
 
 @include av-mq('desk') {
   .js .Header__Wrapper {
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    {% comment %} opacity: 0; {% endcomment %}
+    {% comment %} transition: opacity 0.3s ease-in-out; {% endcomment %}
   }
 
   .Header:not(.Header--sidebar) .Header__Wrapper {
