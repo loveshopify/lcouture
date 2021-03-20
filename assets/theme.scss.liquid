@@ -7318,7 +7318,9 @@ select::-ms-expand {
   font-size: to-size(9px);
   margin: 4px 0;
   padding: 2px 6px;
-  background: $background;
+  {% comment %} background: $background; {% endcomment %}
+  color: white;
+  background: rgb(206, 58, 106);
   max-width: -webkit-max-content;
   max-width: -moz-max-content;
   max-width: max-content;

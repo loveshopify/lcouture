@@ -161,7 +161,7 @@ HEADER CONTENT
         data-section-type="header"
         data-section-settings='{{ section_settings }}'
         role="banner">
-  <div class="Header__Wrapper" style="padding-bottom: 42px !important;">
+  <div class="Header__Wrapper">
     <div class="Header__FlexItem Header__FlexItem--fill">
       <button class="Header__Icon Icon-Wrapper Icon-Wrapper--clickable {% unless use_sidebar_menu %}hidden-desk{% endunless %}" aria-expanded="false" data-action="open-drawer" data-drawer-id="sidebar-menu" aria-label="{{ 'header.navigation.open_sidebar' | t }}">
         <span class="hidden-tablet-and-up">{%- render 'icon' with 'nav' -%}</span>
@@ -195,9 +195,10 @@ HEADER CONTENT
     padding-bottom: 18px;
     width: 100%;
     text-align: center;">
-          <div class="scroll__logo">
+          <a href="{{ shop.url }}"><div class="scroll__logo">
             <img src="{{ section.settings.scroll_logo | img_url: '200x'}}" alt="image" />
           </div>
+          </a>
           <ul class="HorizontalList HorizontalList--spacingExtraLoose">
             {%- for link in main_menu.links -%}
               {%- assign downcased_link_title = link.title | downcase | strip -%}

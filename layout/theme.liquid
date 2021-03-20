@@ -4,7 +4,24 @@
   <head> 
   
   <meta name="facebook-domain-verification" content="e8a8ov98xk8aba1om61w8hylp2zmia" />
-     
+    <style>
+        .Header__FlexItem--logo {
+          margin-bottom: 40px;
+        }
+        @media (max-width: 640px) {
+          .Header__FlexItem--logo {
+            margin-bottom: 0px;
+          }
+        }
+        .Header__Wrapper {
+          padding-bottom: 42px !important;
+        }
+        @media (max-width: 640px) {
+           .Header__Wrapper {
+            padding-bottom: 18px !important;
+           }
+        }
+    </style>
                 {% capture sb %}{% include "Secomapp-Description" %}{% endcapture %}{% unless sb contains "Liquid error" %}{% include "Secomapp-Description" %}{% endunless %} 
                 
                 {% capture sb %}{% include "Secomapp-Title" %}{% endcapture %}{% unless sb contains "Liquid error" %}{% include "Secomapp-Title" %}{% endunless %} 

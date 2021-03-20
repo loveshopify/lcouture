@@ -55,8 +55,9 @@ $(document).ready(function(){
   }
   var key = 38, direction = 100;
   $(window).scroll(function(){
-    if($("#section-header").offset().top > 50) key = 38;
-    if($("#section-header").offset().top > key) {
+    if(direction < $("#section-header").offset().top && $("#section-header").offset().top < 39) {
+      $("#section-header").removeClass("scroll");
+    }else if($("#section-header").offset().top > key) {
       if($("#section-header").attr("class").indexOf("scroll") == -1) {
         $("#section-header").addClass("scroll");
         key = 0;
@@ -64,6 +65,8 @@ $(document).ready(function(){
     }else {
       $("#section-header").removeClass("scroll");
     }
+    if($("#section-header").offset().top > 38) key = 38;
+    direction = $("#section-header").offset().top;
   })
   $('[data-collection-leaset-slider]').slick("next");
 })
@@ -113,7 +116,6 @@ if(template == 'product') {
   $(document).on("click", ".item__image .image", function(){
     var index = $(".product__media .item__image .image").index($(this)) + 1;
     var length = $(".product__media .item__image .image").length;
-    console.log(index);
     if($(window).width > 640) {
         $(".product__media .item__image").append($(".main__image").html());
         $(".main__image").html("");
@@ -129,6 +131,10 @@ if(template == 'product') {
       $(".main__image").html($(".product__media .item__image").find(".image")[index-1]);
       $(".main__image").append($(".product__media .item__image").find(".image")[index-1]);
     }
+  })
+  $(document).on("click", ".text-group h6", function(){
+    $(this).nextAll().slideToggle();
+    $(this).toggleClass("active");
   })
   $(document).on("click", ".sizeChart__title_group li", function(){
     var _select_value = $.trim($(this).find("p").text());
@@ -159,7 +165,6 @@ if(template == 'product') {
         _this.closest(".Product.Product--small").find(".Product__OffScreen").html($(data).find(".Product__OffScreen").html());
         _this.closest(".Product__InfoWrapper").html($(data).find(".Product__InfoWrapper").html());
         $("#judgeme_product_reviews").html($(data).find("#judgeme_product_reviews").html());
-        // console.log($(data).find(".Product__OffScreen").html());
         if($.trim($(data).find("#judgeme_product_reviews").html()) == "") {
           $("#judgeme_product_reviews").html('<div class="jdgm-rev-widg jdgm--js" data-number-of-reviews="0" data-average-rating="0.00"><div class="jdgm-rev-widg__header"><h2 class="jdgm-rev-widg__title">WHAT PEPOLE SAYS ABOUT PRODUCT</h2><div class="jdgm-rev-widg__summary"><div class="jdgm-rev-widg__summary-stars"><a class="jdgm-star jdgm--off"></a><a class="jdgm-star jdgm--off"></a><a class="jdgm-star jdgm--off"></a><a class="jdgm-star jdgm--off"></a><a class="jdgm-star jdgm--off"></a></div><div class="jdgm-rev-widg__summary-text">No reviews yet</div></div><div class="jdgm-widget-actions-wrapper"> <a href="#" class="jdgm-write-rev-link">Write a review</a></div><div class="jdgm-rev__br"></div><div class="jdgm-form-wrapper" style="display: none;"><form class="jdgm-form" novalidate="novalidate"><div class="jdgm-form__name-fieldset"> <label for="jdgm_review_reviewer_name_5syzbea3">Name</label> <span class="jdgm-form__reviewer-name-format-container"> (<label for="jdgm_review_reviewer_name_format_5syzbea3" class="jdgm-form__inline-label jdgm-always-visible">displayed publicly like</label> <span class="jdgm-form__reviewer-name-format-dropdown-wrapper"> <select id="jdgm_review_reviewer_name_format_5syzbea3" name="reviewer_name_format" class="jdgm-form__reviewer-name-format-dropdown"><option value="" selected="">John Smith</option><option value="last_initial">John S.</option><option value="all_initials">J.S.</option><option value="anonymous">Anonymous</option> </select> <span class="jdgm-form__reviewer-name-format-dropdown-arrow"></span> </span> ) </span><input id="jdgm_review_reviewer_name_5syzbea3" name="reviewer_name" type="text" placeholder="Enter your name (public)" aria-label="Name"></div><div class="jdgm-form__email-fieldset"> <label for="jdgm_review_reviewer_email_5syzbea3">Email</label> <input id="jdgm_review_reviewer_email_5syzbea3" name="reviewer_email" type="email" required="" placeholder="Enter your email (private)" aria-label="Email" aria-required="true"></div><div class="jdgm-form__rating-fieldset" aria-label="Rating"> <label>Rating</label> <span class="jdgm-form__rating" style="cursor: pointer;"><a data-alt="1" class="jdgm-star jdgm--on" title="1 star" aria-label="1 star"></a><a data-alt="2" class="jdgm-star jdgm--on" title="2 stars" aria-label="2 stars"></a><a data-alt="3" class="jdgm-star jdgm--on" title="3 stars" aria-label="3 stars"></a><a data-alt="4" class="jdgm-star jdgm--on" title="4 stars" aria-label="4 stars"></a><a data-alt="5" class="jdgm-star jdgm--on" title="5 stars" tabindex="0" aria-label="5 stars"></a><input name="score" type="hidden" value="5"></span></div><div class="jdgm-form__title-fieldset"> <label for="jdgm_review_title_5syzbea3">Review Title</label><span class="jdgm-countdown"></span> <input id="jdgm_review_title_5syzbea3" name="review_title" type="text" placeholder="Give your review a title" aria-label="Review Title"></div><div class="jdgm-form__body-fieldset"> <label for="jdgm_review_body_5syzbea3">Review</label><span class="jdgm-countdown"></span><textarea id="jdgm_review_body_5syzbea3" rows="5" name="review_body" placeholder="Write your comments here" aria-label="Review"></textarea></div><div class="jdgm-custom-forms"></div><input type="submit" class="jdgm-submit-rev btn btn_c button " value="Submit Review"></form></div><div class="jdgm-form-dynamic-wrapper"><div class="jdgm-mask"></div><form class="jdgm-form-dynamic" novalidate="novalidate"><div class="jdgm-form-dynamic__close jdgm-close-ico"></div><div class="jdgm-form-dynamic__picture-upload-field jdgm-form-dynamic__row" data-pos="-1"><label class="jdgm-picture-dynamic-fieldset-title">Picture (optional)</label><div class="jdgm-form-dynamic__buttons-row"><div class="jdgm-form-dynamic__back btn btn_c button" tabindex="0">Back</div><div class="jdgm-form-dynamic__next btn btn_c button" tabindex="0">Next</div></div></div><div class="jdgm-form-dynamic__rating-fieldset jdgm-form-dynamic__row" data-pos="0"> <label>Rating</label> <span class="jdgm-form-dynamic__rating" style="cursor: pointer;"><a data-alt="1" class="jdgm-star jdgm--on" title="1 star"></a><a data-alt="2" class="jdgm-star jdgm--on" title="2 stars"></a><a data-alt="3" class="jdgm-star jdgm--on" title="3 stars"></a><a data-alt="4" class="jdgm-star jdgm--on" title="4 stars"></a><a data-alt="5" class="jdgm-star jdgm--on" title="5 stars"></a><input name="score" type="hidden" value="5"></span><div class="jdgm-form-dynamic__buttons-row"><div class="jdgm-form-dynamic__back btn btn_c button" tabindex="0">Back</div><div class="jdgm-form-dynamic__next btn btn_c button" tabindex="0">Next</div></div></div><div class="jdgm-form-dynamic__row" data-pos="1"><div class="jdgm-form-dynamic__name-fieldset"> <label for="jdgm_reviewer_name">Name</label> <input id="jdgm_reviewer_name" name="reviewer_name" type="text" placeholder="Enter your name (public)"></div><div class="jdgm-form-dynamic__email-fieldset"> <label for="jdgm_reviewer_email">Email</label> <input id="jdgm_reviewer_email" name="reviewer_email" type="email" placeholder="Enter your email (private)"></div><div class="jdgm-form-dynamic__buttons-row"><div class="jdgm-form-dynamic__back btn btn_c button" tabindex="0">Back</div><div class="jdgm-form-dynamic__next btn btn_c button" tabindex="0">Next</div></div></div><div class="jdgm-form-dynamic__row jdgm-form-dynamic__submit-slide" data-pos="2"><div class="jdgm-form-dynamic__title-fieldset"> <label for="jdgm_review_title">Review Title</label><span class="jdgm-countdown"></span> <input id="jdgm_review_title" name="review_title" type="text" placeholder="Give your review a title"></div><div class="jdgm-form-dynamic__body-fieldset"> <label for="jdgm_review_body">Review</label><span class="jdgm-countdown"></span><textarea id="jdgm_review_body" rows="5" name="review_body" placeholder="Write your comments here"></textarea></div><div class="jdgm-form-dynamic__buttons-row"><div class="jdgm-form-dynamic__back btn btn_c button" tabindex="0">Back</div><div class="jdgm-form-dynamic__next btn btn_c button" tabindex="0">Next</div></div></div><div class="jdgm-custom-forms-dynamic jdgm-custom-forms"></div><input type="submit" class="jdgm-form-dynamic__submit-rev btn btn_c button " value="Submit Review"></form></div></div></div>');
         }

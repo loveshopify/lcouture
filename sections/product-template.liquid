@@ -197,7 +197,7 @@
           <div class="product__media">
               {% for media in product.media %}
                 {% if forloop.first %}
-                  <div class="main__image">
+                  <div class="main__image {% if forloop.length == 1 %} wide {% endif %}">
                 {% endif %}
                
                 {% if forloop.index0 == 2 %}
