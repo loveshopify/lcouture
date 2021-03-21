@@ -8,13 +8,13 @@ $font-color: #da4276;
 
 $arrow_size: 30px;
 
-// html {
-//     img, video {
-//         filter: blur(30px);
-//     }
-// }
+html {
+    img, video {
+        filter: blur(30px);
+    }
+}
 * {
-    letter-spacing: 1px !important;
+    letter-spacing: 0px !important;
 }
 .breadcrumb__link {
     color: #545454 !important;
@@ -538,29 +538,47 @@ body.template-index {
             }
             &.no_overlay {
                 padding-top: 80px;
+                @media (max-width: 640px) {
+                    padding-top: 40px;
+                }
                 .Slideshow--fullscreen {
+                    @media (max-width: 640px) {
+                        // height: unset !important;
+                        // max-height: 600px;
+                        background: #e4babe;
+                    }
                     .Slideshow__Carousel {
+                       
                         .flickity-viewport {
                             .flickity-slider {
+                                @media (max-width: 640px) {
+                                    height: max-content;
+                                }
                                 .Slideshow__Slide {
                                     display: grid;
                                     
                                     grid-template-columns: 15% 30% 55%;
                                     @media (max-width: 640px) {
-                                        grid-template-columns: 10% 90%;
+                                        // grid-template-columns: 10% 90%;
                                         background: #e4babe;
-                                        height: calc(100% - 40px);
+                                        display: flex;
+                                        flex-direction: column;
+                                        height: 100%;
+                                        padding-bottom: 30px;
                                         h3 {
-                                            grid-row-start: 1;
-                                            grid-row-end: 3;
+
+                                            // grid-row-start: 1;
+                                            // grid-row-end: 3;
                                         }
                                         .Slideshow__ImageContainer {
                                             height: 50%;
                                             @media (max-width: 640px) {
-                                                height: 66%;;
+                                                height: max-content;
+                                                margin-left: 50px;
+                                                margin-right: 50px;
                                             }
                                             img {
-                                                object-fit: cover !important;
+                                                object-fit: contain !important;
                                             }
                                         }
                                     }
@@ -568,7 +586,8 @@ body.template-index {
                                     .SectionHeader {
                                         @media (max-width: 640px) {
                                             opacity: 1 !important;
-                                            
+                                            width: 100%;
+                                            text-align: center;
                                         }
                                        
                                     }
@@ -591,7 +610,12 @@ body.template-index {
                                         height: calc(100% - 60px);
                                         @media (max-width: 640px) {
                                             padding-left: 10px;
-                                            height: 70%;
+                                            // height: 70%;
+                                            margin-top: 20px;
+                                            margin-bottom: 20px;
+                                            height: unset;
+                                            writing-mode: unset;
+                                            transform: unset;
                                             background: unset;
                                         }
                                     }
@@ -607,8 +631,10 @@ body.template-index {
                                         height: calc(100% - 60px);
                                         @media (max-width: 640px) {
                                             padding: 0px 5px;
-                                            transform: translateY(-180px);
-                                            height: 100%;
+                                            // transform: translateY(-180px);
+                                            height: max-content;
+                                            // margin-bottom: 20px;
+                                            // margin-top: 15px;
                                         }
                                         .SectionHeader {
                                             .SectionHeader__Heading {
@@ -619,11 +645,17 @@ body.template-index {
                                                     line-height: 1.2;
                                                     strong {
                                                         display: block;
+                                                        @media (max-width: 640px) {
+                                                            display: inline-block;                                                            
+                                                        }
                                                     }
                                                     @media (max-width: 640px) {
                                                         font-size: 17px;
                                                         letter-spacing: 0px;
                                                     }
+                                                }
+                                                @media (max-width: 640px) {
+                                                    margin-bottom: 10px;                                                    
                                                 }
                                             }
                                             .text_content {
@@ -637,7 +669,13 @@ body.template-index {
                                                 }
                                             }
                                             .SectionHeader__ButtonWrapper {
+                                                @media (max-width: 640px) {
+                                                    margin-top: 0px;
+                                                }
                                                 .ButtonGroup {
+                                                    @media (max-width: 640px) {
+                                                        justify-content: center;
+                                                    }
                                                     a {
                                                         color: $font-color !important;
                                                         font-size: 16px;
@@ -676,13 +714,21 @@ body.template-index {
                             &.previous {
                                 right: calc(55% + 75px);
                                 @media (max-width: 640px) {
-                                    left: calc(50% - 50px);
+                                    right: unset;
+                                    left: 5px;
+                                    bottom: unset;
+                                    top: calc(50% - 30px);
+                                    transform: translateY(-50%);
                                 }
                             }
                             &.next {
                                 right: calc(55% + 25px);
                                 @media (max-width: 640px) {
-                                    left: calc(50% + 30px);
+                                    left: unset;
+                                    right: 5px;
+                                    bottom: unset;
+                                    top: calc(50% - 30px);
+                                    transform: translateY(-50%);
                                 }
                             }
                             &[disabled] {
@@ -906,6 +952,7 @@ body.template-index {
                         .flickity-slider {
                             @media (max-width: 640px) {
                                 left: -10% !important;
+
                             }
                             @media (max-width: 1007px) {
                                 .Carousel__Cell:first-child {
@@ -1010,11 +1057,13 @@ body.template-index {
         }
         &.shopify-section--upto {
             max-width: $container;
+            margin: 50px auto;
             // max-width: calc(100%);
             @media (max-width: 640px) {
                 padding: 60px 16px !important;
+                margin: 40px auto;
             }
-            margin: 50px auto;
+            
             .section__content {
                 // position: relative;
                 text-align: center;
@@ -1672,6 +1721,31 @@ body.template-product {
                     & > * {
                         display: none;
                     }
+                    & > h5 {
+                        margin: 0px;
+                        padding: 10px 15px;
+                        position: relative;
+                        &::after {
+                            content: "";
+                            transform: translateY(-50%) rotate(-45deg);
+                            transition: all .3s ease-in-out;
+                            position: absolute;
+                            right: 20px;
+                            top: 50%;
+                            border-color: #231f20;
+                            border-style: solid;
+                            border-width: 0 0 2px 2px;
+                            display: inline-block;
+                            height: 10px;
+                            width: 10px;
+                        }
+                        &.active::after {
+                            transform: translateY(-50%) rotate(135deg);
+                        }
+                        & ~ div {
+                            padding-left: 20px;
+                        }
+                    }
                 }
                 blockquote {
                     margin: 0px !important;
@@ -1682,6 +1756,7 @@ body.template-product {
                     color: #55585a;
                     font-size: 25px;
                     font-weight: bold;
+                    text-transform: uppercase;
                     // &.active ~ * {
                     //     display: block;
                     // }
@@ -1711,13 +1786,12 @@ body.template-product {
                             display: inline-block;
                             height: 10px;
                             width: 10px;
-                            transform-origin: left bottom;
                         }
                     }
                 }
                 p {
                     position: relative;
-                    padding-left: 15px;
+                    // padding-left: 15px;
                     color: #55585a;
                     margin-bottom: 10px;
                     @media (max-width: 640px) {
@@ -1725,7 +1799,7 @@ body.template-product {
                     }
                     &::before {
                         position: absolute;
-                        content: "";
+                        // content: "";
                         left: 0;
                         width: 10px;
                         height: 10px;

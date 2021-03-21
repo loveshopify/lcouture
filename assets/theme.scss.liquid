@@ -11239,10 +11239,16 @@ $vertical-spacing-two-products-per-row  : 0px;
 
 @supports (--css: variables) {
   .js .Slideshow--fullscreen {
-    height: calc(var(--window-height) - (var(--header-height) * var(--header-is-not-transparent, 0)) - var(--announcement-bar-height, 0px));
+    height: calc(var(--window-height) - (var(--header-height) * var(--header-is-not-transparent, 0)) - var(--announcement-bar-height, 0px) + 90px);
   }
 }
-
+@media (max-width: 350px) {
+  @supports (--css: variables) {
+  .js .Slideshow--fullscreen {
+    height: calc(var(--window-height) - (var(--header-height) * var(--header-is-not-transparent, 0)) - var(--announcement-bar-height, 0px) + 90px);
+  }
+}
+}
 /* Slideshow transition are handled in JavaScript, so while we use Flickity, we need to disable any transition */
 
 .js .Slideshow__Carousel {

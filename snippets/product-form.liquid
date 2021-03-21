@@ -308,7 +308,11 @@ for size, we use it to display a size chart (if applicable)
     {%- endif -%}
   </button>
   <div class="Product__OffScreen {% if product.description != blank %}border{% endif %}">
-    {{ product.description | replace: 'data-section-type', 'data-section-type-placeholder' | replace: '<h6>', '</div><div class="text-group"><h6>' | replace_first: '</div>', '' | append: '</div>'}}
+    {% comment %} {{ product.description | replace: 'data-section-type', 'data-section-type-placeholder' }} {% endcomment %}
+    {% assign print_description = product.description | replace: 'data-section-type', 'data-section-type-placeholder' | replace: '<h5><br></h5>', '' | replace: '<h5></h5>', '' | replace: '<h6><br></h6>', '' | replace: "<div></div>", "" | replace: '<h6>', '</div><div class="text-group"><h6>' | replace_first: '</div>', '' | append: '</div>' %}
+    {% assign print_description = print_description | replace: '</h5>', '</h5><div>' | replace: '<h5>', '</div><h5>' | replace: '</h6>', '</h6><div>' | replace: '<div class="text-group">', '</div><div class="text-group">' | remove_first: '</div>' | append: '</div>' %}
+  {{ print_description }}
+    {% comment %} {{ product.description | replace: 'data-section-type', 'data-section-type-placeholder' | replace: '<h5><br></h5>', '' | replace: '<h5></h5>', '' | replace: '<h6><br></h6>', '' | replace: "<div></div>", "" | replace: '<h6>', '</div><div class="text-group"><h6>' | replace_first: '</div>', '' | append: '</div>' }} {% endcomment %}
   </div>
   {%- if section.settings.show_payment_button and product.template_suffix != 'pre-order' -%}
     {{ form | payment_button }}
