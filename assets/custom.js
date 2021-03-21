@@ -133,21 +133,35 @@ if(template == 'product') {
     }
   })
   $(document).on("click", ".text-group h6", function(){
-    $(this).toggleClass("active");
-    if($(this).attr("class").indexOf("active") == -1) {
-      $(this).closest('.text-group').find("h5").slideUp();
-      $(this).closest('.text-group').find("div").slideUp();
-    } else {
-      $(this).closest('.text-group').find("h5").slideDown();
-      $(this).closest('.text-group').find("h5").removeClass("active");
+    if($(window).width() <= 640) {
+      $(this).toggleClass("active");
+      if($(this).attr("class").indexOf("active") == -1) {
+        if($(this).closest('.text-group').find("h5").length > 1) {
+          $(this).closest('.text-group').find("h5").slideUp();
+          $(this).closest('.text-group').find("div").slideUp();
+        } else {
+          $(this).nextAll().slideUp();
+        }
+       
+      } else {
+        if($(this).closest('.text-group').find("h5").length > 1) {
+          $(this).closest('.text-group').find("h5").slideDown();
+          $(this).closest('.text-group').find("h5").removeClass("active");
+        } else {
+          $(this).nextAll().slideDown();
+        }
+      }
     }
   })
   $(document).on("click", ".text-group h5", function(){
-    $(this).toggleClass("active");
-    if($(this).attr("class").indexOf("active") == -1) $(this).next('div').slideUp();
-    else {
-      $(this).next('div').show();
-      $(this).next('div').chlidren().slideDown();
+    if($(window).width() <= 640) {
+      $(this).toggleClass("active");
+      if($(this).attr("class").indexOf("active") == -1) $(this).next('div').slideUp();
+      else {
+        $(this).next('div').slideDown();
+        $(this).next("div").children("div").slideDown();
+        // $(this).next('div').chlidren().slideDown();
+      }
     }
   })
   $(document).on("click", ".sizeChart__title_group li", function(){

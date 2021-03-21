@@ -8,11 +8,11 @@ $font-color: #da4276;
 
 $arrow_size: 30px;
 
-html {
-    img, video {
-        filter: blur(30px);
-    }
-}
+// html {
+//     img, video {
+//         filter: blur(30px);
+//     }
+// }
 * {
     letter-spacing: 0px !important;
 }
@@ -1765,6 +1765,7 @@ body.template-product {
                         margin-bottom: 0px;
                         margin-top: 0px;
                         display: block;
+                        font-size: 20px;
                         * {
                             display: block;
                         }
