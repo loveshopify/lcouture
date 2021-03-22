@@ -11,7 +11,7 @@
                    {%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,400,600,700,800,900,1000,1200', image: bs_images[forloop.index0].settings.article_image -%}{%- endcapture -%}
                     {%- assign image_url = bs_images[forloop.index0].settings.article_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
-                    <a class="ArticleItem__ImageWrapper AspectRatio AspectRatio--withFallback" style="background: url({{ bs_images[forloop.index0].settings.article_image | img_url: '1x1', format: 'jpg' }}); padding-bottom: 58%; --aspect-ratio: 1.7" href="{{ article.url }}">
+                    <a class="ArticleItem__ImageWrapper AspectRatio AspectRatio--withFallback" style="background: url({{ bs_images[forloop.index0].settings.article_image | img_url: '1x1', format: 'jpg' }}); padding-bottom: 58%; --aspect-ratio: 1.7" href="{{ bs_images[forloop.index0].settings.article_link | default: article.url }}">
                     <img class="ArticleItem__Image Image--lazyLoad Image--fadeIn"
                         data-src="{{ image_url }}"
                         data-widths="[{{ supported_sizes }}]"
@@ -26,7 +26,7 @@
                     {%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,400,600,700,800,900,1000,1200', image: article.image -%}{%- endcapture -%}
                     {%- assign image_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
-                    <a class="ArticleItem__ImageWrapper AspectRatio AspectRatio--withFallback" style="background: url({{ article.image | img_url: '1x1', format: 'jpg' }}); padding-bottom: 58%; --aspect-ratio: 1.7" href="{{ article.url }}">
+                    <a class="ArticleItem__ImageWrapper AspectRatio AspectRatio--withFallback" style="background: url({{ article.image | img_url: '1x1', format: 'jpg' }}); padding-bottom: 58%; --aspect-ratio: 1.7" href="{{ bs_images[forloop.index0].settings.article_link | default: article.url }}">
                     <img class="ArticleItem__Image Image--lazyLoad Image--fadeIn"
                         data-src="{{ image_url }}"
                         data-widths="[{{ supported_sizes }}]"
@@ -45,13 +45,13 @@
                     {%- endif -%}
                      {% if section.settings.show_date %}<p class="article__date">{{ article.updated_at  | date: "%B %d, %Y" }}</p>{% endif %}
                     <h2 class="ArticleItem__Title Heading u-h2">
-                    <a href="{{ article.url }}">{{ article.title }}</a>
+                    <a href="{{ bs_images[forloop.index0].settings.article_link | default: article.url }}">{{ article.title }}</a>
                     </h2>
 
                     {%- unless template.name == 'article' -%}
                        
                         <p class="ArticleItem__Excerpt">{{ article.excerpt_or_content | strip_html | truncate: 150 }}</p>
-                        <a href="{{ article.url }}" class="ArticleItem__Link Link Button Button--primary">{{ 'blog.article.read_more' | t }}</a>
+                        <a href="{{ bs_images[forloop.index0].settings.article_link | default: article.url }}" class="ArticleItem__Link Link Button Button--primary">{{ 'blog.article.read_more' | t }}</a>
                     {%- endunless -%}
                 </div>
                 </article>
@@ -99,12 +99,17 @@
   ],
   "blocks":[{
     "type": "articleImage",
-    "name": "article-image",
+    "name": "Article Settings",
     "settings":[
       {
         "type": "image_picker",
         "id": "article_image",
         "label": "Article Image"
+      },
+      {
+        "type": "url",
+        "id": "article_link",
+        "label": "Artcle Link"
       }
     ]
   }],
