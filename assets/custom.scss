@@ -1689,7 +1689,8 @@ body.template-product {
                 flex-direction: column;
                 padding-left: 24px;
                 padding-right: 24px;
-                padding-top: 15px;
+                padding-top: 0px;
+                padding-bottom: 0px;
             }
             .text-group + .text-group {
                 margin-left: 20px;
@@ -1697,6 +1698,7 @@ body.template-product {
                     margin-left: 0px;
                     position: relative;
                     padding-top: 15px;
+                    padding-bottom: 15px;
                     margin-bottom: 0px;
                     &::after {
                         position: absolute;
@@ -1717,7 +1719,9 @@ body.template-product {
                 // flex: 1;
                 @media (max-width: 640px) {
                     max-width: 100%;
-                    margin-bottom: 15px;
+                    margin-bottom: 0px;
+                    padding-top: 15px;
+                    padding-bottom: 15px;
                     & > * {
                         display: none;
                     }
