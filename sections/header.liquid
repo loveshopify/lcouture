@@ -387,15 +387,20 @@ HEADER CONTENT
 
     {%- capture header_logo -%}
       <a href="{{ routes.root_url }}" class="Header__LogoLink">
+        {% assign mobile_logo = section.settings.mobile_logo | default: section.settings.logo %}
         {%- if section.settings.logo != blank -%}
           {%- capture image_size -%}{{ section.settings.logo_max_width }}x{%- endcapture -%}
 
-          <img class="Header__LogoImage Header__LogoImage--primary"
+          <img class="Header__LogoImage Header__LogoImage--primary hide--mobile"
                src="{{ section.settings.logo | img_url: image_size }}"
                srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
                width="{{ section.settings.logo_max_width }}"
                alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
-
+          <img class="Header__LogoImage Header__LogoImage--primary hide--desktop"
+               src="{{ mobile_logo | img_url: image_size }}"
+               srcset="{{ mobile_logo | img_url: image_size }} 1x, {{ mobile_logo | img_url: image_size, scale: 2 }} 2x"
+               width="{{ mobile_logo_max_width }}"
+               alt="{{ mobile_logo.alt | default: shop.name | escape }}">
           {%- if use_transparent_header and section.settings.transparent_logo != blank -%}
             <img class="Header__LogoImage Header__LogoImage--transparent"
                  src="{{ section.settings.transparent_logo | img_url: image_size }}"
@@ -553,8 +558,13 @@ HEADER CONTENT
     {
       "type": "image_picker",
       "id": "logo",
-      "label": "Image",
+      "label": "Desktop Image",
       "info": "200 x 60px .png recommended"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_logo",
+      "label": "Mobile Image"
     },
     {
       "type": "range",

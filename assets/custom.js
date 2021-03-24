@@ -314,7 +314,9 @@ if(template == "index") {
     });   
 }
 $(document).on("click", ".Footer__Title", function(){
-  $(this).toggleClass("open");
-  $(this).next().slideToggle();
+  if($(window).width() <= 640) {
+    $(this).toggleClass("open");
+    $(this).next().slideToggle();
+  }
 })
 
