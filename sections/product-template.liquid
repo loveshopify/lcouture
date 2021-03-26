@@ -195,27 +195,20 @@
         {%- endcapture -%}
         
           <div class="product__media">
-              {% for media in product.media %}
-                {% if forloop.first %}
-                  <div class="main__image {% if forloop.length == 1 %} wide {% endif %}">
-                {% endif %}
-               
-                {% if forloop.index0 == 2 %}
-                  <div class="item__image" data-thumbnails-slider>
-                {% endif %}
-                  {% if media.media_type == "image" %}
-                    <div class="image">
-                      <img src="{{ media | img_url: '400x' }}" alt="image" />
-                    </div>
-                    {% endif %}
-                 {% if forloop.index0 == 1 %}
-                  </div>
-                {% endif %}
-                 {% if forloop.last %}
-                  </div>
-                {% endif %}
+            <div class="main__image {% if product.media.size == 1 %} wide {% endif %}">
+              {% for media in product.media limit: 2 %}
+                <div class="image">
+                  <img src="{{ media | img_url: '400x' }}" alt="image" />
+                </div>
               {% endfor %}
-              
+            </div>
+            <div class="item__image" data-thumbnails-slider>
+              {% for media in product.media %}
+                <div class="image">
+                  <img src="{{ media | img_url: '400x' }}" alt="image" />
+                </div>
+              {% endfor %}
+              </div>
             {% comment %} {% for option in product.options %}
              
               {% assign _option = option | downcase %}

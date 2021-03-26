@@ -10,7 +10,7 @@ $arrow_size: 30px;
 
 html {
     img, video {
-        filter: blur(30px);
+        filter: blur(20px);
     }
 }
 * {
@@ -397,15 +397,23 @@ body.template-index {
                 .SectionHeader {
                     opacity: 1 !important;
                 }
+                @media (max-width: 640px) {
+                    .Slideshow--fullscreen {
+                        height: unset !important;
+                    }
+                }
                 .Slideshow__Carousel {
                     min-height: 500px;
                     // @media (max-width: 640px) {
                         .section-video {
-                            min-height: 600px !important;
+                            min-height: 500px !important;
                             height: 100vh;
                             position: relative;
                             overflow: hidden;
                             width: 100%;
+                            @media (max-width: 640px) {
+                                height: 55vw;
+                            }
                         }
                         video {
                             background-size: cover;
@@ -507,7 +515,7 @@ body.template-index {
                         height: $arrow_size;
                         cursor: pointer;
                         @media (max-width: 640px) {
-                            top: 65%;
+                            top: 50%;
                             &.previous {
                                 left: 15px;
                             }
@@ -563,7 +571,6 @@ body.template-index {
                                 }
                                 .Slideshow__Slide {
                                     display: grid;
-                                    
                                     grid-template-columns: 15% 30% 55%;
                                     @media (max-width: 640px) {
                                         // grid-template-columns: 10% 90%;
@@ -1296,8 +1303,8 @@ body.template-product {
             .Product__Gallery {
                 // max-width: calc(100% - 500px);
                 @media (min-width: 1008px) {
-                    margin-left: 15px;
-                    padding-left: 30px;
+                    margin-left: 20px;
+                    padding-left: 0px;
                     max-width: 60%;
                     margin-right: 15px;
                     margin-top: 20px;
@@ -1310,7 +1317,7 @@ body.template-product {
                     max-width: 60%;
                 }
                 @media (min-width: 1140px) {
-                    margin-bottom: 150px;
+                    margin-bottom: 20px;
                     min-width: 55%;
                     max-width: 55%;
                 }
@@ -1340,6 +1347,9 @@ body.template-product {
                             justify-content: center;
                             align-items: center;
                             flex: 1;
+                            img {
+                                object-fit: fill;
+                            }
                         }
                         & .image:last-child {
                             @media (max-width: 640px) {
@@ -1359,11 +1369,11 @@ body.template-product {
                         margin-top: 20px;
 
                         .image {
-                            width: calc(25% - 15px);
+                            width: calc(20% - 15px);
                             margin-bottom: 20px;
                         }
                         .image + .image {
-                            margin-left: 20px;
+                            margin-left: 15px;
                         }
                     }
                     // .variant-item {
@@ -1890,6 +1900,9 @@ body.template-product {
             select.cbb-recommendations-variant-select {
                 color: #000000 !important;
                 font-weight: 600 !important;
+                @media (max-width: 640px) {
+                    font-size: 14px !important;
+                }
             }
             .cbb-also-bought-product-price-container {
                 span {

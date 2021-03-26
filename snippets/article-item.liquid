@@ -20,10 +20,10 @@
     {%- if section.settings.show_category -%}
       <span class="ArticleItem__Category Heading u-h6 Text--subdued">{{ article.tags.first }}</span>
     {%- endif -%}
-
+{% comment %}   
     <h2 class="ArticleItem__Title Heading u-h2">
       <a href="{{ block[forloop.index0].settings.article_link | default: article.url }}">{{ article.title }}</a>
-    </h2>
+    </h2> {% endcomment %}
 
     {%- unless template.name == 'article' -%}
       <p class="ArticleItem__Excerpt">{{ article.excerpt_or_content | strip_html | truncate: 150 }}</p>

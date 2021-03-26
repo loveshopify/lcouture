@@ -38,16 +38,6 @@ $("[data-announcement-slider]").slick({
   nextArrow: nextButton
 })
 
-// $("[data-thumbnails-slider]").slick({
-//   slidesToShow: 4,
-//   slidesToScroll: 4,
-//   arrows: true,
-//   dots: false,
-//   infinite: true,
-//   prevArrow: backButton,
-//   nextArrow: nextButton
-// })
-
 $(document).ready(function(){
   $(".announcementbar_item").show();
   if($("#section-header").offset().top > 38) {
@@ -97,18 +87,6 @@ if(template == 'product') {
     event.preventDefault();
     $(".chart-wrapper").attr("aria-hidden", false);
     $(".PageOverlay").toggleClass("is-visible");
-    // var newSizeChart = [["GENERIC", "XS", "S", "M", "L", "XL/1X", "1X/2X", "2X"],["USA",1,2,6,10,14,16,18],["UK/AU/NZ",4,6,10,14,18,20,22],["Italy",34,38,42,46,50,52,54], ["France",30,34,38,42,46,48,50], ["Germany",28,32,36,40,44,46,48],["Japan",3,7,11,15,19,21,23],["Russia",36,40,44,48,52,54,56]];
-    // var sizeChart = [["GENERIC","XXS","XS","S","M","L","XL","XXL","XXXL"],["US",0,0,"2 ,4","6,8",10,12,14,""],["UK",4,6,8,10,12,14,16,18],["EU/ITALY",36,38,40,42,44,46,48,50],["FRANCE",32,34,36,38,40,42,44,46],["DENMARK",30,32,34,36,38,40,42,44],["RUSSIA",38,40,42,44,46,48,50,52],["GERMANY",30,32,34,36,38,40,42,44],["AUSTRALIA",4,6,8,10,12,14,16,18],["JAPAN",3,5,7,9,11,13,15,17],["JEANS",23,24,26,27,29,31,32,""],["XXS-XXXL","XXS - XS","XS - S","S","M","L","XL","XXL","XXXL"],["CH TOP","155/76A","160/80A","165/84A","170/88A","175/92A","180/96A","180/100A",""],["CH BOTTOM","155/64A","160/66A","165/68A","170/70A","175/72A","180/74A","185/76A",""],["KOREA",44,55,66,77,88,99,"",""],["NUMERICAL",0,1,2,3,4,5,6,""]];
-    // var product_size_name = newSizeChart[0];
-    // var product_size_value = newSizeChart[1];
-    // $(".main__title").text(product_size_name[0]);
-    // $(".sizeChart__title").text(product_size_value[0]);
-    // $(".sizeChart__title_group").html("");
-    // $(".size__name").html("");
-    // $(".size__value").html("");
-    // for(var i = 1; i < newSizeChart.length; i++) $(".sizeChart__title_group").append("<li>" + newSizeChart[i][0] + "</li>");
-    // for(var i = 1; i < product_size_name.length; i++) $(".size__name").append("<li>" + product_size_name[i] + "</li>");
-    // for(var i = 1; i < product_size_value.length; i++) $(".size__value").append("<li>" + product_size_value[i] + "</li>");
   })
   $(document).on("click", ".sizeChart-header", function(){
       $(".sizeChart__title_group").slideToggle();
@@ -116,21 +94,10 @@ if(template == 'product') {
   $(document).on("click", ".item__image .image", function(){
     var index = $(".product__media .item__image .image").index($(this)) + 1;
     var length = $(".product__media .item__image .image").length;
-    if($(window).width > 640) {
-        $(".product__media .item__image").append($(".main__image").html());
-        $(".main__image").html("");
-        $(".main__image").html($(".product__media .item__image").find(".image")[index-1]);
-        if(index == length) {
-          $(".main__image").append($(".product__media .item__image").find(".image")[0]);
-        } else {
-          $(".main__image").append($(".product__media .item__image").find(".image")[index]);
-        }
-    } else {
-      $(".product__media .item__image").append($(".main__image").html());
-      $(".main__image").html("");
-      $(".main__image").html($(".product__media .item__image").find(".image")[index-1]);
-      $(".main__image").append($(".product__media .item__image").find(".image")[index-1]);
-    }
+    $(".main__image").html("");
+    $(".main__image").html("<div class='image'>" + $(".product__media .item__image").children(".image").eq(index-1).html() + '</div>');
+    if(index == length) $(".main__image").append("<div class='image'>" + $(".product__media .item__image").children(".image").eq(0).html() + '</div>');
+    else $(".main__image").append("<div class='image'>" + $(".product__media .item__image").children(".image").eq(index).html() + '</div>');
   })
   $(document).on("click", ".text-group h6", function(){
     if($(window).width() <= 640) {
@@ -160,7 +127,6 @@ if(template == 'product') {
       else {
         $(this).next('div').slideDown();
         $(this).next("div").children("div").slideDown();
-        // $(this).next('div').chlidren().slideDown();
       }
     }
   })
@@ -208,15 +174,6 @@ if(template == 'product') {
         
       }
     })
-    // if($(window).width() > 640) {
-    //   // event.preventDefault();
-    //   var _class = $(this).data('tooltip');
-    //   _class = "." + _class;
-    //   if($(this).parents(".Product__Wrapper").find(".product__media").find(_class).length != 0) {
-    //       $(this).parents(".Product__Wrapper").find(".product__media").find(".variant-item").hide();
-    //       $(this).parents(".Product__Wrapper").find(".product__media").find(_class).show();
-    //     }
-    // }
   })
   $(document).on("click", ".size-swatch", function(event){
     event.preventDefault();
@@ -242,9 +199,7 @@ if(template == 'product') {
 }
 
 if(template == "index") {
-    // $(".shopify-section--slideshow").find(".flickity-prev-next-button.next").html('<?xml version="1.0" encoding="iso-8859-1"?><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><g><path d="M506.134,241.843c-0.006-0.006-0.011-0.013-0.018-0.019l-104.504-104c-7.829-7.791-20.492-7.762-28.285,0.068c-7.792,7.829-7.762,20.492,0.067,28.284L443.558,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h423.557l-70.162,69.824c-7.829,7.792-7.859,20.455-0.067,28.284c7.793,7.831,20.457,7.858,28.285,0.068l104.504-104c0.006-0.006,0.011-0.013,0.018-0.019C513.968,262.339,513.943,249.635,506.134,241.843z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>');
-    // $(".shopify-section--slideshow").find(".flickity-prev-next-button.previous").html('<?xml version="1.0" encoding="iso-8859-1"?><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><g><path d="M492,236H68.442l70.164-69.824c7.829-7.792,7.859-20.455,0.067-28.284c-7.792-7.83-20.456-7.859-28.285-0.068l-104.504,104c-0.007,0.006-0.012,0.013-0.018,0.019c-7.809,7.792-7.834,20.496-0.002,28.314c0.007,0.006,0.012,0.013,0.018,0.019l104.504,104c7.828,7.79,20.492,7.763,28.285-0.068c7.792-7.829,7.762-20.492-0.067-28.284L68.442,276H492c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>');    
-    $(".shopify-section--slideshow").find(".flickity-prev-next-button.next").html('&#8594');
+   $(".shopify-section--slideshow").find(".flickity-prev-next-button.next").html('&#8594');
     $(".shopify-section--slideshow").find(".flickity-prev-next-button.previous").html('&#8592');
     $(".ProductList--carousel").find(".flickity-prev-next-button.next").html('&#8594');
     $(".ProductList--carousel").find(".flickity-prev-next-button.previous").html('&#8592');
