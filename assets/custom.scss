@@ -8,11 +8,11 @@ $font-color: #da4276;
 
 $arrow_size: 30px;
 
-html {
-    img, video {
-        filter: blur(20px);
-    }
-}
+// html {
+//     img, video {
+//         filter: blur(20px);
+//     }
+// }
 * {
     letter-spacing: 0px !important;
 }
@@ -416,6 +416,7 @@ body.template-index {
                             }
                         }
                         video {
+                            // display: none;
                             background-size: cover;
                             background-position: 50% 50%;
                             position: absolute;
@@ -515,7 +516,7 @@ body.template-index {
                         height: $arrow_size;
                         cursor: pointer;
                         @media (max-width: 640px) {
-                            top: 50%;
+                            top: 65%;
                             &.previous {
                                 left: 15px;
                             }
@@ -2242,7 +2243,7 @@ body.template-collection {
                 .boost-pfs-filter-tree-v {
                     .boost-pfs-filter-tree-content {
                         .boost-pfs-filter-options-wrapper {
-                            .boost-pfs-filter-option-list {
+                            .boost-pfs-filter-option-swatch {
                                 .boost-pfs-filter-option-title {
                                     width: 100%;
                                     button {
@@ -2299,6 +2300,97 @@ body.template-collection {
                                             border: 2px solid transparent;
                                         }
                                         .boost-pfs-filter-option-item-list {
+                                            &.boost-pfs-filter-option-item-list-swatch {
+
+                                                display: flex;
+                                                flex-direction: column;
+                                                .boost-pfs-filter-option-item {
+                                                    display: flex;
+                                                    justify-content: space-between;
+                                                    button {
+                                                        text-align: center;
+                                                        display: contents;
+                                                    }                                                    
+                                                }                                                
+                                            }
+                                            .boost-pfs-filter-option-item {
+                                                .boost-pfs-filter-button {
+                                                    .boost-pfs-check-box {
+                                                        top: 0;
+                                                        border-radius: 50%;
+                                                        width: 20px;
+                                                        height: 20px;
+                                                        left: 5px;
+                                                        &::before {
+                                                            width: 13.5px;
+                                                            height: 9px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .boost-pfs-filter-option-list {
+
+                                .boost-pfs-filter-option-title {
+                                    width: 100%;
+                                    button {
+                                        width: 100%;
+                                        &[aria-expanded=false] {
+                                            span::before {
+                                                -ms-transform: rotate(45deg);
+                                                -webkit-transform: rotate(45deg);
+                                                transform: rotate(45deg);
+                                            }
+                                        }
+                                        span {
+                                            color: $font-color;
+                                            &::before {
+                                                color: #1f1f1f;
+                                                    background: none !important;
+                                                    font-size: 16px;
+                                                    text-rendering: auto;
+                                                    text-transform: none;
+                                                    -webkit-font-smoothing: antialiased;
+                                                    -moz-osx-font-smoothing: grayscale;
+                                                    content: "";
+                                                    width: 10px;
+                                                    height: 10px;
+                                                    border-right: 1px solid #1f1f1f;
+                                                    border-bottom: 1px solid #1f1f1f;
+                                                    display: inline-block;
+                                                    -moz-transition: all 100ms ease-in-out;
+                                                    -ms-transition: all 100ms ease-in-out;
+                                                    -o-transition: all 100ms ease-in-out;
+                                                    -webkit-transition: all 100ms ease-in-out;
+                                                    transition: all 100ms ease-in-out;
+                                                    -ms-transform: rotate(-135deg);
+                                                    -webkit-transform: rotate(-135deg);
+                                                    transform: rotate(-135deg);
+                                                    vertical-align: middle;
+                                                    top: 9px;
+                                                    border-width: 2px;
+                                            }
+                                        }
+                                    }
+                                }
+                                .boost-pfs-filter-option-content {
+                                    .boost-pfs-filter-option-content-inner {
+                                       &::-webkit-scrollbar
+                                        {
+                                            width: 4px;
+                                            background-color: #F5F5F5;
+                                        }
+                                        
+                                       &::-webkit-scrollbar-thumb
+                                        {
+                                            background-color: $font-color;
+                                            border: 2px solid transparent;
+                                        }
+                                        .boost-pfs-filter-option-item-list {
+                                           
                                             .boost-pfs-filter-option-item {
                                                 .boost-pfs-filter-button {
                                                     .boost-pfs-check-box {
@@ -2723,6 +2815,7 @@ footer#section-footer {
                                 margin-right: auto;
                             }
                             a {
+                                text-decoration: none;
                                 color: white;
                             }
                         }

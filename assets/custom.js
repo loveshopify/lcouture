@@ -43,6 +43,7 @@ $(document).ready(function(){
   if($("#section-header").offset().top > 38) {
     $("#section-header").addClass("scroll");
   }
+  $(".image_overlay .Slideshow__Carousel video").fadeIn(200);
   var key = 38, direction = 100;
   $(window).scroll(function(){
     if(direction < $("#section-header").offset().top && $("#section-header").offset().top < 39) {
