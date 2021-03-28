@@ -2986,3 +2986,11 @@ footer#section-footer {
         }
     }
 }
+body.template-search {
+    .CollectionMain {
+        .CollectionToolbar {
+            position: inherit !important;
+            border-top: 1px solid #e6e6e6;
+        }
+    }
+}
