@@ -98,7 +98,7 @@
     right: 10px;
   }
   .nice-select{
-    display:inline-block !important;
+    {% comment %} display:inline-block !important; {% endcomment %}
     {% if settings.mlvedaACS_displayFlag == false %}
     padding-right:0px !important;
     {% endif %}
@@ -276,6 +276,7 @@
     top: 50%;
     transform: translateY(-50%);
 }
+
   .current, .cn {
     display: none;
 }

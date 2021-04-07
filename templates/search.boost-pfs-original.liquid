@@ -52,9 +52,9 @@
                 {%- elsif result.object_type == 'page' -%}
                   <article class="ArticleItem">
                     <div class="ArticleItem__Content">
-                      <h2 class="ArticleItem__Title Heading u-h2">
+                      {% comment %} <h2 class="ArticleItem__Title Heading u-h2">
                         <a href="{{ result.url }}">{{ result.title }}</a>
-                      </h2>
+                      </h2> {% endcomment %}
 
                       <p class="ArticleItem__Excerpt">{{ result.content | strip_html | truncate: 150 }}</p>
                       <a href="{{ article.url }}" class="ArticleItem__Link Link Link--underline">{{ 'blog.article.read_more' | t }}</a>

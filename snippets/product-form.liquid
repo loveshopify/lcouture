@@ -223,7 +223,7 @@ for size, we use it to display a size chart (if applicable)
                     </button>
                     <div class="size-list">
                       {% for size_value in product.options_by_name[option.name].values %}
-                        <div class="size-item">
+                        <div class="size-item {% if  product.variants[forloop.index0].inventory_quantity == 0 %} empty {% endif %}" data-flag="{{product.variants[forloop.index0].inventory_policy}}" data-inventory="{{ product.variants[forloop.index0].inventory_quantity }}" data-value="{{ product.variants[forloop.index0].id }}">
                             <label class="SizeSwatch">{{ size_value }}</label>
                         </div>
                       {% endfor %}
@@ -295,7 +295,7 @@ for size, we use it to display a size chart (if applicable)
   --------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
-  <button type="submit" class="ProductForm__AddToCart Button {% if selected_variant.available and section.settings.show_payment_button == false %}Button--primary{% else %}Button--secondary{% endif %} Button--full" {% if selected_variant.available %}data-action="add-to-cart"{% else %}disabled="disabled"{% endif %}>
+  <button type="submit" class="ProductForm__AddToCart Button {% if selected_variant.available and section.settings.show_payment_button == false %}Button--primary{% else %}Button--secondary{% endif %} Button--full" {% if selected_variant.available %}data-action="add-to-cart"{% else %}{% endif %}disabled="disabled">
     {%- if selected_variant.available -%}
       <span>{% if product.template_suffix == 'pre-order' %}{{ 'product.form.pre_order' | t }}{% else %}{{ 'product.form.add_to_cart' | t }}{% endif %}</span>
 

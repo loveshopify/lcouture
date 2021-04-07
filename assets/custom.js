@@ -39,30 +39,72 @@ $("[data-announcement-slider]").slick({
 })
 
 $(document).ready(function(){
+
+  // $(document).on("click", ".Cart__Checkout", function(event){
+  //   event.preventDefault();
+  //   alert();
+  //   // $(".Cart--expanded").submit();
+  //   return false;
+  // })
+  $(".Cart--expanded").submit(function(e){
+    e.preventDefault();
+});
+  if($(".redirect_ip_true").length) {
+    if ( getCookie('redirect_ip') != 'true' ){
+    if ( $(".redirect_ip_true").length && window==window.top ) {
+      if ( window.location.href.indexOf('?autoredirect') > -1 ) { 
+        var date = new Date(new Date().getTime() + 2419200 * 1000);
+        document.cookie = "redirect_ip=true; path=/; domain=.lcouture.com; expires=0";
+      } else  {  
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://api.ipstack.com/check?access_key=0addb9f75b3b65c2e665ec8a10c2a798',
+          data: {},
+          complete: function (data) {    
+            redirect_ip__ipstack (data.responseJSON.country_code);
+          }
+        });
+      };
+    }
+  }
+  }
+  
+  
+
   $(".announcementbar_item").show();
-  if($("#section-header").offset().top > 38) {
+  if($("#section-header").offset().top > 40) {
     $("#section-header").addClass("scroll");
   }
+  
   $(".image_overlay .Slideshow__Carousel video").fadeIn(200);
-  var key = 38, direction = 100;
+  var key = 0, direction = 100;
   $(window).scroll(function(){
-    if(direction < $("#section-header").offset().top && $("#section-header").offset().top < 39) {
-      $("#section-header").removeClass("scroll");
-    }else if($("#section-header").offset().top > key) {
-      if($("#section-header").attr("class").indexOf("scroll") == -1) {
-        $("#section-header").addClass("scroll");
-        key = 0;
+    if(direction > $("#section-header").offset().top) key = 38;
+    if(direction < $("#section-header").offset().top) key = 0;
+    if(direction < $("#section-header").offset().top || $("#section-header").offset().top > key) {
+      $("#section-header").addClass("scroll");
+    } else {
+        $("#section-header").removeClass("scroll");
       }
-    }else {
-      $("#section-header").removeClass("scroll");
-    }
-    if($("#section-header").offset().top > 38) key = 38;
+    if($("#section-header").offset().top > 40) key = 40;
     direction = $("#section-header").offset().top;
   })
   $('[data-collection-leaset-slider]').slick("next");
 })
 
 if(template == 'collection') {
+  $(document).on("click", ".boost-pfs-filter-option-label", function(){
+    setTimeout(function(){
+      var number = $(".ProductList").find(".Grid__Cell").length;
+      $(".product-num").text(number + " products");
+    }, 2000)
+  })
+  $(document).on("click", ".boost-pfs-filter-option-item", function(){
+    setTimeout(function(){
+      var number = $(".ProductList").find(".Grid__Cell").length;
+      $(".product-num").text(number + " products");
+    }, 2000)
+  })
   $(document).on("click", '.Popover__ValueList .Popover__Value', function(){
     $(".CollectionToolbar__Item span").text($(this).text());
   })
@@ -184,11 +226,23 @@ if(template == 'product') {
   $(document).on("click", ".size-list .size-item", function(){
     var _button = $(this).parent(".size-list").prev("button.size-swatch");
     var value = "[data-value='" + $(this).find("label").text() + "']";
+    var variant_id = $(this).data("value");
+    var variant_inventory = $(this).data("inventory");
+    if(variant_inventory == 0) {
+      $(".ProductForm__AddToCart").text("Out of Stock");
+      $(".ProductForm__AddToCart").attr("disabled", true);
+    } else {
+      $(".ProductForm__AddToCart").text("Add To Cart");
+      $(".ProductForm__AddToCart").removeAttr("disabled");
+    }
+    $(".Select--primary select").val(variant_id).change();
+
     _button.find(".ProductForm__OptionName").find(".ProductForm__SelectedValue").text($(this).find("label").text());
     _button.removeClass("open");
     $(this).parent(".size-list").find(".size-item").removeClass("is-selected");
     $(this).addClass("is-selected");
     $(this).parent(".size-list").hide();
+
     $(".Popover__ValueList").find(value).click();
     $(".swathOverlay").hide();
   })

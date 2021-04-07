@@ -66,10 +66,10 @@
       var select = $acs(this);
       
       if (!select.next().hasClass('nice-select')) {
-        select.after('<div class="nice-select' +
-          (' ' + select.attr('class') || '') +
-          (select.attr('disabled') ? ' disabled' : '" tabindex="0') +
-                     '"><span class="{{ settings.mlvedaACS_flagStyle }} {{ settings.mlvedaACS_flagStyle }}-'+ $acs(this).val().toLowerCase()+ ' flags current-flags"></span><span class="current"></span><ul class="list"></ul></div><i class="fa fa-angle-down mldarrow"></i>');
+       // select.after('<div class="nice-select' +
+        //  (' ' + select.attr('class') || '') +
+         // (select.attr('disabled') ? ' disabled' : '" tabindex="0') +
+          //           '"><span class="{{ settings.mlvedaACS_flagStyle }} {{ settings.mlvedaACS_flagStyle }}-'+ $acs(this).val().toLowerCase()+ ' flags current-flags"></span><span class="current"></span><ul class="list"></ul></div><i class="fa fa-angle-down mldarrow"></i>');
         
         var dropdown = select.next();
         var options = select.find('option');

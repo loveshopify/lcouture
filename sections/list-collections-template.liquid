@@ -55,13 +55,13 @@
         {%- if section.settings.collections_to_show == 'all' -%}
           {%- for collection in collections -%}
             {%- unless collection.handle == 'frontpage' -%}
-              {%- render 'collection-item', collection: collection, apply_overlay: section.settings.apply_overlay -%}
+              {%- render 'list-collection-item', collection: collection, apply_overlay: section.settings.apply_overlay -%}
             {%- endunless -%}
           {%- endfor -%}
         {%- else -%}
           {%- for block in section.blocks -%}
             {%- assign collection = collections[block.settings.collection] -%}
-            {%- render 'collection-item', collection: collection, apply_overlay: section.settings.apply_overlay, block: block -%}
+            {%- render 'list-collection-item', collection: collection, apply_overlay: section.settings.apply_overlay, block: block -%}
           {%- endfor -%}
         {%- endif -%}
       {%- endif -%}

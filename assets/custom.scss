@@ -8,6 +8,15 @@ $font-color: #da4276;
 
 $arrow_size: 30px;
 
+.nice-select {
+       display: none !important;
+}
+#currencies {
+    display: none !important;
+}
+.mldarrow  {
+    display: none !important;
+  }
 // html {
 //     img, video {
 //         filter: blur(20px);
@@ -416,7 +425,6 @@ body.template-index {
                             }
                         }
                         video {
-                            // display: none;
                             background-size: cover;
                             background-position: 50% 50%;
                             position: absolute;
@@ -763,12 +771,15 @@ body.template-index {
     .leaset.collection-list {
         // max-width: $container;
         max-width: calc(100% - 100px);
-        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
         @media (max-width: $container) {
             padding-left: 15px;
             padding-right: 15px;
         }
         @media (max-width: 640px) {
+            margin-top: 28px;
             max-width: 100%;
             padding-left: 0px;
             padding-right: 0px;
@@ -778,6 +789,7 @@ body.template-index {
             overflow: hidden;
         }
         .section-title {
+            display: none;
             font-size: 25px;
             font-weight: bold;
             color: $font-color;
@@ -1488,25 +1500,49 @@ body.template-product {
                            .ProductMeta__PriceList {
                                 width: max-content;
                                 float: left;
-                                padding-right: 15px;
+                                // padding-right: 15px;
                                 margin-right: 15px;
                                 position: relative;
+                                display: flex;
+                                flex-direction: column;
                                 @media (max-width: 640px) {
                                     padding-right: 7px;
                                     margin-right: 7px;
                                 }
+                                .ProductMeta__Price {
+                                    padding-right: 15px;
+                                }
                                 .Price--compareAt {
-                                    display: none !important;
+                                    margin-left: 0px;
+                                    position: relative;
+                                    // color: #d13769 !important;
+                                    .money {
+                                        // color: #d13769 !important;
+                                    }
+                                    
+                                    &::after {
+                                        content: "";
+                                        position: absolute;
+
+                                    }
+                                    // display: none !important;
                                 }
-                                &::after {
-                                    position: absolute;
-                                    content: "";
-                                    width: 3px;
-                                    height: calc(100% - 8px);
-                                    background: gray;
-                                    right: 0px;
-                                    top: 4px;
+                                .Price--highlight {
+                                    border-right: 2px solid #5c6265;
+                                    .money {
+                                        color: #d13769 !important;
+                                    }
+                                    
                                 }
+                                // &::after {
+                                //     position: absolute;
+                                //     content: "";
+                                //     width: 3px;
+                                //     height: calc(100% - 8px);
+                                //     background: gray;
+                                //     right: 0px;
+                                //     top: 4px;
+                                // }
                                 .ProductMeta__Price {
                                     .money {
                                         letter-spacing: 1px;
@@ -1625,6 +1661,21 @@ body.template-product {
                                             position: relative;
                                             border-left: 1px solid;
                                             border-right: 1px solid;
+                                            &.empty {
+                                                pointer-events: none;
+                                                label {
+                                                    position: relative;
+                                                    &::after {
+                                                        position: absolute;
+                                                        content: "";
+                                                        width: 42px;
+                                                        height: 1px;
+                                                        background: rgb(150, 143, 143);
+                                                        left: 10px;
+                                                        top: 50%;
+                                                    }
+                                                }
+                                            }
                                             // border-bottom: 1px solid;
                                             label {
                                                 border: 0px !important;
@@ -2243,7 +2294,7 @@ body.template-collection {
                 .boost-pfs-filter-tree-v {
                     .boost-pfs-filter-tree-content {
                         .boost-pfs-filter-options-wrapper {
-                            .boost-pfs-filter-option-swatch {
+                             .boost-pfs-filter-option-swatch {
                                 .boost-pfs-filter-option-title {
                                     width: 100%;
                                     button {
@@ -2333,7 +2384,6 @@ body.template-collection {
                                 }
                             }
                             .boost-pfs-filter-option-list {
-
                                 .boost-pfs-filter-option-title {
                                     width: 100%;
                                     button {
@@ -2390,7 +2440,6 @@ body.template-collection {
                                             border: 2px solid transparent;
                                         }
                                         .boost-pfs-filter-option-item-list {
-                                           
                                             .boost-pfs-filter-option-item {
                                                 .boost-pfs-filter-button {
                                                     .boost-pfs-check-box {
@@ -2991,6 +3040,31 @@ body.template-search {
         .CollectionToolbar {
             position: inherit !important;
             border-top: 1px solid #e6e6e6;
+        }
+    }
+}
+#shopify-section-list-collections-template {
+    .CollectionList {
+        .collection-item {
+            flex: 1;
+            min-width: calc(20% - 15px);
+            max-width: 20%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            @media (max-width: 640px) {
+                min-width: calc(100% - 30px);
+                max-width: 100%;
+            }
+            .colllection__content {
+                text-align: center;
+                width: 100%;
+            }
+        }
+        .collection-item + .collection-item {
+            margin-left: 15px;
         }
     }
 }

@@ -138,7 +138,7 @@
 
     <script src="https://cdn.polyfill.io/v3/polyfill.min.js?unknown=polyfill&features=fetch,Element.prototype.closest,Element.prototype.remove,Element.prototype.classList,Array.prototype.includes,Array.prototype.fill,Object.assign,CustomEvent,IntersectionObserver,IntersectionObserverEntry,URL" defer></script>
     <script src="{{ 'libs.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'theme.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'jquery.min.js' | asset_url }}" defer></script>
     <script src="{{ 'slick.min.js' | asset_url }}" defer></script>
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
@@ -249,7 +249,7 @@ window.supported_currencies = "{{ settings.mlvedaACS_supportedCurrencies }}";
       </main>
 
       {% section 'footer' %}
-
+      {% section 'redirect_ip' %}
     <script src="//cdn.codeblackbelt.com/js/modules/also-bought/main.min.js?shop=lcoutureuae.myshopify.com"></script>
 
     

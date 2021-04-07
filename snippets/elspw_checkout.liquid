@@ -1,4 +1,4 @@
-{% if shop.metafields.elspw['enabled'] == '1' %}
+{% comment %} {% if shop.metafields.elspw['enabled'] == '1' %}
 <script>
 (function () {
 if(window.location.href.indexOf('/checkouts/')===-1) return;
@@ -7,4 +7,4 @@ window.Elspw = { params: { id: '82bc53f5eff2956e83360ed79173beeb', cart: {}, but
 loadScript('https://s3.amazonaws.com/els-apps/product-warnings/js/checkout.js', function () {});
 })();
 </script>
-{% endif %}
+{% endif %} {% endcomment %}

@@ -217,7 +217,7 @@ COLLECTION TOOLBAR
 
 	{%- if section.settings.show_sort_by -%}
 	<div id="collection-sort-popover" class="Popover" aria-hidden="true">
-		{%- assign current_sort_by = collection.sort_by | default: collection.default_sort_by -%}
+		{%- assign current_sort_by = collection.sort_by | default: 'price-descending' -%}
 
 		<header class="Popover__Header">
 			<button class="Popover__Close Icon-Wrapper--clickable" data-action="close-popover">{% include 'icon' with 'close' %}</button>
@@ -268,7 +268,7 @@ COLLECTION TOOLBAR
 								aria-haspopup="true"
 								aria-expanded="false"
 								aria-controls="collection-sort-popover">
-						<span>Featured</span> {% render 'icon' with 'select-arrow' %}
+						<span>HIGHEST PRICE</span> {% render 'icon' with 'select-arrow' %}
 						</button>
 					{%- endif -%}
 				</div>

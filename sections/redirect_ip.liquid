@@ -1,0 +1,89 @@
+
+{% if section.settings.use %}
+<div class="redirect_ip_true"></div>
+<script type="text/javascript">
+
+
+
+  function getCookie(redirect_ip) {
+    var matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + redirect_ip.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+
+  function redirect_ip__ipstack (iso_code) {
+    var check_global = true;
+    
+    if ( window == window.top) { 
+          {% for block in section.blocks %}
+          if ( iso_code == '{{ block.settings.country_code }}') { 
+              check_global = false;
+              window.location.href = '{{ block.settings.link | replace:'/?autoredirect', "" }}' + window.location.pathname + '?autoredirect';
+          }
+          {% endfor %}
+              
+		// GLOBAL
+      {% if section.settings.current_store != blank %}
+                if ( check_global && iso_code != "{{section.settings.current_store}}" ) { 
+                    window.location.href = 'https://lcouture.com' + window.location.pathname + '?autoredirect';
+                } 
+      {% endif %}
+        /*
+        */
+    }//window!=window.top
+              
+    var date = new Date(new Date().getTime() + 2419200 * 1000);
+    document.cookie = "redirect_ip=true; path=/; domain=.lcouture.com; expires=0";
+  }
+
+</script>
+{% else %}
+<script type="text/javascript">
+  if (window!=window.top) { 
+    var date = new Date(0);
+    document.cookie = "redirect_ip=; path=/; expires=" + date.toUTCString();
+  }
+</script>
+{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Redirect IP",
+    "class": "redirect_ip_all",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "use",
+        "label": "Use",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "current_store",
+        "label": "Current Store - Country Code",
+        "info": "[ISO - Alpha-2 code](https://en.wikipedia.org/wiki/ISO_3166-1).  Example -  United Arab Emirates - AE"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Country",
+        "settings": [
+          {
+            "type": "text",
+            "id": "country_code",
+            "label": "Country Code",
+            "info": "[ISO - Alpha-2 code](https://en.wikipedia.org/wiki/ISO_3166-1).  Example -  United Arab Emirates - AE"
+          },
+          {
+            "type": "text",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

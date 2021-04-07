@@ -1532,7 +1532,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               newButton.innerHTML = '<span>' + window.languages.productFormAddToCart + '</span>';
             }
           } else {
-            newButton.setAttribute('disabled', 'disabled');
+            // newButton.setAttribute('disabled', 'disabled');
             newButton.classList.add('Button--secondary');
             newButton.removeAttribute('data-action');
             newButton.innerHTML = window.languages.productFormSoldOut;
@@ -1650,7 +1650,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var addToCartButton = this.element.querySelector('.ProductForm__AddToCart');
 
         // First, we switch the status of the button
-        addToCartButton.setAttribute('disabled', 'disabled');
+        // addToCartButton.setAttribute('disabled', 'disabled');
         document.dispatchEvent(new CustomEvent('theme:loading:start'));
 
         // Then we add the product in Ajax

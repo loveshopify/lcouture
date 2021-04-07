@@ -27,7 +27,7 @@
           {%- endcomment -%}
           
           {% if block.settings.video_url != blank %}
-              <div class="section-video {{ block.settings.video_url.preview_image }}">
+              <div class="section-video">
               {% if block.settings.video_url.type == 'youtube' %}
                 <iframe class="Image--lazyLoad" data-src="//www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay=1&showinfo=0&controls=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
               {% elsif block.settings.video_url.type == 'vimeo' %}
@@ -35,7 +35,7 @@
               {% endif %}
               </div>
           {% elsif block.settings.video_url_m != blank %}
-              <div class="section-video {{ block.settings.video_url.preview_image }}">
+              <div class="section-video">
                   <video autoplay loop muted playsinline>
                     <source src="{{ block.settings.video_url_m }}" />
                   </video>

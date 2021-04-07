@@ -17,8 +17,14 @@ background-repeat: no-repeat;
 max-height: 250px;
 overflow-y: auto;
 }
-
+@media (max-width: 640px) {
+   
+   .nice-select .current {
+      display: none !important;
+   }
+}
 select#currencies,select#currencies1 {
+   display: block;
    margin-bottom: 0;
    margin-top: 0;
    vertical-align: middle;

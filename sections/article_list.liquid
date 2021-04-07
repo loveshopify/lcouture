@@ -44,9 +44,9 @@
                     <span class="ArticleItem__Category Heading u-h6 Text--subdued">{{ article.tags.first }}</span>
                     {%- endif -%}
                      {% if section.settings.show_date %}<p class="article__date">{{ article.updated_at  | date: "%B %d, %Y" }}</p>{% endif %}
-                    <h2 class="ArticleItem__Title Heading u-h2">
+                    {% comment %} <h2 class="ArticleItem__Title Heading u-h2">
                     <a href="{{ bs_images[forloop.index0].settings.article_link | default: article.url }}">{{ article.title }}</a>
-                    </h2>
+                    </h2> {% endcomment %}
 
                     {%- unless template.name == 'article' -%}
                        

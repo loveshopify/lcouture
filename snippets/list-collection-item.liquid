@@ -1,0 +1,18 @@
+{%- assign collection_image = block.settings.image | default: collection.image | default: collection.products.first.featured_image  -%}
+{%- assign collection_description = block.settings.description | default: collection.description -%}
+{%- assign collection_title = block.settings.title | default: collection.title -%}
+<div class="collection-item">
+    <div class="collection__image">
+        <img src="{{ collection_image | img_url: '400x' }}" alt="image"/>
+    </div>
+    <div class="colllection__content">
+        <div class="collection__title">{{ collection_title }}</div>
+        <div class="collection__button">
+             {%- if block.settings.button_text != blank -%}
+              <a href="{{ block.settings.button_link | default: collection.url }}" class="Button--primary Button">{{ block.settings.button_text | escape }}</a>
+            {%- else -%}
+              <a href="{{ block.settings.button_link | default: collection.url }}" class="Button--primary Button">{{ 'collection.general.view_products' | t }}</a>
+            {%- endif -%}
+        </div>
+    </div>
+</div>
